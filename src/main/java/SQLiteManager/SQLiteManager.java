@@ -13,7 +13,7 @@ public class SQLiteManager {
 
     /** Creates an SQLiteManager object
      *  If the cache doesn't exist it creates a new one
-     *  TODO: If the cache is corrupted it wipes it
+     *  If the cache is corrupted it wipes it
      * @author Stefan Vladov
      */
     public SQLiteManager() {
@@ -24,7 +24,8 @@ public class SQLiteManager {
             System.exit(-1);
         }
         Path path = Paths.get(DB_NAME);
-        if (Files.notExists(path)) {
+        if (Files.notExists(path) || !checkHealth()) {
+            wipeDatabase();
             initializeCache();
         }
     }
@@ -34,7 +35,7 @@ public class SQLiteManager {
      *      Students table - contains all students
      *      Attends table - contains all (student, lecture) pairs where a the student attends the lecture
      */
-    private static void initializeCache() {
+    private void initializeCache() {
         try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
             String sql = "CREATE TABLE LECTURES " +
                     "(ID INT PRIMARY KEY     NOT NULL," +
@@ -71,11 +72,59 @@ public class SQLiteManager {
         System.out.println("Database created successfully");
     }
 
-    public void executeQuery(String query) {
+    /** Checks whether the local database is corrupted by checking
+     *  whether all the tables exist
+     *  @return true or false
+     */
+    private boolean checkHealth() {
+        try {
+            executeStatement("SELECT * FROM LECTURES");
+            executeStatement("SELECT * FROM STUDENTS");
+            executeStatement("SELECT * FROM ATTENDS");
+        } catch (SQLException e) {
+            System.out.println("Database corrupted: " + e.toString());
+            return false;
+        }
+        return true;
+    }
+
+    /** Removes all data from the database.
+     *  Use with caution!
+     */
+    private void wipeDatabase() {
+        System.out.println("Cleaning database");
+        try {
+            executeStatement("SELECT * FROM STUDENTS");
+            executeStatement("DROP TABLE STUDENTS");
+            System.out.println("STUDENTS table is deleted");
+        } catch(SQLException e) {
+            System.out.println("STUDENTS table is missing");
+        }
+        try {
+            executeStatement("SELECT * FROM LECTURES");
+            executeStatement("DROP TABLE LECTURES");
+            System.out.println("LECTURES table is deleted");
+        } catch(SQLException e) {
+            System.out.println("LECTURES table is missing");
+        }
+        try {
+            executeStatement("SELECT * FROM ATTENDS");
+            executeStatement("DROP TABLE ATTENDS");
+            System.out.println("ATTENDS table is deleted");
+        } catch(SQLException e) {
+            System.out.println("ATTENDS table is missing");
+        }
+    }
+
+    public ResultSet executeQuery(String query) throws SQLException{
+        try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
+            return stmt.executeQuery(query);
+        }
+    }
+
+    private void executeStatement(String query) throws SQLException{
         try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
             stmt.execute(query);
-        } catch (SQLException e) {
-            System.out.println("Invalid query " + e.toString());
         }
     }
 
