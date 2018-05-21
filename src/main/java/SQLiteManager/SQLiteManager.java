@@ -1,5 +1,7 @@
 package main.java.SQLiteManager;
 
+import main.java.backend.BackendAdapter;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,6 +29,7 @@ public class SQLiteManager {
         if (Files.notExists(path) || !checkHealth()) {
             wipeDatabase();
             initializeCache();
+            populateDatabase();
         }
     }
 
@@ -64,12 +67,33 @@ public class SQLiteManager {
                     " PRIMARY KEY (STUDENT_ID, LECTURE_ID));";
             stmt.executeUpdate(sql);
 
-            // TODO A table which determines to which chair a major belongs to
+            sql = "CREATE TABLE CHAIRS " +
+                    "(NAME TEXT PRIMARY KEY NOT NULL," +
+                    " MAJOR TEXT NOT NULL, " +
+                    " MINOR TEXT" +
+                    ");";
+            stmt.executeUpdate(sql);
+
         } catch (SQLException e) {
             System.out.println("Error executing query " + e.toString());
             System.exit(-1);
         }
         System.out.println("Database created successfully");
+    }
+
+    private void populateDatabase() {
+        try(Connection c = DriverManager.getConnection(DB_URL);
+            PreparedStatement stmtLectures = c.prepareStatement("insert into Lectures values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmtStudents = c.prepareStatement("insert into Students values(?, ?, ?, ?)");
+            PreparedStatement stmtAttends = c.prepareStatement("insert into Attends values(?, ?)");
+            PreparedStatement stmtChairs = c.prepareStatement("insert into Chairs values(?, ?, ?)")) {
+            BackendAdapter.fillLecturesTable(stmtLectures);
+            BackendAdapter.fillStudentsTable(stmtStudents);
+            BackendAdapter.fillAttendsTable(stmtAttends);
+            BackendAdapter.fillChairsTable(stmtChairs);
+        } catch (SQLException e) {
+            System.out.println("Error importing records " + e.toString());
+        }
     }
 
     /** Checks whether the local database is corrupted by checking
@@ -81,6 +105,7 @@ public class SQLiteManager {
             executeStatement("SELECT * FROM LECTURES");
             executeStatement("SELECT * FROM STUDENTS");
             executeStatement("SELECT * FROM ATTENDS");
+            executeStatement("SELECT * FROM CHAIRS");
         } catch (SQLException e) {
             System.out.println("Database corrupted: " + e.toString());
             return false;
@@ -114,6 +139,13 @@ public class SQLiteManager {
         } catch(SQLException e) {
             System.out.println("ATTENDS table is missing");
         }
+        try {
+            executeStatement("SELECT * FROM CHAIRS");
+            executeStatement("DROP TABLE CHAIRS");
+            System.out.println("CHAIRS table is deleted");
+        } catch(SQLException e) {
+            System.out.println("CHAIRS table is missing");
+        }
     }
 
     public ResultSet executeQuery(String query) throws SQLException{
@@ -130,5 +162,5 @@ public class SQLiteManager {
 
     public static void main(String[] args) {
         SQLiteManager manager = new SQLiteManager();
-    }//end main
-}//end JDBCExample
+    }
+}
