@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SQLiteManager {
 
@@ -148,9 +150,56 @@ public class SQLiteManager {
         }
     }
 
-    public ResultSet executeQuery(String query) throws SQLException{
+
+    /** Executes a query split into three parts on the local database:
+     * @param select - Select part of a query0
+     * @param from - From part of a query
+     * @param where - Where part of a query
+     * @return 2D Array containing all the information
+     * @throws SQLException
+     */
+    public String[][] executeQuery(String[] select, String[] from, String[] where) throws SQLException {
         try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
-            return stmt.executeQuery(query);
+            StringBuilder builder = new StringBuilder();
+            builder.append("SELECT");
+            for(int i = 0; i <= select.length - 1; i++) {
+                builder.append(" " + select[i]);
+                if(i < select.length - 1) {
+                    builder.append(",");
+                }
+            }
+            builder.append("\n");
+            builder.append("FROM");
+            for(int i = 0; i <= from.length - 1; i++) {
+                builder.append(" " + from[i]);
+                if(i < from.length - 1) {
+                    builder.append(",");
+                }
+            }
+            if(where.length > 0) {
+                builder.append("\n");
+                builder.append("WHERE");
+                for (int i = 0; i <= where.length - 1; i++) {
+                    builder.append(" " + where[i]);
+                    if (i < where.length - 1) {
+                        builder.append("and");
+                    }
+                }
+            }
+            System.out.println(builder.toString());
+            ResultSet resultSet = stmt.executeQuery(builder.toString());
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            ArrayList<String[]> resultList = new ArrayList<>();
+            while(resultSet.next()) {
+                String[] row = new String[columnCount];
+                for(int i = 0; i < columnCount; i++) {
+                    row[i] = resultSet.getString(i + 1);
+                }
+                resultList.add(row);
+            }
+            String[][] resultArray = new String[resultList.size()][];
+            resultList.toArray(resultArray);
+            return resultArray;
         }
     }
 
@@ -162,5 +211,13 @@ public class SQLiteManager {
 
     public static void main(String[] args) {
         SQLiteManager manager = new SQLiteManager();
+        try {
+            String[][] resultset = manager.executeQuery(new String[]{"*"}, new String[]{"STUDENTS"}, new String[]{"ID > 1000"});
+            for(String[] s: resultset) {
+                System.out.println(Arrays.toString(s));
+            }
+        } catch(SQLException e) {
+            System.out.println("Error " + e.toString());
+        }
     }
 }
