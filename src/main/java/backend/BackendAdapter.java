@@ -13,6 +13,7 @@ public class BackendAdapter {
   public static final String STUDENTS_FILE = "data/students.csv";
   public static final String LECTURES_FILE = "data/lectures.csv";
   public static final String ATTENDS_FILE = "data/attends.csv";
+  public static final String CHAIRS_FILE = "data/chairs.csv";
 
   /**
    * Fills the table 'STUDENTS' with the master data. Make sure to truncate table before calling
@@ -123,6 +124,39 @@ public class BackendAdapter {
       System.out.println("File with 'ATTENDS' data was not found: " + ATTENDS_FILE);
     } catch (RuntimeException e) {
       System.out.println("Error while inserting 'ATTENDS' data.");
+    }
+  }
+
+  /**
+   * Fills the table 'CHAIRS' with the master data. Make sure to truncate table before calling this
+   * method, otherwise the table may be corrupted afterwards.
+   *
+   * The given insertStmt is executed once for each available row in the 'CHAIRS' table.
+   *
+   * @param insertStmt SQL statement object for "insert into STUDENTS values(?, ?, ?)" (3
+   * parameters)
+   * @author Robert zur Bonsen
+   */
+  public static void fillChairsTable(PreparedStatement insertStmt) throws SQLException {
+    try {
+      ArrayList<String[]> table = readCSVFile(CHAIRS_FILE);
+
+      for (String[] row : table) {
+
+        String chair = row[0];
+        String lecturer = row[1];
+        String subject = row[2];
+
+        insertStmt.clearParameters();
+        insertStmt.setString(1, chair);
+        insertStmt.setString(2, lecturer);
+        insertStmt.setString(3, subject);
+        insertStmt.executeUpdate();
+      }
+    } catch (FileNotFoundException e) {
+      System.out.println("File with 'CHAIRS' data was not found: " + CHAIRS_FILE);
+    } catch (RuntimeException e) {
+      System.out.println("Error while inserting 'CHAIRS' data.");
     }
   }
 
