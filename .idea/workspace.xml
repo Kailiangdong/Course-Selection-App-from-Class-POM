@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" line="76" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" line="78" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" line="219" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" line="225" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e655fe6-340e-4aee-bbf9-cfe96e602861" name="Default" comment="Added the constructor for the SQLiteManager as well as a function to execute queries on it.">
+    <list default="true" id="7e655fe6-340e-4aee-bbf9-cfe96e602861" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" afterDir="false" />
     </list>
@@ -21,15 +23,32 @@
       <file leaf-file-name="SQLiteManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="86" column="85" selection-start-line="86" selection-start-column="85" selection-end-line="86" selection-end-column="85" />
+            <state relative-caret-position="410">
+              <caret line="225" column="12" selection-start-line="225" selection-start-column="12" selection-end-line="225" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5530#5531#0" expanded="true" />
-                <element signature="e#5589#5590#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="attends.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/attends.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="10" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lectures.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/lectures.csv">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="chairs.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/chairs.csv">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="BackendAdapter.java" pinned="false" current-in-tab="false">
@@ -41,25 +60,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SQLiteOptions.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteOptions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1428">
-              <caret line="84" column="7" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
+            <state relative-caret-position="1683">
+              <caret line="100" column="7" selection-start-line="100" selection-start-column="7" selection-end-line="100" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>executeQuery</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -72,9 +87,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="977" />
-    <option name="height" value="1038" />
+    <option name="x" value="887" />
+    <option name="y" value="-10" />
+    <option name="width" value="980" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -232,6 +248,21 @@
       <option name="presentableId" value="Default" />
       <updated>1525950034642</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added integration with BackendAdapter so that the local database gets populated with mock-up data.">
+      <created>1526921700121</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1526921700121</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added a executeQuery function, to enable basic querying on the database.">
+      <created>1526926392185</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1526926392185</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -287,9 +318,14 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added integration with BackendAdapter so that the local database gets populated with mock-up data." />
+    <MESSAGE value="Added a executeQuery function, to enable basic querying on the database." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a executeQuery function, to enable basic querying on the database." />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -299,8 +335,6 @@
           <caret line="18" column="98" selection-start-line="18" selection-start-column="98" selection-end-line="18" selection-end-column="98" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5530#5531#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -332,8 +366,6 @@
           <caret line="18" column="98" selection-start-line="18" selection-start-column="98" selection-end-line="18" selection-end-column="98" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5530#5531#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -365,8 +397,6 @@
           <caret line="126" column="20" lean-forward="true" selection-start-line="126" selection-start-column="20" selection-end-line="126" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5530#5531#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -391,8 +421,6 @@
           <caret line="131" column="52" lean-forward="true" selection-start-line="131" selection-start-column="52" selection-end-line="131" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5530#5531#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -417,8 +445,6 @@
           <caret line="15" column="8" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5530#5531#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -436,8 +462,6 @@
           <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5530#5531#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -455,8 +479,6 @@
           <caret line="18" column="39" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5530#5531#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -481,9 +503,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/attends.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteOptions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -497,8 +516,6 @@
           <caret line="71" column="45" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5530#5531#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -509,8 +526,6 @@
           <caret line="18" column="39" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5530#5531#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -523,8 +538,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="84" column="7" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
+        <state relative-caret-position="1683">
+          <caret line="100" column="7" selection-start-line="100" selection-start-column="7" selection-end-line="100" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -542,14 +557,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/chairs.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/lectures.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/attends.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="86" column="85" selection-start-line="86" selection-start-column="85" selection-end-line="86" selection-end-column="85" />
+        <state relative-caret-position="410">
+          <caret line="225" column="12" selection-start-line="225" selection-start-column="12" selection-end-line="225" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5530#5531#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
           </folding>
         </state>
       </provider>

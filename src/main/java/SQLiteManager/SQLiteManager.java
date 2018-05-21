@@ -70,9 +70,9 @@ public class SQLiteManager {
             stmt.executeUpdate(sql);
 
             sql = "CREATE TABLE CHAIRS " +
-                    "(NAME TEXT PRIMARY KEY NOT NULL," +
-                    " MAJOR TEXT NOT NULL, " +
-                    " MINOR TEXT" +
+                    "(CHAIR TEXT PRIMARY KEY NOT NULL," +
+                    " LECTURER TEXT NOT NULL, " +
+                    " SUBJECT TEXT" +
                     ");";
             stmt.executeUpdate(sql);
 
@@ -182,7 +182,7 @@ public class SQLiteManager {
                 for (int i = 0; i <= where.length - 1; i++) {
                     builder.append(" " + where[i]);
                     if (i < where.length - 1) {
-                        builder.append("and");
+                        builder.append(" and ");
                     }
                 }
             }
@@ -209,10 +209,16 @@ public class SQLiteManager {
         }
     }
 
+    public String[][] queryJoinableLectures(String name) throws SQLException{
+        return this.executeQuery(new String[]{"l.ID", "l.TITLE"},
+                new String[]{"LECTURES l", "STUDENTS s", "ATTENDS at", "CHAIRS c"},
+                new String[]{"s.Name=" + "\"" + name + "\"", "s.major=c.subject", "c.chair=l.chair", "s.id=at.student_id", "at.lecture_id=l.id"});
+    }
+
     public static void main(String[] args) {
         SQLiteManager manager = new SQLiteManager();
         try {
-            String[][] resultset = manager.executeQuery(new String[]{"*"}, new String[]{"STUDENTS"}, new String[]{"ID > 1000"});
+            String[][] resultset = manager.queryJoinableLectures("Stefan");
             for(String[] s: resultset) {
                 System.out.println(Arrays.toString(s));
             }
