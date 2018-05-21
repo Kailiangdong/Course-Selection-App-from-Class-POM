@@ -212,7 +212,7 @@ public class SQLiteManager {
     public String[][] queryJoinableLectures(String name) throws SQLException{
         return this.executeQuery(new String[]{"l.ID", "l.TITLE"},
                 new String[]{"LECTURES l", "STUDENTS s", "ATTENDS at", "CHAIRS c"},
-                new String[]{"s.Name=" + "\"" + name + "\"", "s.major=c.subject", "c.chair=l.chair", "s.id=at.student_id", "at.lecture_id=l.id"});
+                new String[]{"s.Name=" + "\"" + name + "\"", "(s.major=c.subject or s.minor=c.subject)", "c.chair=l.chair", "s.id=at.student_id", "at.lecture_id=l.id"});
     }
 
     public static void main(String[] args) {
