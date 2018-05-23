@@ -2,11 +2,11 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" line="78" />
-    <bookmark url="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" line="219" />
-    <bookmark url="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" line="225" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" line="257" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" line="263" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e655fe6-340e-4aee-bbf9-cfe96e602861" name="Default" comment="">
+    <list default="true" id="7e655fe6-340e-4aee-bbf9-cfe96e602861" name="Default" comment="Fixed the queryJoinableLectures to check both major and subject.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" afterDir="false" />
     </list>
@@ -23,8 +23,8 @@
       <file leaf-file-name="SQLiteManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="214" column="101" selection-start-line="214" selection-start-column="101" selection-end-line="214" selection-end-column="101" />
+            <state relative-caret-position="302">
+              <caret line="201" column="33" lean-forward="true" selection-start-line="201" selection-start-column="33" selection-end-line="201" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,7 +54,7 @@
       <file leaf-file-name="BackendAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
+            <state relative-caret-position="2635">
               <caret line="161" selection-start-line="161" selection-end-line="161" />
             </state>
           </provider>
@@ -63,8 +63,8 @@
       <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1683">
-              <caret line="100" column="7" selection-start-line="100" selection-start-column="7" selection-end-line="100" selection-end-column="7" />
+            <state relative-caret-position="1819">
+              <caret line="107" column="7" selection-start-line="107" selection-start-column="7" selection-end-line="107" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -78,6 +78,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/POM18TEAM13-52-creating-view-2" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -87,7 +92,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="887" />
+    <option name="x" value="886" />
     <option name="y" value="-10" />
     <option name="width" value="980" />
     <option name="height" value="1040" />
@@ -98,6 +103,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -149,11 +155,18 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="SQLiteManager" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="UniversityApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-App" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="viewcontroller" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -269,7 +282,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526928204699</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixed the queryJoinableLectures to check both major and subject.">
+      <created>1526928588016</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1526928588016</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -278,48 +298,31 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32965517" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32965517" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26068965" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32965517" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.14068966" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32965517" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17252605" />
       <window_info id="Learn" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26068965" />
       <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Learn" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
-      <window_info anchor="bottom" id="Messages" order="8" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32965517" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -329,7 +332,8 @@
     <MESSAGE value="Added integration with BackendAdapter so that the local database gets populated with mock-up data." />
     <MESSAGE value="Added a executeQuery function, to enable basic querying on the database." />
     <MESSAGE value="Added a queryJoinableLectures that returns all lectures that a student can join based on his major and chair." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a queryJoinableLectures that returns all lectures that a student can join based on his major and chair." />
+    <MESSAGE value="Fixed the queryJoinableLectures to check both major and subject." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the queryJoinableLectures to check both major and subject." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -337,6 +341,43 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3638">
+          <caret line="214" column="101" selection-start-line="214" selection-start-column="101" selection-end-line="214" selection-end-column="101" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/attends.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/lectures.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/chairs.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2635">
+          <caret line="161" selection-start-line="161" selection-end-line="161" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1700">
+          <caret line="100" column="7" selection-start-line="100" selection-start-column="7" selection-end-line="100" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -354,13 +395,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteOptions.java" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1581">
@@ -385,13 +420,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteOptions.java" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1581">
@@ -409,13 +438,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteOptions.java" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1394">
@@ -433,13 +456,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteOptions.java" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1411">
@@ -511,13 +528,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteOptions.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
@@ -546,8 +557,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1683">
-          <caret line="100" column="7" selection-start-line="100" selection-start-column="7" selection-end-line="100" selection-end-column="7" />
+        <state relative-caret-position="1819">
+          <caret line="107" column="7" selection-start-line="107" selection-start-column="7" selection-end-line="107" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -560,7 +571,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
+        <state relative-caret-position="2635">
           <caret line="161" selection-start-line="161" selection-end-line="161" />
         </state>
       </provider>
@@ -580,8 +591,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="214" column="101" selection-start-line="214" selection-start-column="101" selection-end-line="214" selection-end-column="101" />
+        <state relative-caret-position="302">
+          <caret line="201" column="33" lean-forward="true" selection-start-line="201" selection-start-column="33" selection-end-line="201" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
