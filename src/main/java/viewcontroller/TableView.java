@@ -22,6 +22,7 @@ public class TableView implements ActionListener{
     private JMenuItem modulID;
     private JMenuItem title;
     private JMenuItem chair;
+    private JMenuItem ects;
     private JMenuItem csOne;
     private JMenuItem csTwo;
     private JMenuItem csThree;
@@ -56,24 +57,27 @@ public class TableView implements ActionListener{
         modulID = new JMenuItem("✓ ModulID");
         title = new JMenuItem("✓ Title");
         chair = new JMenuItem("Chair");
+        ects = new JMenuItem("ECTS");
         modulID.addActionListener(this);
         title.addActionListener(this);
         chair.addActionListener(this);
+        ects.addActionListener(this);
         projectionMenu.add(modulID);
         projectionMenu.add(title);
         projectionMenu.add(chair);
+        projectionMenu.add(ects);
         menuBar.add(projectionMenu);
 
         selectionMenu = new JMenu("S");
         csOne = new JMenuItem("✓ Chair CS 1");
         csTwo = new JMenuItem("✓ Chair CS 1");
-        csThree = new JMenuItem("Chair CS 3");
+        csThree = new JMenuItem("✓ Chair CS 3");
         csOne.addActionListener(this);
         csTwo.addActionListener(this);
         csThree.addActionListener(this);
-        projectionMenu.add(csOne);
-        projectionMenu.add(csTwo);
-        projectionMenu.add(csThree);
+        selectionMenu.add(csOne);
+        selectionMenu.add(csTwo);
+        selectionMenu.add(csThree);
         menuBar.add(selectionMenu);
 
         tablePanel = new JPanel();
@@ -81,25 +85,27 @@ public class TableView implements ActionListener{
 
         details = new JLabel("Details", SwingConstants.CENTER);
 
-        joinableLecturesPanel = new JScrollPane(joinableLecturesTableUpdate());
-
-        tablePanel.add(joinableLecturesPanel, BorderLayout.CENTER);
-        tablePanel.add(menuBar,BorderLayout.NORTH);
-        frame.add(tablePanel);
-
-        base = new ArrayList();
-        projection = new ArrayList();
+        base = new ArrayList<String>();
+        projection = new ArrayList<String>();
         projection.add("ModulID");
         projection.add("Title");
-        selection = new ArrayList();
+        selection = new ArrayList<String>();
         selection.add("Chair CS 1");
         selection.add("Chair CS 2");
         selection.add("Chair CS 2");
+
+        joinableLecturesTableUpdate();
+        tablePanel.add(joinableLecturesPanel, BorderLayout.CENTER);
+        tablePanel.add(menuBar,BorderLayout.NORTH);
+        frame.add(tablePanel);
 
         frame.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent object) {
+        if (object.getSource() == update){
+            joinableLecturesTableUpdate();
+        }
         if (object.getSource() == exit){
             frame.setVisible(false);
             frame.dispose();
@@ -135,6 +141,16 @@ public class TableView implements ActionListener{
                 projection.add("Chair");
             }
         }
+        if (object.getSource() == ects) {
+            if (ects.getText().equals("✓ ECTS")){
+                ects.setText("ECTS");
+                projection.remove("ECTS");
+            }
+            else{
+                ects.setText("✓ ECTS");
+                projection.add("ECTS");
+            }
+        }
         if (object.getSource() == csOne){
             if (csOne.getText().equals("✓ Chair CS 1")){
                 csOne.setText("Chair CS 1");
@@ -168,16 +184,56 @@ public class TableView implements ActionListener{
         }
     }
 
-    private JTable joinableLecturesTableUpdate(){
-        columnNames = new Object[2];
-        columnNames[0] = "Module ID";
-        columnNames[1] = "Title";
+    private void joinableLecturesTableUpdate(){
+
+        ArrayList<String> sortedBase;
+        ArrayList<String> sortedProjection;
+        ArrayList<String> sortedSelection;
+        sortedBase = new ArrayList<String>();
+        sortedProjection = new ArrayList<String>();
+        sortedSelection = new ArrayList<String>();
+
+        if (projection.contains("ModulID")){
+            sortedProjection.add("ModulID");
+        }
+        if (projection.contains("Title")){
+            sortedProjection.add("Title");
+        }
+        if (projection.contains("Chair")){
+            sortedProjection.add("Chair");
+        }
+        if (projection.contains("ECTS")){
+            sortedProjection.add("ECTS");
+        }
+        if (projection.contains("Chair CS 1")){
+            sortedProjection.add("Chair CS 1");
+        }
+        if (projection.contains("Chair CS 2")){
+            sortedProjection.add("Chair CS 2");
+        }
+        if (projection.contains("Chair CS 3")){
+            sortedProjection.add("Chair CS 3");
+        }
+        String[] sortedBaseArray = sortedBase.toArray(new String[sortedBase.size()]);
+        String[] sortedProjectionArray = sortedProjection.toArray(new String[sortedProjection.size()]);
+        String[] sortedSelectionArray = sortedSelection.toArray(new String[sortedSelection.size()]);
+        columnNames = new String[sortedProjectionArray.length];
+        for (int i = 0; i<sortedProjectionArray.length; i++){
+            columnNames[i]=sortedProjectionArray[i];
+        }
+        //already providing columnNames;
+        //Down here we have to call SQL-Manager
         try {
             rowData = manager.queryJoinableLectures("Stefan");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return joinableLecturesTable = new JTable(rowData, columnNames);
+
+        //getting rowData here;
+        for (Object s:columnNames){
+            System.out.println((String)s);
+        }
+        joinableLecturesPanel = new JScrollPane(new JTable(rowData, columnNames));
     }
 
     public static void main(String[] args) {
