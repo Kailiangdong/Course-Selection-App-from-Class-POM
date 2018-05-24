@@ -20,9 +20,11 @@ public class LectureController {
 
   // Controller Parameters
 
+  private String[] tableNames ={"Joinable","Joined"};
   private String[] colNames = {"ID", "TITLE", "CHAIR", "ECTS"};
   private String[] chairNames;
 
+  private String tableNameActive = tableNames[0];
   private ArrayList<String> chairNamesActive;
   private ArrayList<String> colNamesActive;
 
@@ -34,6 +36,8 @@ public class LectureController {
 
     this.sqlManager = new SQLiteManager();
     this.tableView = new TableView();
+
+    tableView.setTableMenu(tableNames);
 
     colNamesActive = new ArrayList<>();
     for (String colName : colNames) {
@@ -62,6 +66,7 @@ public class LectureController {
 
   private void addListeners() {
     tableView.setTableModelListener(new LectureTableListener());
+    tableView.setTableMenuItemsListener(new TableMenuItemListener());
     tableView.setSelectionMenuItemsListener(new SelectionMenuItemListener());
     tableView.setProjectionMenuItemsListener(new ProjectionMenuItemListener());
     tableView.setColumnHeaderListener(new TableColumnHeaderListener());
@@ -104,7 +109,7 @@ public class LectureController {
 
     QueryBuilder query = new QueryBuilder();
 
-    for (String colName : colNames) {
+    for (String colName : colNamesActive) {
       query.addSelect(colName, "LECTURES");
     }
 
@@ -162,10 +167,18 @@ public class LectureController {
   }
 
   private void updateData() {
-    QueryBuilder query = queryJoinedLectures();
+    QueryBuilder query;
+    if (tableNameActive.equals(tableNames[0])) {
+      query = queryJoinableLectures();
+    } else if (tableNameActive.equals(tableNames[1])) {
+      query = queryJoinedLectures();
+    } else {
+      query = null;
+    }
     String[][] rowData = executeQuery(query);
     String[] colNames = colNamesActive.toArray(new String[]{});
     tableView.setTableModel(new DefaultTableModel(rowData, colNames));
+    int i = 0;
   }
 
   // Listener Classes
@@ -183,6 +196,28 @@ public class LectureController {
       String[][] queryResult = executeQuery(query);
       String details = Arrays.toString(queryResult[0]);
       tableView.setDetailsAreaText("Lecture Details:" + details);
+    }
+  }
+
+  class TableMenuItemListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      int index = Arrays.asList(tableView.getTableMenuItems()).indexOf(e.getSource());
+      if (!tableNames[index].equals(tableNameActive)) {
+        for (int i = 0; i < tableView.getTableMenuItems().length; i++) {
+          String itemName = tableNames[i];
+          if (i != index) {
+            tableView.getTableMenuItems()[i].setText(itemName);
+          }
+          else {
+            tableView.getTableMenuItems()[i].setText("√ " + itemName);
+            tableNameActive = tableNames[i];
+          }
+
+        }
+      }
+      updateData();
+
     }
   }
 
@@ -248,6 +283,7 @@ public class LectureController {
     @Override
     public void actionPerformed(ActionEvent e) {
       tableView.setVisible(false);
+      tableView.dispose();
       System.exit(0);
     }
   }
