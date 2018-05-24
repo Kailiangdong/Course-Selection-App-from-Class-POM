@@ -22,8 +22,10 @@ public class TableView extends JFrame {
     private JMenu mainMenu;
     private JMenu projectionMenu;
     private JMenu selectionMenu;
+    private JMenu tableMenu;
     private JMenuItem[] selectionMenuItems;
     private JMenuItem[] projectionMenuItems;
+    private JMenuItem[] tableMenuItems;
     private JMenuItem quitProgram;
 
     // Lectures Table
@@ -47,10 +49,12 @@ public class TableView extends JFrame {
         quitProgram = new JMenuItem("Quit");
         mainMenu.add(quitProgram);
 
+        tableMenu = new JMenu("T");
         projectionMenu = new JMenu("P"); // column projection menu
         selectionMenu = new JMenu("S"); // row selection menu
 
         menuBar.add(mainMenu);
+        menuBar.add(tableMenu);
         menuBar.add(projectionMenu);
         menuBar.add(selectionMenu);
 
@@ -78,6 +82,30 @@ public class TableView extends JFrame {
 
     public void setExitListener(ActionListener l) {
         quitProgram.addActionListener(l);
+    }
+
+    // Table Selection Menu
+
+    public JMenuItem[] getTableMenuItems() {
+        return tableMenuItems;
+    }
+
+    public void setTableMenu(String[] tableNames) {
+        tableMenuItems = new JMenuItem[tableNames.length];
+        if (tableNames.length > 0) {
+            tableMenuItems[0] = new JMenuItem("√ " + tableNames[0]);
+            tableMenu.add(tableMenuItems[0]);
+            for(int i = 1; i < tableNames.length; i++) {
+                tableMenuItems[i] = new JMenuItem(tableNames[i]);
+                tableMenu.add(tableMenuItems[i]);
+            }
+        }
+    }
+
+    public void setTableMenuItemsListener(ActionListener l) {
+        for(JMenuItem tableMenuItem : tableMenuItems) {
+            tableMenuItem.addActionListener(l);
+        }
     }
 
     // Chair Selection Menu
