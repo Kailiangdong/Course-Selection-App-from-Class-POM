@@ -154,40 +154,77 @@ public class SQLiteManager {
     /** Executes a query split into three parts on the local database:
      * @param select - Select part of a query0
      * @param from - From part of a query
-     * @param where - Where part of a query
+     * @param where - Where part of a query (null if not given)
+     * @param groupby - Group By part of a query (null if not given)
+     * @param having - Having part of a query (null if not given)
+     * @param orderby - Order by of a query (null if not given)
      * @return 2D Array containing all the information
      * @throws SQLException
      */
-    public String[][] executeQuery(String[] select, String[] from, String[] where) throws SQLException {
-        try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
-            StringBuilder builder = new StringBuilder();
-            builder.append("SELECT");
-            for(int i = 0; i <= select.length - 1; i++) {
-                builder.append(" " + select[i]);
-                if(i < select.length - 1) {
-                    builder.append(",");
-                }
+    public String[][] executeQuery(String[] select, String[] from, String[] where, String[] groupby, String[] having, String[] orderby) throws SQLException {
+        StringBuilder builder = new StringBuilder();
+        builder.append("SELECT");
+        for(int i = 0; i <= select.length - 1; i++) {
+            builder.append(" " + select[i]);
+            if(i < select.length - 1) {
+                builder.append(",");
             }
+        }
+        builder.append("\n");
+        builder.append("FROM");
+        for(int i = 0; i <= from.length - 1; i++) {
+            builder.append(" " + from[i]);
+            if(i < from.length - 1) {
+                builder.append(",");
+            }
+        }
+        if(where != null && where.length > 0) {
             builder.append("\n");
-            builder.append("FROM");
-            for(int i = 0; i <= from.length - 1; i++) {
-                builder.append(" " + from[i]);
-                if(i < from.length - 1) {
-                    builder.append(",");
+            builder.append("WHERE");
+            for (int i = 0; i <= where.length - 1; i++) {
+                builder.append(" " + where[i]);
+                if (i < where.length - 1) {
+                    builder.append(" and ");
                 }
             }
-            if(where.length > 0) {
-                builder.append("\n");
-                builder.append("WHERE");
-                for (int i = 0; i <= where.length - 1; i++) {
-                    builder.append(" " + where[i]);
-                    if (i < where.length - 1) {
-                        builder.append(" and ");
-                    }
+        }
+        if(groupby != null && groupby.length > 0) {
+            builder.append("\n");
+            builder.append("GROUP BY");
+            for (int i = 0; i <= groupby.length - 1; i++) {
+                builder.append(" " + groupby[i]);
+                if (i < groupby.length - 1) {
+                    builder.append(", ");
                 }
             }
-            System.out.println(builder.toString());
-            ResultSet resultSet = stmt.executeQuery(builder.toString());
+        }
+        if(having != null && having.length > 0) {
+            builder.append("\n");
+            builder.append("HAVING");
+            for (int i = 0; i <= having.length - 1; i++) {
+                builder.append(" " + having[i]);
+                if (i < having.length - 1) {
+                    builder.append(", ");
+                }
+            }
+        }
+        if(orderby != null && orderby.length > 0) {
+            builder.append("\n");
+            builder.append("ORDER BY");
+            for (int i = 0; i <= orderby.length - 1; i++) {
+                builder.append(" " + orderby[i]);
+                if (i < orderby.length - 1) {
+                    builder.append(", ");
+                }
+            }
+        }
+        System.out.println(builder.toString());
+        return executeQuery(builder.toString());
+    }
+
+    private String[][] executeQuery(String query) throws SQLException{
+        try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
+            ResultSet resultSet = stmt.executeQuery(query);
             int columnCount = resultSet.getMetaData().getColumnCount();
             ArrayList<String[]> resultList = new ArrayList<>();
             while(resultSet.next()) {
@@ -212,7 +249,8 @@ public class SQLiteManager {
     public String[][] queryJoinableLectures(String name) throws SQLException{
         return this.executeQuery(new String[]{"l.ID", "l.TITLE"},
                 new String[]{"LECTURES l", "STUDENTS s", "ATTENDS at", "CHAIRS c"},
-                new String[]{"s.Name=" + "\"" + name + "\"", "(s.major=c.subject or s.minor=c.subject)", "c.chair=l.chair", "s.id=at.student_id", "at.lecture_id=l.id"});
+                new String[]{"s.Name=" + "\"" + name + "\"", "(s.major=c.subject or s.minor=c.subject)", "c.chair=l.chair", "s.id=at.student_id", "at.lecture_id=l.id"}
+                ,null, null, new String[] {"l.TITLE DESC"});
     }
 
     public static void main(String[] args) {
