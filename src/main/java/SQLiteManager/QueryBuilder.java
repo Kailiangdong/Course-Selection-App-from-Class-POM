@@ -1,4 +1,4 @@
-package main.java.viewcontroller;
+package main.java.SQLiteManager;
 
 import java.util.ArrayList;
 import java.util.List;
