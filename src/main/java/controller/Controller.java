@@ -1,4 +1,6 @@
-package main.java.GUI;
+package main.java.controller;
+
+import main.java.view.View;
 
 import java.util.LinkedList;
 import java.util.List;

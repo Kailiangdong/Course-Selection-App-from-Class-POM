@@ -1,7 +1,6 @@
-package main.java.GUI;
+package main.java.view;
 
 import javax.swing.*;
-import javax.swing.event.MenuListener;
 import java.awt.event.ActionListener;
 
 public class MenuView implements View {

@@ -1,8 +1,9 @@
-package main.java.GUI;
+package main.java.controller;
 
+import main.java.view.MenuView;
+import main.java.view.View;
 import main.java.SQLiteManager.SQLiteManager;
 
-import javax.swing.event.MenuListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

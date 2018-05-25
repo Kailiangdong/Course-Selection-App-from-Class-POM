@@ -1,8 +1,7 @@
-package main.java.GUI;
+package main.java.view;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 
 public class LecturesTableView implements View {
 
@@ -11,6 +10,7 @@ public class LecturesTableView implements View {
     private JScrollPane rightPane;
     private JTable leftTable;
     private JTable rightTable;
+    private JTextArea infoArea;
 
 
     public LecturesTableView() {
@@ -27,11 +27,11 @@ public class LecturesTableView implements View {
         return mainPane;
     }
 
-    protected JTable getLeftTable() {
+    public JTable getLeftTable() {
         return leftTable;
     }
 
-    protected JTable getRightTable() {
+    public JTable getRightTable() {
         return rightTable;
     }
 

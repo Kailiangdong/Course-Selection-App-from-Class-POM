@@ -1,13 +1,13 @@
-package main.java.GUI;
+package main.java.controller;
 
+import main.java.view.LecturesTableView;
+import main.java.view.View;
 import main.java.SQLiteManager.SQLiteManager;
-import main.java.viewcontroller.QueryBuilder;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-import java.util.Arrays;
 
 public class LecturesTableController extends Controller {
 
@@ -23,6 +23,7 @@ public class LecturesTableController extends Controller {
         this.view = new LecturesTableView();
         this.sqLiteManager = sqLiteManager;
         this.menuController = menuController;
+        addListeners();
     }
 
     @Override
@@ -54,10 +55,12 @@ public class LecturesTableController extends Controller {
     class LectureTableListener implements ListSelectionListener {
         @Override
         public void valueChanged(ListSelectionEvent e) {
-            if(e.getSource() == view.getLeftTable()) {
+            if(e.getSource() == view.getLeftTable().getSelectionModel()) {
                 view.getRightTable().getSelectionModel().clearSelection();
-            } else if(e.getSource() == view.getRightTable()) {
+            } else if(e.getSource() == view.getRightTable().getSelectionModel()) {
                 view.getLeftTable().getSelectionModel().clearSelection();
+            } else {
+                throw new RuntimeException();
             }
         }
     }
