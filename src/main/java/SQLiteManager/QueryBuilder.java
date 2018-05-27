@@ -1,4 +1,4 @@
-package main.java.SQLiteManager;
+package SQLiteManager;
 
 import java.util.ArrayList;
 import java.util.List;

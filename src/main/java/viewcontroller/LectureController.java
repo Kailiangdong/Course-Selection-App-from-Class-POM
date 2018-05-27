@@ -1,4 +1,4 @@
-package main.java.viewcontroller;
+package viewcontroller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,9 @@ import javax.swing.JMenuItem;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import main.java.SQLiteManager.SQLiteManager;
+
+import SQLiteManager.SQLiteManager;
+import SQLiteManager.QueryBuilder;
 
 public class LectureController {
 

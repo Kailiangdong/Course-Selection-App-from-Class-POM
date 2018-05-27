@@ -1,6 +1,6 @@
-package main.java.SQLiteManager;
+package SQLiteManager;
 
-import main.java.backend.BackendAdapter;
+import backend.BackendAdapter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

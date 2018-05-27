@@ -1,8 +1,8 @@
-package main.java.controller;
+package controller;
 
-import main.java.view.MenuView;
-import main.java.view.View;
-import main.java.SQLiteManager.SQLiteManager;
+import view.MenuView;
+import view.View;
+import SQLiteManager.SQLiteManager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

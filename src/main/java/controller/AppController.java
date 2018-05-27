@@ -1,8 +1,8 @@
-package main.java.controller;
+package controller;
 
-import main.java.view.AppFrame;
-import main.java.view.View;
-import main.java.SQLiteManager.SQLiteManager;
+import view.AppFrame;
+import view.View;
+import SQLiteManager.SQLiteManager;
 
 public class AppController extends Controller {
 
