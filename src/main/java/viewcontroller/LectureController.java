@@ -12,6 +12,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import main.java.SQLiteManager.SQLiteManager;
+import main.java.SQLiteManager.QueryBuilder;
 
 public class LectureController {
 

@@ -49,7 +49,8 @@ public class SQLiteManager {
                     " ECTS           INT, " +
                     " SEMESTER       TEXT, " +
                     " TIME           TEXT, " +
-                    " PLACE          TEXT, " +
+                    " ROOMNUMBER    TEXT, " +
+                    " BUILDINGNUMBER TEXT, " +
                     " LECTURER       TEXT, " +
                     " GRADE_FACTOR   FLOAT " +
                     ");";
@@ -85,7 +86,7 @@ public class SQLiteManager {
 
     private void populateDatabase() {
         try(Connection c = DriverManager.getConnection(DB_URL);
-            PreparedStatement stmtLectures = c.prepareStatement("insert into Lectures values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmtLectures = c.prepareStatement("insert into Lectures values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             PreparedStatement stmtStudents = c.prepareStatement("insert into Students values(?, ?, ?, ?)");
             PreparedStatement stmtAttends = c.prepareStatement("insert into Attends values(?, ?)");
             PreparedStatement stmtChairs = c.prepareStatement("insert into Chairs values(?, ?, ?)")) {
