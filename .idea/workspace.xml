@@ -1,44 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83ad940b-622c-4e57-87a9-1d8cdd21061f" name="Default" comment="Migrated project to Maven. This includes:&#10;1) A semi-functioning build process, IntelliJ form files are not compatible with Maven. That's why I made them generate source code instead of xml to help alleviate this problem. So far most of the elements are loaded properly aside from the lectures in the joinableLectures table.&#10;2) Fixed package declarations">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc_3_21_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="83ad940b-622c-4e57-87a9-1d8cdd21061f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GIT.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/off.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GIT/main/resources/sqlite-jdbc-3.21.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SQLiteManager/QueryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SQLiteManager/QueryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LectureDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LectureDetailsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LecturesTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LecturesTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Observer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/AppFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AppFrame.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/AppFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AppFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/LecturesTableView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LecturesTableView.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/LecturesTableView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LecturesTableView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MenuView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MenuView.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MenuView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viewcontroller/LectureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viewcontroller/LectureController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viewcontroller/TableView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viewcontroller/TableView.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viewcontroller/TableView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viewcontroller/TableView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sqlite-jdbc-3.21.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,11 +15,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+            <state relative-caret-position="238">
+              <caret line="68" column="71" selection-start-line="68" selection-start-column="71" selection-end-line="68" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SQLiteManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3659">
+              <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,27 +39,39 @@
       <file leaf-file-name="LectureController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/LectureController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+            <state relative-caret-position="501">
+              <caret line="294" column="2" selection-start-line="294" selection-start-column="2" selection-end-line="294" selection-end-column="2" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8474#8475#0" expanded="true" />
-                <element signature="e#8538#8539#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TableView.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MenuView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/view/MenuView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-238">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TableView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/TableView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="176" column="34" lean-forward="true" selection-start-line="176" selection-start-column="34" selection-end-line="176" selection-end-column="34" />
+            <state relative-caret-position="2652">
+              <caret line="179" column="22" selection-start-line="179" selection-start-column="22" selection-end-line="179" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TableView.form" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/TableView.form">
+          <provider selected="true" editor-type-id="ui-designer" />
         </entry>
       </file>
     </leaf>
@@ -91,6 +80,9 @@
     <findStrings>
       <find>mainPane</find>
       <find>tablePanel</find>
+      <find>queryLectures</find>
+      <find>queryJoinableLectures</find>
+      <find>updateData</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -108,13 +100,11 @@
         <option value="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/LecturesTableView.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/MenuView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/viewcontroller/LectureController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/AppController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/LectureDetailsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/LecturesTableController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/MenuController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
         <option value="$PROJECT_DIR$/src/main/resources/viewcontroller/TableView.java" />
         <option value="$PROJECT_DIR$/src/main/java/viewcontroller/TableView.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/MenuView.form" />
@@ -122,6 +112,8 @@
         <option value="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.form" />
         <option value="$PROJECT_DIR$/src/main/java/view/AppFrame.form" />
         <option value="$PROJECT_DIR$/src/main/resources/view/AppFrame.form" />
+        <option value="$PROJECT_DIR$/src/main/java/viewcontroller/LectureController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
@@ -150,20 +142,14 @@
           <item name="LectureApp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
         </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="LectureApp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
-          <item name="assembly" type="36feed69:MavenProjectsStructure$PluginNode" />
-        </path>
       </expand>
       <select />
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="978" />
-    <option name="height" value="1039" />
+    <option name="x" value="-10" />
+    <option name="width" value="980" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -172,6 +158,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -242,28 +229,13 @@
               <item name="University-App" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="viewcontroller" type="462c0819:PsiDirectoryNode" />
-              <item name="TableView" type="e9f4de52:FormNode" />
-            </path>
-            <path>
-              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
-              <item name="University-App" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
-              <item name="University-App" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -382,8 +354,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.LectureController" />
-        <item itemvalue="Application.AppController" />
         <item itemvalue="Application.SQLiteManager" />
+        <item itemvalue="Application.AppController" />
       </list>
     </recent_temporary>
   </component>
@@ -398,23 +370,31 @@
       <option name="presentableId" value="Default" />
       <updated>1527333712917</updated>
     </task>
+    <task id="LOCAL-00001" summary="Migrated project to Maven. This includes:&#10;1) A semi-functioning build process, IntelliJ form files are not compatible with Maven. That's why I made them generate source code instead of xml to help alleviate this problem. So far most of the elements are loaded properly aside from the lectures in the joinableLectures table.&#10;2) Fixed package declarations">
+      <created>1527425000265</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1527425000265</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.31766382" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" weight="0.32885906" />
+      <window_info active="true" anchor="right" id="Maven Projects" order="3" visible="true" weight="0.32885906" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.23931624" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.25071225" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23931624" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.25071225" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19664429" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21744967" />
       <window_info id="Learn" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -426,17 +406,18 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.1923077" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19664429" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.1923077" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -456,7 +437,58 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Migrated project to Maven. This includes:&#10;1) A semi-functioning build process, IntelliJ form files are not compatible with Maven. That's why I made them generate source code instead of xml to help alleviate this problem. So far most of the elements are loaded properly aside from the lectures in the joinableLectures table.&#10;2) Fixed package declarations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated project to Maven. This includes:&#10;1) A semi-functioning build process, IntelliJ form files are not compatible with Maven. That's why I made them generate source code instead of xml to help alleviate this problem. So far most of the elements are loaded properly aside from the lectures in the joinableLectures table.&#10;2) Fixed package declarations" />
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/TableView.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="28" lean-forward="true" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/LectureController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2890">
+          <caret line="170" column="25" selection-start-line="170" selection-start-column="15" selection-end-line="170" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/TableView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2601">
+          <caret line="176" column="34" selection-start-line="176" selection-start-column="34" selection-end-line="176" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/MenuView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
@@ -473,8 +505,6 @@
           <caret line="39" selection-start-line="39" selection-end-line="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8474#8475#0" expanded="true" />
-            <element signature="e#8538#8539#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -492,24 +522,6 @@
           <caret line="61" selection-start-line="61" selection-end-line="61" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2200#2201#0" expanded="true" />
-            <element signature="e#2244#2245#0" expanded="true" />
-            <element signature="e#2300#2301#0" expanded="true" />
-            <element signature="e#2358#2359#0" expanded="true" />
-            <element signature="e#2429#2430#0" expanded="true" />
-            <element signature="e#2477#2478#0" expanded="true" />
-            <element signature="e#2552#2553#0" expanded="true" />
-            <element signature="e#2589#2590#0" expanded="true" />
-            <element signature="e#3318#3319#0" expanded="true" />
-            <element signature="e#3359#3360#0" expanded="true" />
-            <element signature="e#3955#3956#0" expanded="true" />
-            <element signature="e#3997#3998#0" expanded="true" />
-            <element signature="e#4578#4579#0" expanded="true" />
-            <element signature="e#4612#4613#0" expanded="true" />
-            <element signature="e#4663#4664#0" expanded="true" />
-            <element signature="e#4704#4705#0" expanded="true" />
-            <element signature="e#4938#4939#0" expanded="true" />
-            <element signature="e#5012#5013#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -525,9 +537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -565,13 +574,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/view/AppFrame.form">
       <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="8" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/view/LectureDetailsView.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -664,16 +666,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/TableView.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
@@ -703,13 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/MenuView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/view/AppFrame.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
@@ -717,6 +702,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-312">
           <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/TableView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2652">
+          <caret line="179" column="22" selection-start-line="179" selection-start-column="22" selection-end-line="179" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/TableView.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/LectureController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="294" column="2" selection-start-line="294" selection-start-column="2" selection-end-line="294" selection-end-column="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/MenuView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3659">
+          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -725,33 +754,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/LectureController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8474#8475#0" expanded="true" />
-            <element signature="e#8538#8539#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/TableView.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/TableView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="176" column="34" lean-forward="true" selection-start-line="176" selection-start-column="34" selection-end-line="176" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="238">
+          <caret line="68" column="71" selection-start-line="68" selection-start-column="71" selection-end-line="68" selection-end-column="71" />
         </state>
       </provider>
     </entry>
