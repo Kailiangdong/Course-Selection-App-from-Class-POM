@@ -36,7 +36,7 @@ public class LecturesTableController extends Controller {
         List<String> chairNames = menuController.getActiveChairNames();
         String studentName = menuController.getActiveStudentName();
 
-        QueryBuilder query = new QueryBuilder();
+        QueryBuilder query = new QueryBuilder(QueryBuilder.Type.SELECT);
 
         for(String colName : colNames) {
             query.addSelect(colName, "LECTURES");
