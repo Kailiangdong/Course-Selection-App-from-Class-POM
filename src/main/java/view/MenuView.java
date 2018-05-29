@@ -6,46 +6,103 @@ import java.awt.event.ActionListener;
 
 public class MenuView implements View {
 
+    public static final char CHECK_SYMBOL = '*';
+
     private JPanel mainPane;
     private JMenuBar menuBar;
 
     // Menus
     private JMenu mainMenu;
-    private JMenu projectionMenu;
-    private JMenu selectionMenu;
-    private JMenu tableMenu;
+    private CheckBoxMenu columnMenu;
+    private CheckBoxMenu chairMenu;
+    private ChoiceMenu studentMenu;
 
     // Menu contents
-    private JMenuItem[] selectionMenuItems;
-    private JMenuItem[] projectionMenuItems;
-    private JMenuItem[] tableMenuItems;
-    private JMenuItem quitProgram;
-    private JMenuItem updateState;
+    private JMenuItem quitItem;
+    private JMenuItem refreshItem;
 
     public MenuView() {
         menuBar = new JMenuBar(); // top menu bar
-
-        mainMenu = new JMenu("☰"); // program control
-        quitProgram = new JMenuItem("Quit");
-        updateState = new JMenuItem("Refresh");
-        mainMenu.add(updateState);
-        mainMenu.add(quitProgram);
-
-        tableMenu = new JMenu("T");
-        projectionMenu = new JMenu("P"); // column projection menu
-        selectionMenu = new JMenu("S"); // row selection menu
-
-        // order of JMenuBar.add() calls determines displayed order
-        menuBar.add(mainMenu);
-        menuBar.add(tableMenu);
-        menuBar.add(projectionMenu);
-        menuBar.add(selectionMenu);
-
         mainPane.add(menuBar);
+        buildMainMenu();
     }
 
-    public void setUpdateStateListener(ActionListener l) {
-        updateState.addActionListener(l);
+    // Main Menu
+
+    public void setRefreshButtonListener(ActionListener l) {
+        refreshItem.addActionListener(l);
+    }
+
+    public void setQuitButtonListener(ActionListener l) {
+        quitItem.addActionListener(l);
+    }
+
+    private void buildMainMenu() {
+        mainMenu = new JMenu("☰"); // program control
+        quitItem = new JMenuItem("Quit");
+        refreshItem = new JMenuItem("Refresh");
+
+        // Add items
+        mainMenu.add(refreshItem);
+        mainMenu.add(quitItem);
+
+        // Add menu
+        menuBar.add(mainMenu);
+    }
+
+    // Hide / Show Columns
+
+    public void setColumnMenu(String[] dynamicLabels, String[] staticLabels) {
+        if (columnMenu != null) {
+            menuBar.remove(columnMenu);
+        }
+        columnMenu = new CheckBoxMenu("Columns", dynamicLabels, staticLabels);
+        menuBar.add(columnMenu);
+    }
+
+    public void setColumnMenuListener(ActionListener l) {
+        columnMenu.addLabelListener(l);
+    }
+
+    public CheckBoxMenu getColumnChoiceMenu() {
+        return columnMenu;
+    }
+
+    // Hide / Show Chairs
+
+    public void setChairMenu(String[] chairNames) {
+        if (chairMenu != null) {
+            menuBar.remove(chairMenu);
+        }
+        chairMenu = new CheckBoxMenu("Chairs", chairNames, new String[]{});
+        menuBar.add(chairMenu);
+        menuBar.updateUI();
+    }
+
+    public void setChairMenuListener(ActionListener l) {
+        chairMenu.addLabelListener(l);
+    }
+
+    public CheckBoxMenu getChairMenu() {
+        return chairMenu;
+    }
+
+    // Choose student name
+
+    public void setStudentMenu(String[] labels) {
+        if (studentMenu != null) {
+            menuBar.remove(studentMenu);
+        }
+        studentMenu = new ChoiceMenu("Student", labels);
+        menuBar.add(studentMenu);
+    }
+
+    public void setStudentChoiceListener(ActionListener l) {
+        studentMenu.addLabelListener(l);
+    }
+
+    public ChoiceMenu getStudentMenu() {
+        return studentMenu;
     }
 
     @Override
@@ -80,3 +137,4 @@ public class MenuView implements View {
         return mainPane;
     }
 }
+
