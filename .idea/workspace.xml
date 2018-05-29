@@ -4,7 +4,7 @@
     <list default="true" id="83ad940b-622c-4e57-87a9-1d8cdd21061f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cache.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lectures.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/lectures.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,20 +16,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+            <state relative-caret-position="102">
+              <caret line="87" column="63" selection-start-line="87" selection-start-column="63" selection-end-line="87" selection-end-column="63" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lectures.csv" pinned="false" current-in-tab="true">
+      <file leaf-file-name="lectures.csv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/lectures.csv">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="14" column="79" lean-forward="true" selection-start-line="14" selection-start-column="79" selection-end-line="14" selection-end-column="79" />
+              <caret line="14" column="79" selection-start-line="14" selection-start-column="79" selection-end-line="14" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -104,7 +104,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="hotfix/badly-formated-cvs-file" />
       </map>
     </option>
   </component>
@@ -134,8 +134,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/view/AppFrame.form" />
         <option value="$PROJECT_DIR$/src/main/java/viewcontroller/LectureController.java" />
         <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/data/lectures.csv" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -407,11 +407,19 @@
       <option name="project" value="LOCAL" />
       <updated>1527608688471</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixed an issue with lectures not loading up proeprly due to a badly formatted .cvs file.">
+      <created>1527614594832</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1527614594832</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -470,7 +478,8 @@
     <MESSAGE value="Migrated project to Maven. This includes:&#10;1) A semi-functioning build process, IntelliJ form files are not compatible with Maven. That's why I made them generate source code instead of xml to help alleviate this problem. So far most of the elements are loaded properly aside from the lectures in the joinableLectures table.&#10;2) Fixed package declarations" />
     <MESSAGE value="Updated SQLite version and commented out several plugins that are not used in the current generation of the jar file (maven stuff)" />
     <MESSAGE value="Commiting workspace.xml to fix merging issue." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commiting workspace.xml to fix merging issue." />
+    <MESSAGE value="Fixed an issue with lectures not loading up proeprly due to a badly formatted .cvs file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue with lectures not loading up proeprly due to a badly formatted .cvs file." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -708,17 +717,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/lectures.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" column="79" lean-forward="true" selection-start-line="14" selection-start-column="79" selection-end-line="14" selection-end-column="79" />
+          <caret line="14" column="79" selection-start-line="14" selection-start-column="79" selection-end-line="14" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="87" column="63" selection-start-line="87" selection-start-column="63" selection-end-line="87" selection-end-column="63" />
         </state>
       </provider>
     </entry>
