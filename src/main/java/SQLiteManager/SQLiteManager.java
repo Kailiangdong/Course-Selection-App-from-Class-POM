@@ -222,6 +222,10 @@ public class SQLiteManager {
         return executeQuery(builder.toString());
     }
 
+    public String[][] executeQuery(QueryBuilder query) throws SQLException {
+        return executeQuery(query.toString());
+    }
+
     private String[][] executeQuery(String query) throws SQLException{
         try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
             ResultSet resultSet = stmt.executeQuery(query);
