@@ -1,32 +1,32 @@
-ID,TITLE,CHAIR,ECTS,SEMESTER,TIME,ROOMNUMBER,BUILDINGNUMBER,LECTURER,GRADE_FACTOR
-1,Algorithmen und Datenstrukturen,Chair CS 1,5,1,"Mo., 11:30-13:00",102,5620,Prof. Mustermann,1
-2,Dreidimensionale Nutzerschnittstellen,Chair CS 1,6,1,"Mo., 11:30-13:00",102,5620,Prof. Mustermann,1
-3,Einf㉨hrung in die Informatik 1,Chair CS 1,6,1,"Mo., 11:30-13:00",102,5620,Prof. Mustermann,1
-4,Einf㉨hrung in die Informatik 2,Chair CS 3,5,2,"Mo., 11:30-13:00",102,5620,Prof. M㉨ller,1
-5,Einf㉨hrung in die Rechnerarchitektur,Chair CS 2,8,2,"Mo., 11:30-13:00",102,5620,Prof. Schmidt,1
-6,Einf㉨hrung in die Softwaretechnik,Chair CS 3,6,2,"Mo., 11:30-13:00",102,5620,Prof. M㉨ller,1
-7,Grundlagen: Betriebssysteme und Systemsoftware,Chair CS 2,6,3,"Mo., 11:30-13:00",102,5620,Prof. Schmidt,1
-8,Grundlagen: Datenbanken,Chair CS 1,6,3,"Mo., 11:30-13:00",102,5620,Prof. Mustermann,1
-9,Informationsmanagement f㉨r Digitale Gesch?ftsmodelle,Chair CS 2,6,3,"Mo., 11:30-13:00",102,5620,Prof. Schmidt,1
-10,IT Sicherheit,Chair CS 3,5,4,"Mo., 11:30-13:00",102,5620,Prof. M㉨ller,1
-11,Praktikum: Grundlagen der Programmierung,Chair CS 1,6,4,"Mo., 11:30-13:00",102,5620,Prof. Mustermann,1
-12,Programmiersprachen,Chair CS 2,5,4,"Mo., 11:30-13:00",102,5620,Prof. Schmidt,1
-13,"Planning and Scheduling of Complex Operations: Models, Methods and Applications",Chair MGMT 1,6,1,"Di., 8:00-14:00",1801,5508,Prof. Heinz,1
-14,Behavioral Operations Management,Chair MGMT 2,6,1,"Di., 8:00-14:00",1801,5508,Prof. Moritz ,1
-15,Computational Logistics,Chair MGMT 3,6,2,"Di., 8:00-14:00",1801,5508,Prof. Peter,1
-16,Designing and Scheduling Lean Manufacturing Systems,Chair MGMT 2,6,2,"Di., 8:00-14:00",1801,5508,Prof. Moritz ,1
-17,Healthcare Operations Management,Chair MGMT 3,6,3,"Di., 8:00-14:00",1801,5508,Prof. Peter,1
-18,Inventory Management,Chair MGMT 2,6,3,"Di., 8:00-14:00",1801,5508,Prof. Moritz ,1
-19,Logistics and Operations Strategy,Chair MGMT 1,6,4,"Di., 8:00-14:00",1801,5508,Prof. Heinz,1
-20,Stochastic Modeling and Optimization,Chair MGMT 3,6,4,"Di., 8:00-14:00",1801,5508,Prof. Peter,1
-21,Stochastische Optimierung,Chair MGMT 1,6,5,"Di., 8:00-14:00",1801,5508,Prof. Heinz,1
-22,H?here Mathematik 1,Chair ME 1,8,1,"Do., 9:00-11:30",2501,5101,Prof. Meier,1
-23,H?here Mathematik 2,Chair ME 1,8,2,"Do., 9:00-11:30",2501,5101,Prof. Meier,1
-24,Grundlagen CAD und Maschinenzeichnen 1,Chair ME 2,2,1,"Do., 9:00-11:30",2501,5101,Prof. Schmidt,1
-25,Grundlagen CAD und Maschinenzeichnen 2,Chair ME 2,3,2,"Do., 9:00-11:30",2501,5101,Prof. Schmidt,1
-26,Grundlagen der Entwicklung und Produktion,Chair ME 3,3,3,"Do., 9:00-11:30",2501,5101,Prof. Hermann,1
-27,Technische Mechanik 1,Chair ME 3,6,3,"Do., 9:00-11:30",2501,5101,Prof. Hermann,1
-28,Technische Mechanik 2,Chair ME 3,6,4,"Do., 9:00-11:30",2501,5101,Prof. Hermann,1
-29,Maschinenelemente 1,Chair ME 4,8,4,"Do., 9:00-11:30",2501,5101,Prof. Mayer,1
-30,Maschinenelemente 2,Chair ME 4,8,5,"Do., 9:00-11:30",2501,5101,Prof. Mayer,1
-31,Werkstoffkunde,Chair ME 4,5,3,"Do., 9:00-11:30",2501,5101,Prof. Mayer,1
+ID;TITLE;CHAIR;ECTS;SEMESTER;TIME;ROOMNUMBER;BUILDINGNUMBER;LECTURER;GRADE_FACTOR
+1;Algorithmen und Datenstrukturen;Chair CS 1;5;1;"Mo., 11:30-13:00";102;5620;Prof. Mustermann;1
+2;Dreidimensionale Nutzerschnittstellen;Chair CS 1;6;1;"Mo., 11:30-13:00";102;5620;Prof. Mustermann;1
+3;Einf체hrung in die Informatik 1;Chair CS 1;6;1;"Mo., 11:30-13:00";102;5620;Prof. Mustermann;1
+4;Einf체hrung in die Informatik 2;Chair CS 3;5;2;"Mo., 11:30-13:00";102;5620;Prof. M체ller;1
+5;Einf체hrung in die Rechnerarchitektur;Chair CS 2;8;2;"Mo., 11:30-13:00";102;5620;Prof. Schmidt;1
+6;Einf체hrung in die Softwaretechnik;Chair CS 3;6;2;"Mo., 11:30-13:00";102;5620;Prof. M체ller;1
+7;Grundlagen: Betriebssysteme und Systemsoftware;Chair CS 2;6;3;"Mo., 11:30-13:00";102;5620;Prof. Schmidt;1
+8;Grundlagen: Datenbanken;Chair CS 1;6;3;"Mo., 11:30-13:00";102;5620;Prof. Mustermann;1
+9;Informationsmanagement f체r Digitale Gesch체ftsmodelle;Chair CS 2;6;3;"Mo., 11:30-13:00";102;5620;Prof. Schmidt;1
+10;IT Sicherheit;Chair CS 3;5;4;"Mo., 11:30-13:00";102;5620;Prof. M체ller;1
+11;Praktikum: Grundlagen der Programmierung;Chair CS 1;6;4;"Mo., 11:30-13:00";102;5620;Prof. Mustermann;1
+12;Programmiersprachen;Chair CS 2;5;4;"Mo., 11:30-13:00";102;5620;Prof. Schmidt;1
+13;Planning and Scheduling of Complex Operations: Models, Methods and Applications;Chair MGMT 1;6;1;"Di., 8:00-14:00";1801;5508;Prof. Heinz;1
+14;Behavioral Operations Management;Chair MGMT 2;6;1;"Di., 8:00-14:00";1801;5508;Prof. Moritz ;1
+15;Computational Logistics;Chair MGMT 3;6;2;"Di., 8:00-14:00";1801;5508;Prof. Peter;1
+16;Designing and Scheduling Lean Manufacturing Systems;Chair MGMT 2;6;2;"Di., 8:00-14:00";1801;5508;Prof. Moritz ;1
+17;Healthcare Operations Management;Chair MGMT 3;6;3;"Di., 8:00-14:00";1801;5508;Prof. Peter;1
+18;Inventory Management;Chair MGMT 2;6;3;"Di., 8:00-14:00";1801;5508;Prof. Moritz ;1
+19;Logistics and Operations Strategy;Chair MGMT 1;6;4;"Di., 8:00-14:00";1801;5508;Prof. Heinz;1
+20;Stochastic Modeling and Optimization;Chair MGMT 3;6;4;"Di., 8:00-14:00";1801;5508;Prof. Peter;1
+21;Stochastische Optimierung;Chair MGMT 1;6;5;"Di., 8:00-14:00";1801;5508;Prof. Heinz;1
+22;H체here Mathematik 1;Chair ME 1;8;1;"Do., 9:00-11:30";2501;5101;Prof. Meier;1
+23;H체here Mathematik 2;Chair ME 1;8;2;"Do., 9:00-11:30";2501;5101;Prof. Meier;1
+24;Grundlagen CAD und Maschinenzeichnen 1;Chair ME 2;2;1;"Do., 9:00-11:30";2501;5101;Prof. Schmidt;1
+25;Grundlagen CAD und Maschinenzeichnen 2;Chair ME 2;3;2;"Do., 9:00-11:30";2501;5101;Prof. Schmidt;1
+26;Grundlagen der Entwicklung und Produktion;Chair ME 3;3;3;"Do., 9:00-11:30";2501;5101;Prof. Hermann;1
+27;Technische Mechanik 1;Chair ME 3;6;3;"Do., 9:00-11:30";2501;5101;Prof. Hermann;1
+28;Technische Mechanik 2;Chair ME 3;6;4;"Do., 9:00-11:30";2501;5101;Prof. Hermann;1
+29;Maschinenelemente 1;Chair ME 4;8;4;"Do., 9:00-11:30";2501;5101;Prof. Mayer;1
+30;Maschinenelemente 2;Chair ME 4;8;5;"Do., 9:00-11:30";2501;5101;Prof. Mayer;1
+31;Werkstoffkunde;Chair ME 4;5;3;"Do., 9:00-11:30";2501;5101;Prof. Mayer;1
