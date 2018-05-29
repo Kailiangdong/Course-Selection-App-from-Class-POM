@@ -21,14 +21,25 @@ public class QueryBuilder {
     orderBy = new ArrayList<>();
   }
 
-  public void addSelect(String colName, String tabName) {
-    String stmt = tabName.charAt(0) + "." + colName;
-    select.add(stmt);
+  public void addSelect(Boolean tabNameSelected,String colName, String tabName) {
+    if (tabNameSelected) {
+      String stmt = tabName.charAt(0) + "." + colName;
+      select.add(stmt);
+    }
+    else {
+      select.add(colName);
+    }
+
   }
 
-  public void addFrom(String tabName) {
-    String stmt = tabName + " " + tabName.charAt(0);
-    from.add(stmt);
+  public void addFrom(Boolean tabNameSelected, String tabName) {
+    if (tabNameSelected) {
+      String stmt = tabName + " " + tabName.charAt(0);
+      from.add(stmt);
+    }
+    else{
+      from.add(tabName);
+    }
   }
 
   public void addWhere(String condition) {
