@@ -16,6 +16,7 @@ public class AppController extends Controller {
 
     public AppController() {
         view = new AppFrame();
+        sqLiteManager = new SQLiteManager();
 
         // add menu bar
         menuController = new MenuController(sqLiteManager);
