@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.MouseListener;
 
 public class LecturesTableView implements View {
 
@@ -19,9 +20,14 @@ public class LecturesTableView implements View {
         rightTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
-    public void setTableModelListener(ListSelectionListener l) {
+    public void setRowListener(ListSelectionListener l) {
         leftTable.getSelectionModel().addListSelectionListener(l);
         rightTable.getSelectionModel().addListSelectionListener(l);
+    }
+
+    public void setHeaderListener(MouseListener l) {
+        leftTable.getTableHeader().addMouseListener(l);
+        rightTable.getTableHeader().addMouseListener(l);
     }
 
     public JPanel getMainPane() {
@@ -53,6 +59,7 @@ public class LecturesTableView implements View {
     private void $$$setupUI$$$() {
         mainPane = new JPanel();
         mainPane.setLayout(new BorderLayout(0, 0));
+        mainPane.setPreferredSize(new Dimension(908, 435));
         leftPane = new JScrollPane();
         mainPane.add(leftPane, BorderLayout.WEST);
         leftTable = new JTable();
