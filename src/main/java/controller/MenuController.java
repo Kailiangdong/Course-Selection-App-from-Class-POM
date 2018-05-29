@@ -99,7 +99,7 @@ public class MenuController extends Controller {
     // Business Logic
 
     private String[] getStudentNames() {
-        QueryBuilder query = new QueryBuilder();
+        QueryBuilder query = new QueryBuilder(QueryBuilder.Type.SELECT);
         query.addSelect("NAME", "STUDENTS");
         query.addFrom("STUDENTS");
         query.addGroupBy("NAME", "STUDENTS");
@@ -117,7 +117,7 @@ public class MenuController extends Controller {
     }
 
     private String[] getChairNames() {
-        QueryBuilder query = new QueryBuilder();
+        QueryBuilder query = new QueryBuilder(QueryBuilder.Type.SELECT);
         query.addSelect("CHAIR", "CHAIRS");
         query.addFrom("CHAIRS");
         query.addFrom("STUDENTS");
