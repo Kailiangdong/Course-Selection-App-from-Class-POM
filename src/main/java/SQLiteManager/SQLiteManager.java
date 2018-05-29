@@ -1,6 +1,6 @@
-package main.java.SQLiteManager;
+package SQLiteManager;
 
-import main.java.backend.BackendAdapter;
+import backend.BackendAdapter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -49,7 +49,8 @@ public class SQLiteManager {
                     " ECTS           INT, " +
                     " SEMESTER       TEXT, " +
                     " TIME           TEXT, " +
-                    " PLACE          TEXT, " +
+                    " ROOMNUMBER    TEXT, " +
+                    " BUILDINGNUMBER TEXT, " +
                     " LECTURER       TEXT, " +
                     " GRADE_FACTOR   FLOAT " +
                     ");";
@@ -85,7 +86,7 @@ public class SQLiteManager {
 
     private void populateDatabase() {
         try(Connection c = DriverManager.getConnection(DB_URL);
-            PreparedStatement stmtLectures = c.prepareStatement("insert into Lectures values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmtLectures = c.prepareStatement("insert into Lectures values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             PreparedStatement stmtStudents = c.prepareStatement("insert into Students values(?, ?, ?, ?)");
             PreparedStatement stmtAttends = c.prepareStatement("insert into Attends values(?, ?)");
             PreparedStatement stmtChairs = c.prepareStatement("insert into Chairs values(?, ?, ?)")) {
@@ -220,6 +221,10 @@ public class SQLiteManager {
         }
         System.out.println(builder.toString());
         return executeQuery(builder.toString());
+    }
+
+    public String[][] executeQuery(QueryBuilder query) throws SQLException {
+        return executeQuery(query.toString());
     }
 
     private String[][] executeQuery(String query) throws SQLException{

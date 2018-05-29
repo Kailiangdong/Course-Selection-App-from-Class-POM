@@ -1,9 +1,9 @@
-package main.java.controller;
+package controller;
 
-import main.java.SQLiteManager.QueryBuilder;
-import main.java.view.LectureDetailsView;
-import main.java.view.View;
-import main.java.SQLiteManager.SQLiteManager;
+
+import view.LectureDetailsView;
+import view.View;
+import SQLiteManager.SQLiteManager;
 
 public class LectureDetailsController extends Controller {
 

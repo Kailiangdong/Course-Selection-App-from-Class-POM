@@ -1,4 +1,4 @@
-package main.java.backend;
+package backend;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -73,9 +73,10 @@ public class BackendAdapter {
         int ects = Integer.parseInt(row[3]);
         String semester = row[4];
         String time = row[5];
-        String place = row[6];
-        String lecturer = row[7];
-        float gradeFactor = Float.parseFloat(row[8].replace(',', '.'));
+        String roomnumber = row[6];
+        String buildingnumber = row[7];
+        String lecturer = row[8];
+        float gradeFactor = Float.parseFloat(row[9].replace(',', '.'));
 
         insertStmt.clearParameters();
         insertStmt.setInt(1, id);
@@ -84,9 +85,10 @@ public class BackendAdapter {
         insertStmt.setInt(4, ects);
         insertStmt.setString(5, semester);
         insertStmt.setString(6, time);
-        insertStmt.setString(7, place);
-        insertStmt.setString(8, lecturer);
-        insertStmt.setFloat(9, gradeFactor);
+        insertStmt.setString(7, roomnumber);
+        insertStmt.setString(8, buildingnumber);
+        insertStmt.setString(9, lecturer);
+        insertStmt.setFloat(10, gradeFactor);
         insertStmt.executeUpdate();
 
       }
