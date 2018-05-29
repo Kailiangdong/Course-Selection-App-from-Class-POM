@@ -1,8 +1,8 @@
-package main.java.controller;
+package controller;
 
-import main.java.view.LecturesTableView;
-import main.java.view.View;
-import main.java.SQLiteManager.SQLiteManager;
+import view.LecturesTableView;
+import view.View;
+import SQLiteManager.SQLiteManager;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;

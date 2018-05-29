@@ -1,4 +1,4 @@
-package main.java.SQLiteManager;
+package SQLiteManager;
 
 public class QueryManager {
 }
