@@ -8,9 +8,7 @@ public class AppController extends Controller {
 
     private AppFrame view;
 
-    private Controller menuController;
-    private Controller middleController;
-    private Controller bottomController;
+    private MenuController menuController;
 
     private SQLiteManager sqLiteManager;
 
@@ -28,14 +26,20 @@ public class AppController extends Controller {
     }
 
     public void showLectureScreen() {
-        middleController = new LecturesTableController(sqLiteManager, (MenuController) menuController);
-        view.setMiddlePane(middleController.getView().getMainPane());
 
-        bottomController = new LectureDetailsController(sqLiteManager, (LecturesTableController) middleController);
-        view.setBottomPane(bottomController.getView().getMainPane());
+        // Set up controllers
+        LecturesTableController tableController = new LecturesTableController(sqLiteManager, menuController);
+        LectureDetailsController detailsController = new LectureDetailsController(sqLiteManager, tableController);
 
-        menuController.attach(middleController); // lecture tables react to menu settings
-        middleController.attach(bottomController); // lecture details react to lecture selection
+        // Show views in AppFrame
+        view.setMiddlePane(tableController.getView().getMainPane());
+        view.setBottomPane(detailsController.getView().getMainPane());
+
+        // Set observers
+        menuController.attach(this); // app reacts to quit button in menu
+        menuController.attach(tableController); // lecture tables react to menu settings
+        menuController.attach(detailsController); // lecture details react to changing student name
+        tableController.attach(detailsController); // lecture details react to lecture selection
     }
 
     @Override
@@ -50,7 +54,10 @@ public class AppController extends Controller {
 
     @Override
     public void update() {
-        // nothing to update, will never subscribe to anything
+        if(!menuController.isAppActive()) {
+            view.setVisible(false);
+            view.dispose();
+        }
     }
 
     public static void main(String[] args) {
