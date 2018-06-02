@@ -85,7 +85,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>viewcontroller.LectureController</mainClass>
+                            <mainClass>controller.AppController</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
