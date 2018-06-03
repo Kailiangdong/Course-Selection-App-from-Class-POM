@@ -43,6 +43,7 @@ public class MenuController extends Controller {
 
     private void initColumnMenu() {
         activeColNames = new ArrayList<>();
+        activeColNames.addAll(Arrays.asList(staticColNames));
         activeColNames.addAll(Arrays.asList(colNames));
         view.setColumnMenu(colNames, staticColNames);
         view.setColumnMenuListener(new ColumnLabelListener());

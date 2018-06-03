@@ -96,7 +96,7 @@ public class QueryBuilder {
     public void addHaving(String[] conditions) { Collections.addAll(having, conditions); }
 
     public void addOrderBy(String colName, String tabName, String direction) {
-        orderBy.add(returnFirstChar(tabName) + "." + colName + ((direction != null) ? direction : "asc"));
+        orderBy.add(returnFirstChar(tabName) + "." + colName + " " + ((direction != null) ? direction : "asc"));
     }
 
     public void addOrderBy(String[] colNames, String[] tabNames, String[] directions) {
@@ -109,29 +109,29 @@ public class QueryBuilder {
 
     private String getSelectStmt() {
         StringBuilder builder = new StringBuilder();
-        builder.append("SELECT ");
-        listAddingToBuilder(builder, select.listIterator(), ", ", true);
-        builder.append("\n" + "FROM ");
-        listAddingToBuilder(builder, from.listIterator(), ", ", true);
+        builder.append("SELECT");
+        listAddingToBuilder(builder, select.listIterator(), ",", true);
+        builder.append("\n" + "FROM");
+        listAddingToBuilder(builder, from.listIterator(), ",", true);
         if (join != null && join.size() > 0) {
             builder.append("\n");
             listAddingToBuilder(builder, join.listIterator(), "\n", false);
         }
         if (where != null && where.size() > 0) {
-            builder.append("\n" + "WHERE ");
-            listAddingToBuilder(builder, where.listIterator(), " and ", true);
+            builder.append("\n" + "WHERE");
+            listAddingToBuilder(builder, where.listIterator(), " and", true);
         }
         if (groupBy != null && groupBy.size() > 0) {
-            builder.append("\n" + "GROUP BY ");
-            listAddingToBuilder(builder, groupBy.listIterator(), ", ", true);
+            builder.append("\n" + "GROUP BY");
+            listAddingToBuilder(builder, groupBy.listIterator(), ",", true);
         }
         if (having != null && having.size() > 0) {
-            builder.append("\n" + "HAVING ");
-            listAddingToBuilder(builder, having.listIterator(), ", ", true);
+            builder.append("\n" + "HAVING");
+            listAddingToBuilder(builder, having.listIterator(), ",", true);
         }
         if (orderBy != null && orderBy.size() > 0) {
-            builder.append("\n" + "ORDER BY ");
-            listAddingToBuilder(builder, orderBy.listIterator(), ", ", true);
+            builder.append("\n" + "ORDER BY");
+            listAddingToBuilder(builder, orderBy.listIterator(), ",", true);
         }
         System.out.println(builder.toString());
         return builder.toString();

@@ -21,7 +21,7 @@ public class LecturesTableController extends Controller {
         lecturesTableView = new LecturesTableView();
         this.sqLiteManager = sqLiteManager;
         this.menuController = menuController;
-        selectedCol = "";
+        selectedCol = "ID";
         sortOrder = "ASC";
         selectedLectureId = "";
         addListeners();
