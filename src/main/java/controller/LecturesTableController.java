@@ -1,42 +1,59 @@
 package controller;
 
-import view.LecturesTableView;
-import view.View;
+import view.*;
 import SQLiteManager.*;
-
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.List;
 
 public class LecturesTableController extends Controller {
 
-    private LecturesTableView view;
+    private LecturesTableView lecturesTableView;
     private MenuController menuController;
-
     private SQLiteManager sqLiteManager;
-
-    private String colToSort = "ID";
-    private String sortOrder = "ASC";
-    private String lectureId = "";
+    private String[] colNames;
+    private String[][] leftTableContent;
+    private String[][] rightTableContent;
+    private String selectedCol;
+    private String sortOrder;
+    private String selectedLectureId;
 
     public LecturesTableController(SQLiteManager sqLiteManager, MenuController menuController) {
-        this.view = new LecturesTableView();
+        lecturesTableView = new LecturesTableView();
         this.sqLiteManager = sqLiteManager;
         this.menuController = menuController;
+        selectedCol = "";
+        sortOrder = "ASC";
+        selectedLectureId = "";
         addListeners();
     }
 
+    //<editor-fold desc="Get/Set Section">
+    @Override
+    public View getView() { return lecturesTableView; }
+
+    public void setView(LecturesTableView lecturesTableView) { this.lecturesTableView = lecturesTableView; }
+
+    public String getSelectedCol() { return selectedCol; }
+
+    public void setSelectedCol (String selectedCol) { this.selectedCol = selectedCol; }
+
+    public String getSortOrder() { return sortOrder; }
+
+    public void setSortOrder (String sortOrder) { this.sortOrder = sortOrder; }
+
+    public String getSelectedLectureId() {
+        return selectedLectureId;
+    }
+
+    public void setSelectedLectureId(String selectedLectureId) { this.selectedLectureId = selectedLectureId; }
+    //</editor-fold>
+
+    //<editor-fold desc="Query-building Section">
     private QueryBuilder prebuildLecturesQuery() {
         List<String> colNames = menuController.getActiveColNames();
         List<String> chairNames = menuController.getActiveChairNames();
-        String studentName = menuController.getActiveStudentName();
 
-        QueryBuilder query = new QueryBuilder(QueryBuilder.Type.SELECT);
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
 
         for(String colName : colNames) {
             query.addSelect(colName, "LECTURES");
@@ -54,9 +71,9 @@ public class LecturesTableController extends Controller {
         }
         whereStmt.append(")");
         query.addWhere(whereStmt.toString());
-        query.addWhere(String.format("s.NAME = '%s'", studentName));
+        query.addWhere(String.format("s.NAME = '%s'", menuController.getActiveStudentName()));
 
-        query.addOrderBy(colToSort, "LECTURES", sortOrder);
+        query.addOrderBy(selectedCol, "LECTURES", sortOrder);
 
         return query;
     }
@@ -87,103 +104,35 @@ public class LecturesTableController extends Controller {
             return new String[][]{{}};
         }
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Action Section">
+    public void changeSelectedCol(String selectedCol) {
+        this.selectedCol = selectedCol;
+        if (this.sortOrder.equals("ASC")) {
+            this.sortOrder = "DESC";
+        } else {
+            this.sortOrder = "ASC";
+        }
+        update();
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Rest Section">
     @Override
     void addListeners() {
-        view.setRowListener(new RowListener());
-        view.setHeaderListener(new HeaderListener());
+        lecturesTableView.setRowListener(new RowListener(this));
+        lecturesTableView.setHeaderListener(new HeaderListener(this));
     }
 
     @Override
     public void update() {
-        String[] colNames = menuController.getActiveColNames().toArray(new String[]{});
-        String[][] leftData = getNonJoinedLectures();
-        String[][] rightData = getJoinedLectures();
-
-        AbstractTableModel leftTableModel = new LectureTableModel(leftData, colNames);
-        AbstractTableModel rightTableModel = new LectureTableModel(rightData, colNames);
-        view.getLeftTable().setModel(leftTableModel);
-        view.getRightTable().setModel(rightTableModel);
+        colNames = menuController.getActiveColNames().toArray(new String[]{});
+        leftTableContent = getNonJoinedLectures();
+        rightTableContent = getJoinedLectures();
+        lecturesTableView.getLeftTable().setModel(new LectureTableModel(leftTableContent, colNames));
+        lecturesTableView.getRightTable().setModel(new LectureTableModel(rightTableContent, colNames));
     }
-
-    /**
-     * Returns the ID of the lecture the user currently selected in the data tables.
-     * @return lectureId
-     */
-    public String getSelectedLectureID() {
-        return lectureId;
-    }
-
-    public View getView() {
-        return view;
-    }
-
-    class HeaderListener extends MouseAdapter {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            int leftCol = view.getLeftTable().columnAtPoint(e.getPoint());
-            int rightCol = view.getRightTable().columnAtPoint(e.getPoint());
-            String colName = view.getLeftTable().getColumnName(leftCol);
-            colToSort = colName;
-            if (sortOrder.equals("ASC")) {
-                sortOrder = "DESC";
-            } else {
-                sortOrder = "ASC";
-            }
-            update();
-        }
-    }
-
-    /**
-     * Listens to the TableSelectionModel and determines
-     * which row was selected by the user.
-     */
-    class RowListener implements ListSelectionListener {
-        @Override
-        public void valueChanged(ListSelectionEvent e) {
-            int selectedRow;
-            if(e.getSource() == view.getLeftTable().getSelectionModel()) {
-                // User selected row in left table
-                view.getRightTable().getSelectionModel().clearSelection();
-                selectedRow = view.getLeftTable().getSelectedRow();
-                if(selectedRow != -1) {
-                    // no actual user input
-                    lectureId = (String) view.getLeftTable().getValueAt(selectedRow, 0);
-                }
-            } else if(e.getSource() == view.getRightTable().getSelectionModel()) {
-                view.getLeftTable().getSelectionModel().clearSelection();
-                selectedRow = view.getRightTable().getSelectedRow();
-                if(selectedRow != -1) {
-                    // no actual user input
-                    lectureId = (String) view.getLeftTable().getValueAt(selectedRow, 0);
-                }
-            } else {
-                throw new RuntimeException();
-            }
-            notifyAllObservers();
-        }
-    }
-
-    /**
-     * Custom TableModel to represent lecture data in a JTable.
-     */
-    class LectureTableModel extends DefaultTableModel {
-
-        public LectureTableModel(String[][] rowData, String[] colNames) {
-            super(rowData, colNames);
-        }
-
-        /**
-         * The user should not be able to edit the table data.
-         *
-         * @param row
-         * @param column
-         * @return
-         */
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false;
-        }
-    }
+    //</editor-fold>
 
 }

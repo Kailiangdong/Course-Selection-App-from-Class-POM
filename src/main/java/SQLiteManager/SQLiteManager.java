@@ -35,6 +35,43 @@ public class SQLiteManager {
         }
     }
 
+    //<editor-fold desc="Execute String Query Section">
+    private String[][] executeQuery(String query) throws SQLException{
+        ArrayList<String[]> resultList = new ArrayList<>();
+        try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
+            ResultSet resultSet = stmt.executeQuery(query);
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            while(resultSet.next()) {
+                String[] row = new String[columnCount];
+                for(int i = 0; i < columnCount; i++) {
+                    row[i] = resultSet.getString(i + 1);
+                }
+                resultList.add(row);
+            }
+            String[][] resultArray = new String[resultList.size()][];
+            resultList.toArray(resultArray);
+            return resultArray;
+        }
+    }
+
+    private void executeStatement(String query) throws SQLException{
+        try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
+            stmt.execute(query);
+        }
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Execute QueryBuilder Query Section">
+    public String[][] executeQuery(QueryBuilder query) throws SQLException {
+        return executeQuery(query.toString());
+    }
+
+    public void executeStatement(QueryBuilder query) throws SQLException{
+        executeStatement(query.toString());
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Initialisation Section">
     /** Initializes the SQLite database with:
      *      Lectures table - contains all lectures
      *      Students table - contains all students
@@ -150,8 +187,9 @@ public class SQLiteManager {
             System.out.println("CHAIRS table is missing");
         }
     }
+    //</editor-fold>
 
-
+    //<editor-fold desc="!!!Probably Deletable!!!">
     /** Executes a query split into three parts on the local database:
      * @param select - Select part of a query0
      * @param from - From part of a query
@@ -162,7 +200,7 @@ public class SQLiteManager {
      * @return 2D Array containing all the information
      * @throws SQLException
      */
-    public String[][] executeQuery(String[] select, String[] from, String[] where, String[] groupby, String[] having, String[] orderby) throws SQLException {
+    private String[][] executeQuery(String[] select, String[] from, String[] where, String[] groupby, String[] having, String[] orderby) throws SQLException {
         StringBuilder builder = new StringBuilder();
         builder.append("SELECT");
         for(int i = 0; i <= select.length - 1; i++) {
@@ -223,41 +261,15 @@ public class SQLiteManager {
         return executeQuery(builder.toString());
     }
 
-    public String[][] executeQuery(QueryBuilder query) throws SQLException {
-        return executeQuery(query.toString());
-    }
-
-    private String[][] executeQuery(String query) throws SQLException{
-        try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
-            ResultSet resultSet = stmt.executeQuery(query);
-            int columnCount = resultSet.getMetaData().getColumnCount();
-            ArrayList<String[]> resultList = new ArrayList<>();
-            while(resultSet.next()) {
-                String[] row = new String[columnCount];
-                for(int i = 0; i < columnCount; i++) {
-                    row[i] = resultSet.getString(i + 1);
-                }
-                resultList.add(row);
-            }
-            String[][] resultArray = new String[resultList.size()][];
-            resultList.toArray(resultArray);
-            return resultArray;
-        }
-    }
-
-    private void executeStatement(String query) throws SQLException{
-        try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
-            stmt.execute(query);
-        }
-    }
-
-    public String[][] queryJoinableLectures(String name) throws SQLException{
+    private String[][] queryJoinableLectures(String name) throws SQLException{
         return this.executeQuery(new String[]{"l.ID", "l.TITLE"},
                 new String[]{"LECTURES l", "STUDENTS s", "ATTENDS at", "CHAIRS c"},
                 new String[]{"s.Name=" + "\"" + name + "\"", "(s.major=c.subject or s.minor=c.subject)", "c.chair=l.chair", "s.id=at.student_id", "at.lecture_id=l.id"}
                 ,null, null, new String[] {"l.TITLE DESC"});
     }
+    //</editor-fold>
 
+    //<editor-fold desc="!!!Delete Main!!!">
     public static void main(String[] args) {
         SQLiteManager manager = new SQLiteManager();
         try {
@@ -269,4 +281,5 @@ public class SQLiteManager {
             System.out.println("Error " + e.toString());
         }
     }
+    //</editor-fold>
 }

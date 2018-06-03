@@ -17,6 +17,7 @@ public class AppFrame extends JFrame implements View {
         this.add(mainPane);
     }
 
+    //<editor-fold desc="Open/Close Section">
     public void open() {
         this.pack();
         this.setVisible(true);
@@ -26,26 +27,38 @@ public class AppFrame extends JFrame implements View {
         this.setVisible(false);
         this.dispose();
     }
+    //</editor-fold>
+
+    //<editor-fold desc="Get/Set Section">
+    private void setPane(JPanel pane, JPanel paneContent) {
+        pane.removeAll();
+        pane.add(paneContent, BorderLayout.CENTER);
+        pane.setPreferredSize(paneContent.getPreferredSize());
+        this.pack();
+    }
+
+    public JPanel getMenuPane() {
+        return menuPane;
+    }
 
     public void setMenuPane(JPanel menuPane) {
-        this.menuPane.removeAll();
-        this.menuPane.add(menuPane, BorderLayout.CENTER);
-        this.menuPane.setPreferredSize(menuPane.getPreferredSize());
-        this.pack();
+        setPane(this.menuPane, menuPane);
+    }
+
+    public JPanel getMiddlePane() {
+        return middlePane;
     }
 
     public void setMiddlePane(JPanel middlePane) {
-        this.middlePane.removeAll();
-        this.middlePane.add(middlePane, BorderLayout.CENTER);
-        this.middlePane.setPreferredSize(middlePane.getPreferredSize());
-        this.pack();
+        setPane(this.middlePane, middlePane);
+    }
+
+    public JPanel getBottomPane() {
+        return bottomPane;
     }
 
     public void setBottomPane(JPanel bottomPane) {
-        this.bottomPane.removeAll();
-        this.bottomPane.add(bottomPane, BorderLayout.CENTER);
-        this.bottomPane.setPreferredSize(bottomPane.getPreferredSize());
-        this.pack();
+        setPane(this.bottomPane, bottomPane);
     }
 
     public JPanel getMainPane() {
@@ -87,4 +100,7 @@ public class AppFrame extends JFrame implements View {
     public JComponent $$$getRootComponent$$$() {
         return mainPane;
     }
+
+    //</editor-fold>
+
 }
