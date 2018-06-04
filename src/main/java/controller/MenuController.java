@@ -43,6 +43,7 @@ public class MenuController extends Controller {
 
     private void initColumnMenu() {
         activeColNames = new ArrayList<>();
+        activeColNames.addAll(Arrays.asList(staticColNames));
         activeColNames.addAll(Arrays.asList(colNames));
         view.setColumnMenu(colNames, staticColNames);
         view.setColumnMenuListener(new ColumnLabelListener());
@@ -99,7 +100,7 @@ public class MenuController extends Controller {
     // Business Logic
 
     private String[] getStudentNames() {
-        QueryBuilder query = new QueryBuilder(QueryBuilder.Type.SELECT);
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
         query.addSelect("NAME", "STUDENTS");
         query.addFrom("STUDENTS");
         query.addGroupBy("NAME", "STUDENTS");
@@ -117,7 +118,7 @@ public class MenuController extends Controller {
     }
 
     private String[] getChairNames() {
-        QueryBuilder query = new QueryBuilder(QueryBuilder.Type.SELECT);
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
         query.addSelect("CHAIR", "CHAIRS");
         query.addFrom("CHAIRS");
         query.addFrom("STUDENTS");

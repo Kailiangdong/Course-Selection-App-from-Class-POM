@@ -7,20 +7,24 @@ import SQLiteManager.SQLiteManager;
 public class AppController extends Controller {
 
     private AppFrame view;
-
     private MenuController menuController;
-
     private SQLiteManager sqLiteManager;
 
     public AppController() {
         view = new AppFrame();
         sqLiteManager = new SQLiteManager();
-
-        // add menu bar
         menuController = new MenuController(sqLiteManager);
         view.setMenuPane(menuController.getView().getMainPane());
     }
 
+    //<editor-fold desc="Get Section">
+    @Override
+    public View getView() {
+        return view;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Action Section">
     public void start() {
         view.open();
     }
@@ -29,7 +33,7 @@ public class AppController extends Controller {
 
         // Set up controllers
         LecturesTableController tableController = new LecturesTableController(sqLiteManager, menuController);
-        LectureDetailsController detailsController = new LectureDetailsController(sqLiteManager, tableController);
+        LectureDetailsController detailsController = new LectureDetailsController(sqLiteManager, menuController, tableController);
 
         // Show views in AppFrame
         view.setMiddlePane(tableController.getView().getMainPane());
@@ -41,15 +45,12 @@ public class AppController extends Controller {
         menuController.attach(detailsController); // lecture details react to changing student name
         tableController.attach(detailsController); // lecture details react to lecture selection
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Rest Section">
     @Override
     void addListeners() {
         // does not react to user input
-    }
-
-    @Override
-    public View getView() {
-        return view;
     }
 
     @Override
@@ -59,7 +60,9 @@ public class AppController extends Controller {
             view.dispose();
         }
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Main Section">
     public static void main(String[] args) {
         // initialize main frame where the application lives in
         AppController app = new AppController();
@@ -68,5 +71,6 @@ public class AppController extends Controller {
         app.start();
         app.showLectureScreen();
     }
+    //</editor-fold>
 
 }

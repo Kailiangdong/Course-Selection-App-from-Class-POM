@@ -20,16 +20,7 @@ public class LecturesTableView implements View {
         rightTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
-    public void setRowListener(ListSelectionListener l) {
-        leftTable.getSelectionModel().addListSelectionListener(l);
-        rightTable.getSelectionModel().addListSelectionListener(l);
-    }
-
-    public void setHeaderListener(MouseListener l) {
-        leftTable.getTableHeader().addMouseListener(l);
-        rightTable.getTableHeader().addMouseListener(l);
-    }
-
+    //<editor-fold desc="Get Section">
     public JPanel getMainPane() {
         return mainPane;
     }
@@ -40,6 +31,18 @@ public class LecturesTableView implements View {
 
     public JTable getRightTable() {
         return rightTable;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Listener Section">
+    public void setRowListener(ListSelectionListener l) {
+        leftTable.getSelectionModel().addListSelectionListener(l);
+        rightTable.getSelectionModel().addListSelectionListener(l);
+    }
+
+    public void setHeaderListener(MouseListener l) {
+        leftTable.getTableHeader().addMouseListener(l);
+        rightTable.getTableHeader().addMouseListener(l);
     }
 
     {
@@ -79,4 +82,6 @@ public class LecturesTableView implements View {
     public JComponent $$$getRootComponent$$$() {
         return mainPane;
     }
+    //</editor-fold>
+
 }

@@ -7,6 +7,7 @@ public class LectureDetailsView implements View {
 
     private JPanel mainPane;
 
+    //<editor-fold desc="Get Section">
     @Override
     public JPanel getMainPane() {
         return mainPane;
@@ -38,4 +39,6 @@ public class LectureDetailsView implements View {
     public JComponent $$$getRootComponent$$$() {
         return mainPane;
     }
+    //</editor-fold>
+
 }

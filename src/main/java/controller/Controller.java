@@ -20,6 +20,7 @@ public abstract class Controller implements Observer {
         if(!observerList.contains(o)) {
             throw new RuntimeException(o.toString() + " is not observing " + this.toString());
         }
+        observerList.remove(o);
     }
 
     public void notifyAllObservers() {
