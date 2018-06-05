@@ -133,7 +133,7 @@ public class QueryBuilder {
             builder.append("\n" + "ORDER BY");
             listAddingToBuilder(builder, orderBy.listIterator(), ",", true);
         }
-        System.out.println(builder.toString());
+        System.out.println(builder.toString()+"\n");
         return builder.toString();
     }
     //</editor-fold>
@@ -156,6 +156,7 @@ public class QueryBuilder {
         builder.append(")\n" + "VALUES (");
         listAddingToBuilder(builder, where.listIterator(), ", ", false);
         builder.append(")");
+        System.out.println(builder.toString()+"\n");
         return builder.toString();
     }
     //</editor-fold>
@@ -173,9 +174,10 @@ public class QueryBuilder {
         StringBuilder builder = new StringBuilder();
         builder.append("DELETE FROM " + from.get(0));
         if (where != null && where.size() > 0) {
-            builder.append("\n" + "WHERE ");
-            listAddingToBuilder(builder, where.listIterator(), " and ", true);
+            builder.append("\n" + "WHERE");
+            listAddingToBuilder(builder, where.listIterator(), " and", true);
         }
+        System.out.println(builder.toString()+"\n");
         return builder.toString();
     }
     //</editor-fold>

@@ -5,27 +5,37 @@ import SQLiteManager.*;
 
 import java.sql.SQLException;
 
-public class LectureDetailsController extends Controller {
+public class LecturesDetailsController extends Controller {
 
-    private LectureDetailsView view;
+    private LecturesDetailsView lecturesDetailsView;
     private SQLiteManager sqLiteManager;
     private MenuController menuController;
     private LecturesTableController tableController;
-    private String studentID;
+    private String studentName;
     private String lectureID;
 
-    public LectureDetailsController(
+    public LecturesDetailsController(
             SQLiteManager sqLiteManager, MenuController menuController, LecturesTableController tableController) {
-        this.view = new LectureDetailsView();
+        this.lecturesDetailsView = new LecturesDetailsView();
         this.sqLiteManager = sqLiteManager;
         this.menuController = menuController;
         this.tableController = tableController;
+        update();
+        addListeners();
     }
 
     //<editor-fold desc="Get/Set Section">
     @Override
     public View getView() {
-        return view;
+        return lecturesDetailsView;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public String getLectureID() {
+        return lectureID;
     }
     //</editor-fold>
 
@@ -34,15 +44,16 @@ public class LectureDetailsController extends Controller {
         QueryBuilder addBuilder = new QueryBuilder(QueryType.INSERT);
         addBuilder.addInsertTab("ATTENDS");
         addBuilder.addInsertCols(new String[]{"STUDENT_ID","LECTURE_ID"});
-        addBuilder.addInsertVals(new String[]{studentID, lectureID});
+        addBuilder.addInsertVals(new String[]{"(SELECT s.ID FROM STUDENTS s WHERE s.NAME = '" + studentName + "')", lectureID});
         return addBuilder;
     }
 
-    private QueryBuilder deleteLectureQuery(String studentID, String lectureID) {
+    private QueryBuilder deleteLectureQuery(String studentName, String lectureID) {
         QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
         deleteBuilder.addDeleteTab("ATTENDS");
         deleteBuilder.addDeleteWhere(new String[]{
-                "STUDENT_ID=" + studentID,"LECTURE_ID=" + lectureID
+                "STUDENT_ID = (SELECT s.ID FROM STUDENTS s WHERE s.NAME = '" + studentName + "')",
+                "LECTURE_ID = " + lectureID
         });
         return deleteBuilder;
     }
@@ -51,14 +62,14 @@ public class LectureDetailsController extends Controller {
     //<editor-fold desc="Action Section">
     public void addLecture() {
         try {
-            sqLiteManager.executeQuery(addLectureQuery(studentID,lectureID));
+            sqLiteManager.executeQuery(addLectureQuery(studentName,lectureID));
         } catch (SQLException e) {
             System.out.println("Error executing adding lecture: " + e.toString());
         }
     }
     public void deleteLecture() {
         try {
-            sqLiteManager.executeQuery(deleteLectureQuery(studentID,lectureID));
+            sqLiteManager.executeQuery(deleteLectureQuery(studentName,lectureID));
         } catch (SQLException e) {
             System.out.println("Error executing deleting lecture: " + e.toString());
         }
@@ -68,13 +79,15 @@ public class LectureDetailsController extends Controller {
     //<editor-fold desc="Rest Section">
     @Override
     void addListeners() {
+        lecturesDetailsView.setRowListener(new ButtonListener(this));
+
 
     }
 
     @Override
     public void update() {
         // get updated state
-        studentID = menuController.getActiveStudentName();
+        studentName = menuController.getActiveStudentName();
         lectureID = tableController.getSelectedLectureId();
     }
     //</editor-fold>

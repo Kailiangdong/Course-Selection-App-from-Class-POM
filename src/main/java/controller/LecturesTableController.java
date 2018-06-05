@@ -24,6 +24,7 @@ public class LecturesTableController extends Controller {
         selectedCol = "ID";
         sortOrder = "ASC";
         selectedLectureId = "";
+        update();
         addListeners();
     }
 

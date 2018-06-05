@@ -33,7 +33,7 @@ public class AppController extends Controller {
 
         // Set up controllers
         LecturesTableController tableController = new LecturesTableController(sqLiteManager, menuController);
-        LectureDetailsController detailsController = new LectureDetailsController(sqLiteManager, menuController, tableController);
+        LecturesDetailsController detailsController = new LecturesDetailsController(sqLiteManager, menuController, tableController);
 
         // Show views in AppFrame
         view.setMiddlePane(tableController.getView().getMainPane());
@@ -44,6 +44,7 @@ public class AppController extends Controller {
         menuController.attach(tableController); // lecture tables react to menu settings
         menuController.attach(detailsController); // lecture details react to changing student name
         tableController.attach(detailsController); // lecture details react to lecture selection
+        detailsController.attach(tableController); // lecture tables react to joining/dropping lectures
     }
     //</editor-fold>
 
