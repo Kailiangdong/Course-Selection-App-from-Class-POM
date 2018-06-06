@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83ad940b-622c-4e57-87a9-1d8cdd21061f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/data/comments.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test_data.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/test_data.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AppController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,11 +16,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BackendAdapter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BackendAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+            <state relative-caret-position="323">
+              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/AppController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="67" column="88" selection-start-line="67" selection-start-column="88" selection-end-line="67" selection-end-column="88" />
+              <folding>
+                <element signature="e#2064#2065#0" expanded="true" />
+                <element signature="e#2137#2138#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -96,6 +106,7 @@
         <option value="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/AppController.java" />
       </list>
     </option>
   </component>
@@ -184,17 +195,7 @@
               <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
               <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="SQLiteManager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
-              <item name="University-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -373,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528126861940</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added comments table to project">
+      <created>1528286533092</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1528286533092</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -386,11 +394,11 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067115" side_tool="true" weight="0.23789173" />
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.31879196" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4986577" weight="0.32905984" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" visible="true" weight="0.33655173" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4986577" weight="0.32827586" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932885" visible="true" weight="0.33655173" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" weight="0.25783476" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19270833" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19270833" />
       <window_info id="Learn" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -439,7 +447,8 @@
     <MESSAGE value="Commiting workspace.xml to fix merging issue." />
     <MESSAGE value="Added lecture details for each selected lecture and moved the code from LectureDetailsView to a Intellij form." />
     <MESSAGE value="Fixed a bug where the selected row from the right table was not properly updated." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed a bug where the selected row from the right table was not properly updated." />
+    <MESSAGE value="Added comments table to project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added comments table to project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -613,13 +622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/AppController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="45" column="96" selection-start-line="45" selection-start-column="96" selection-end-line="45" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/view/AppFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -667,8 +669,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+        <state relative-caret-position="323">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="67" column="88" selection-start-line="67" selection-start-column="88" selection-end-line="67" selection-end-column="88" />
+          <folding>
+            <element signature="e#2064#2065#0" expanded="true" />
+            <element signature="e#2137#2138#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

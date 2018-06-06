@@ -65,7 +65,7 @@ public class AppController extends Controller {
     }
 
     public void icon() {
-        view.setIconImage(Toolkit.getDefaultToolkit().getImage("C:/Users/Joana/Documents/university-app/src/main/resources/logo.png"));
+        view.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
     }
     //</editor-fold>
 
