@@ -13,6 +13,7 @@ public class LecturesTableController extends Controller {
     private String[] colNames;
     private String[][] leftTableContent;
     private String[][] rightTableContent;
+    private Boolean selectedRight;
     private String selectedCol;
     private String sortOrder;
     private String selectedLectureId;
@@ -21,6 +22,7 @@ public class LecturesTableController extends Controller {
         lecturesTableView = new LecturesTableView();
         this.sqLiteManager = sqLiteManager;
         this.menuController = menuController;
+        selectedRight = true;
         selectedCol = "ID";
         sortOrder = "ASC";
         selectedLectureId = "";
@@ -34,13 +36,17 @@ public class LecturesTableController extends Controller {
 
     public void setView(LecturesTableView lecturesTableView) { this.lecturesTableView = lecturesTableView; }
 
+    public Boolean getSelectedRight() { return selectedRight; }
+
+    public void setSelectedRight(Boolean selectedRight) { this.selectedRight = selectedRight; }
+
     public String getSelectedCol() { return selectedCol; }
 
-    public void setSelectedCol (String selectedCol) { this.selectedCol = selectedCol; }
+    public void setSelectedCol(String selectedCol) { this.selectedCol = selectedCol; }
 
     public String getSortOrder() { return sortOrder; }
 
-    public void setSortOrder (String sortOrder) { this.sortOrder = sortOrder; }
+    public void setSortOrder(String sortOrder) { this.sortOrder = sortOrder; }
 
     public String getSelectedLectureId() {
         return selectedLectureId;

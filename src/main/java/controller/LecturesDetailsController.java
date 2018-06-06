@@ -8,9 +8,10 @@ import java.sql.SQLException;
 public class LecturesDetailsController extends Controller {
 
     private LecturesDetailsView lecturesDetailsView;
+    private CommentController commentController;
     private SQLiteManager sqLiteManager;
     private MenuController menuController;
-    private LecturesTableController tableController;
+    private LecturesTableController lecturesTableController;
     private String studentName;
     private String lectureID;
 
@@ -19,7 +20,7 @@ public class LecturesDetailsController extends Controller {
         this.lecturesDetailsView = new LecturesDetailsView();
         this.sqLiteManager = sqLiteManager;
         this.menuController = menuController;
-        this.tableController = tableController;
+        this.lecturesTableController = tableController;
         update();
         addListeners();
     }
@@ -29,6 +30,8 @@ public class LecturesDetailsController extends Controller {
     public View getView() {
         return lecturesDetailsView;
     }
+
+    public LecturesTableController getTableController() {return lecturesTableController;}
 
     public String getStudentName() {
         return studentName;
@@ -87,8 +90,10 @@ public class LecturesDetailsController extends Controller {
     @Override
     public void update() {
         // get updated state
+        lecturesDetailsView.getJoinDropLectureButton().setText(
+                lecturesTableController.getSelectedRight()?"Drop Lecture":"Join Lecture");
         studentName = menuController.getActiveStudentName();
-        lectureID = tableController.getSelectedLectureId();
+        lectureID = lecturesTableController.getSelectedLectureId();
     }
     //</editor-fold>
 
