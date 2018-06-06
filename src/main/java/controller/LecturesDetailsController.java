@@ -3,6 +3,7 @@ package controller;
 import view.*;
 import SQLiteManager.*;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
@@ -202,11 +203,16 @@ public class LecturesDetailsController extends Controller {
         try {
             String[][] res = sqLiteManager.executeQuery(query);
             // Create new window and fill it with content
-            for(int i = 0; i < res.length; i++) {
-                for(int j = 0; j < res[0].length; j++) {
-                    System.out.println(res[i][j]);
-                }
-            }
+            JFrame participantsView = new JFrame("Participants");
+            String[] title = {"Participants"};
+            JTable participantsTable = new JTable(res, title);
+            JScrollPane pane = new JScrollPane(participantsTable);
+            JPanel participantsPanel = new JPanel();
+
+            participantsPanel.add(pane);
+            participantsView.add(participantsPanel);
+            participantsView.setSize(400, 500);
+            participantsView.setVisible(true);
         } catch (SQLException e) {
             System.out.println("Error in participants query " + e.toString());
         }
