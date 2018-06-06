@@ -207,11 +207,11 @@ public class LecturesDetailsController extends Controller {
             String[] title = {"Participants"};
             JTable participantsTable = new JTable(res, title);
             JScrollPane pane = new JScrollPane(participantsTable);
-            JPanel participantsPanel = new JPanel();
+            JPanel participantsPanel = new JPanel(new BorderLayout());
 
-            participantsPanel.add(pane);
+            participantsPanel.add(pane, BorderLayout.CENTER);
             participantsView.add(participantsPanel);
-            participantsView.setSize(400, 500);
+            participantsView.setSize(300, 500);
             participantsView.setVisible(true);
         } catch (SQLException e) {
             System.out.println("Error in participants query " + e.toString());
