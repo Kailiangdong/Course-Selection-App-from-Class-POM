@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83ad940b-622c-4e57-87a9-1d8cdd21061f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ButtonListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ButtonListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache.db" beforeDir="false" afterPath="$PROJECT_DIR$/cache.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/LecturesDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LecturesDetailsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LecturesTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LecturesTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/RowListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/RowListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/AppFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AppFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/CommentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/CommentView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/LecturesTableView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LecturesTableView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,37 +19,92 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LecturesDetailsView.form" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BackendAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/AppController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="58" column="43" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LecturesDetailsView.form" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.form">
           <provider selected="true" editor-type-id="ui-designer" />
+        </entry>
+      </file>
+      <file leaf-file-name="CommentView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/view/CommentView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1165">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="LecturesDetailsView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="13" selection-start-column="13" selection-end-column="13" />
+            <state relative-caret-position="-652">
+              <caret line="47" column="31" lean-forward="true" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
+              <folding>
+                <element signature="e#1202#1203#0" expanded="true" />
+                <element signature="e#1225#1226#0" expanded="true" />
+                <element signature="initializer##0;class#LecturesDetailsView#0" expanded="true" />
+                <element signature="initializer##0;class#LecturesDetailsView#0" expanded="true" />
+                <element signature="e#2773#2774#0" expanded="true" />
+                <element signature="e#2804#2805#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LecturesDetailsController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MenuController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/MenuController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="119" column="38" lean-forward="true" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LecturesDetailsController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/LecturesDetailsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="19" column="61" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
+            <state relative-caret-position="212">
+              <caret line="167" column="87" selection-start-line="167" selection-start-column="87" selection-end-line="167" selection-end-column="87" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QueryBuilder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="22" lean-forward="true" selection-start-column="22" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SQLiteManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2567">
+              <caret line="158" column="33" selection-start-line="158" selection-start-column="33" selection-end-line="158" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -64,18 +114,16 @@
       <find>queryJoinableLectures</find>
       <find>updateData</find>
       <find>Error</find>
-      <find>lectureId</find>
-      <find>LectureTableModel</find>
-      <find>this</find>
-      <find>getSortOrder</find>
-      <find>print</find>
+      <find>addListeners</find>
+      <find>notifyAllObser</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="hotfix/badly-formated-cvs-file" />
+        <entry key="$PROJECT_DIR$" value="feature/POM18TEAM13-67-update-database-schema" />
+        <entry key="$PROJECT_DIR$" value="feature/POM18TEAM13-62-show-lecture-details" />
       </map>
     </option>
   </component>
@@ -83,39 +131,42 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/QueryManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/Observer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/view/View.java" />
+        <option value="$PROJECT_DIR$/src/main/java/view/AppFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/view/LecturesTableView.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/MenuView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/AppController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/LectureDetailsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/LecturesTableController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/MenuController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/resources/viewcontroller/TableView.java" />
         <option value="$PROJECT_DIR$/src/main/java/viewcontroller/TableView.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/MenuView.form" />
         <option value="$PROJECT_DIR$/src/main/java/view/LecturesTableView.form" />
+        <option value="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.form" />
         <option value="$PROJECT_DIR$/src/main/java/view/AppFrame.form" />
         <option value="$PROJECT_DIR$/src/main/resources/view/AppFrame.form" />
         <option value="$PROJECT_DIR$/src/main/java/viewcontroller/LectureController.java" />
-        <option value="$PROJECT_DIR$/data/lectures.csv" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/QueryType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/LecturesTableModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/LectureTableModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/view/View.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/HeaderListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/MenuController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.form" />
-        <option value="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/LectureDetailsController.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/data/lectures.csv" />
         <option value="$PROJECT_DIR$/src/main/java/controller/AppController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.form" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/LectureDetailsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/LecturesTableController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/ButtonListener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/RowListener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/view/LecturesTableView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/view/CommentView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/AppController.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.form" />
-        <option value="$PROJECT_DIR$/src/main/java/view/AppFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/LecturesDetailsController.java" />
       </list>
     </option>
@@ -143,9 +194,10 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="width" value="980" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -155,60 +207,73 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="SQLiteManager" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -218,11 +283,10 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="246" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE" value="left" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -230,17 +294,17 @@
     <property name="settings.editor.selected.configurable" value="project.propGUI" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\stefa\IdeaProjects\University-App\src\main\java\viewcontroller" />
-      <recent name="C:\Users\stefa\IdeaProjects\University-App\src\main\java\view" />
-      <recent name="C:\Users\stefa\IdeaProjects\University-App\src\main\resources\view" />
-      <recent name="C:\Users\stefa\IdeaProjects\University-App\src\main\resources\viewcontroller" />
-      <recent name="C:\Users\stefa\IdeaProjects\University-App\src\main\java" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\stefa\IdeaProjects\University-App\src\main\resources\viewcontroller" />
       <recent name="C:\Users\stefa\IdeaProjects\University-App\src\main\resources\view" />
       <recent name="C:\Users\stefa\IdeaProjects\University-App\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\stefa\IdeaProjects\University-app\src\main" />
+      <recent name="C:\Users\stefa\IdeaProjects\University-App\src\main\java\viewcontroller" />
+      <recent name="C:\Users\stefa\IdeaProjects\University-App\src\main\java\view" />
+      <recent name="C:\Users\stefa\IdeaProjects\University-App\src\main\resources\view" />
+      <recent name="C:\Users\stefa\IdeaProjects\University-App\src\main\resources\viewcontroller" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -338,8 +402,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.AppController" />
+        <item itemvalue="Application.SQLiteManager" />
         <item itemvalue="Application.LectureController" />
         <item itemvalue="Application.SQLiteManager" />
+        <item itemvalue="Application.LectureController" />
       </list>
     </recent_temporary>
   </component>
@@ -375,47 +441,90 @@
       <option name="project" value="LOCAL" />
       <updated>1527608688471</updated>
     </task>
-    <task id="LOCAL-00004" summary="Fixed an issue with lectures not loading up proeprly due to a badly formatted .cvs file.">
-      <created>1527614594832</created>
+    <task id="LOCAL-00004" summary="Added lecture details for each selected lecture and moved the code from LectureDetailsView to a Intellij form.">
+      <created>1528126547856</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1527614594832</updated>
+      <updated>1528126547857</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fixed a bug where the selected row from the right table was not properly updated.">
+      <created>1528126861940</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1528126861940</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added comments table to project">
+      <created>1528286533092</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1528286533092</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added missing icon.png and fixed the filepath for the image.">
+      <created>1528287113148</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1528287113148</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" order="7" />
+      <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="5" />
-      <window_info id="Image Layers" order="1" />
-      <window_info anchor="right" id="Capture Analysis" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067115" side_tool="true" weight="0.23789173" />
-      <window_info anchor="right" id="Maven Projects" order="6" visible="true" weight="0.15" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4986577" weight="0.32905984" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.28056112" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49932885" weight="0.25783476" />
-      <window_info id="Capture Tool" order="0" />
-      <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.48997995" visible="true" weight="0.19285715" />
-      <window_info id="Structure" order="3" sideWeight="0.51002" side_tool="true" visible="true" weight="0.19285715" />
-      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
-      <window_info x="615" y="295" width="450" height="459" id="UI Designer" order="5" type="FLOATING" />
-      <window_info anchor="right" id="Theme Preview" order="1" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3988604" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.31766382" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067115" side_tool="true" weight="0.23789173" />
+      <window_info anchor="right" id="Maven Projects" order="3" weight="0.31879196" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4986577" weight="0.32827586" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932885" visible="true" weight="0.33655173" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" weight="0.25783476" />
+      <window_info id="Designer" order="2" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19270833" />
+      <window_info id="Learn" order="2" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3986207" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.31763527" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
-      <window_info id="Learn" order="7" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.1923077" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19664429" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info id="Learn" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32905984" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.31862068" />
+      <window_info anchor="right" id="Maven Projects" order="5" weight="0.32885906" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -424,61 +533,67 @@
     <MESSAGE value="Migrated project to Maven. This includes:&#10;1) A semi-functioning build process, IntelliJ form files are not compatible with Maven. That's why I made them generate source code instead of xml to help alleviate this problem. So far most of the elements are loaded properly aside from the lectures in the joinableLectures table.&#10;2) Fixed package declarations" />
     <MESSAGE value="Updated SQLite version and commented out several plugins that are not used in the current generation of the jar file (maven stuff)" />
     <MESSAGE value="Commiting workspace.xml to fix merging issue." />
-    <MESSAGE value="Fixed an issue with lectures not loading up proeprly due to a badly formatted .cvs file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue with lectures not loading up proeprly due to a badly formatted .cvs file." />
+    <MESSAGE value="Added lecture details for each selected lecture and moved the code from LectureDetailsView to a Intellij form." />
+    <MESSAGE value="Fixed a bug where the selected row from the right table was not properly updated." />
+    <MESSAGE value="Added comments table to project" />
+    <MESSAGE value="Added missing icon.png and fixed the filepath for the image." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added missing icon.png and fixed the filepath for the image." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java</url>
-          <line>63</line>
-          <properties class="backend.BackendAdapter" method="fillLecturesTable">
+          <line>165</line>
+          <properties class="backend.BackendAdapter" method="readCSVFile">
             <option name="EMULATED" value="true" />
           </properties>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java</url>
-          <line>172</line>
-          <properties class="SQLiteManager.QueryBuilder" method="getDeleteStmt">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java</url>
-          <line>191</line>
-          <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java</url>
-          <line>48</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/view/LecturesTableView.java</url>
-          <line>37</line>
-          <properties />
-          <option name="timeStamp" value="14" />
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/TableView.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/AppFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4284">
+          <caret line="259" column="40" lean-forward="true" selection-start-line="259" selection-start-column="40" selection-end-line="259" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/view/View.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/MenuView.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesTableView.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/AppFrame.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/LectureDetailsView.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/QueryManager.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/view/AppFrame.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/LectureDetailsView.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesTableView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -502,8 +617,22 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/view/AppFrame.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/TableView.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/TableView.form" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/MenuView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/viewcontroller/LectureController.java" />
     <entry file="file://$PROJECT_DIR$/data/attends.csv">
       <provider selected="true" editor-type-id="text-editor" />
@@ -518,258 +647,146 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/lectures.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="79" selection-start-line="14" selection-start-column="79" selection-end-line="14" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/StringBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="76" column="19" selection-start-line="76" selection-start-column="19" selection-end-line="76" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="97" selection-start-line="97" selection-end-line="97" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="105" column="12" lean-forward="true" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="12" />
+        <state relative-caret-position="170">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.desktop/java/awt/Window.java">
+    <entry file="file://$PROJECT_DIR$/data/lectures.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="1162" column="16" selection-start-line="1162" selection-start-column="16" selection-end-line="1162" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.desktop/java/awt/Container.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="1306" column="16" selection-start-line="1306" selection-start-column="16" selection-end-line="1306" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.desktop/java/awt/BorderLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-659">
-          <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/event/ListSelectionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/CheckBoxMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesTableView.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/HeaderListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/LectureTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/QueryType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/ChoiceMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/AbstractButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="2056" column="18" selection-start-line="2056" selection-start-column="18" selection-end-line="2056" selection-end-column="18" />
+        <state relative-caret-position="442">
+          <caret line="26" column="90" selection-start-line="26" selection-start-column="90" selection-end-line="26" selection-end-column="90" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/Observer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
+        <state relative-caret-position="34">
           <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="177" column="68" lean-forward="true" selection-start-line="177" selection-start-column="68" selection-end-line="177" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="n#!!doc;n#returnFirstChar#0;n#QueryBuilder#0" />
-            <element signature="n#!!doc;n#addSelect#0;n#QueryBuilder#0" />
-            <element signature="n#!!doc;n#toString#0;n#QueryBuilder#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="26" column="58" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/MenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="45" column="61" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/RowListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="27" column="60" lean-forward="true" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/ButtonListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/LecturesTableController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesTableView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#643#644#0" expanded="true" />
-            <element signature="e#674#675#0" expanded="true" />
-            <element signature="e#710#711#0" expanded="true" />
-            <element signature="e#742#743#0" expanded="true" />
-            <element signature="e#779#780#0" expanded="true" />
-            <element signature="e#812#813#0" expanded="true" />
-            <element signature="initializer##0;class#LecturesTableView#0" expanded="true" />
-            <element signature="e#2364#2365#0" expanded="true" />
-            <element signature="e#2395#2396#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/MenuView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/AppFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/view/AppFrame.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/AppController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesTableView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="n#!!doc;n#getView#0;n#AppController#0" />
-            <element signature="n#!!doc;n#addListeners#0;n#AppController#0" />
-            <element signature="n#!!doc;n#main#0;n#AppController#0" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/CommentView.form">
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/CommentView.form" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/QueryType.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/LectureDetailsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="23" selection-start-line="22" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/AppFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/LecturesTableController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2414">
+          <caret line="157" column="54" selection-start-line="157" selection-start-column="54" selection-end-line="157" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/LectureDetailsView.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/CommentView.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesTableView.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/LectureDetailsView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="289">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        <state relative-caret-position="323">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/LecturesDetailsController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="19" column="61" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
+        <state relative-caret-position="2567">
+          <caret line="158" column="33" selection-start-line="158" selection-start-column="33" selection-end-line="158" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="58" column="43" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.form">
       <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" lean-forward="true" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-652">
+          <caret line="47" column="31" lean-forward="true" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
+          <folding>
+            <element signature="e#1202#1203#0" expanded="true" />
+            <element signature="e#1225#1226#0" expanded="true" />
+            <element signature="initializer##0;class#LecturesDetailsView#0" expanded="true" />
+            <element signature="initializer##0;class#LecturesDetailsView#0" expanded="true" />
+            <element signature="e#2773#2774#0" expanded="true" />
+            <element signature="e#2804#2805#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/CommentView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1165">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/MenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="119" column="38" lean-forward="true" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/LecturesDetailsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="167" column="87" selection-start-line="167" selection-start-column="87" selection-end-line="167" selection-end-column="87" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
@@ -848,7 +865,6 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: asm:asm-commons:3.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -62,6 +62,80 @@ public class LecturesDetailsController extends Controller {
     }
     //</editor-fold>
 
+    private void updateTextPane() {
+        if(lectureID.equals("")) {
+            lecturesDetailsView.setTextPane("Select a lecture to view its details");
+            return;
+        }
+        try {
+            String[][] table = sqLiteManager.executeQuery(queryLectureDetails(lectureID));
+            StringBuilder sb = new StringBuilder();
+            sb.append("ID: ");
+            sb.append(table[0][0]);
+            sb.append(" ");
+
+            sb.append("Title: ");
+            sb.append(table[0][1]);
+            sb.append("\n");
+
+            sb.append("Chair: ");
+            sb.append(table[0][2]);
+            sb.append(" ");
+
+            sb.append("ECTS: ");
+            sb.append(table[0][3]);
+            sb.append(" ");
+
+            sb.append("SEMESTER: ");
+            sb.append(table[0][4]);
+            sb.append("\n");
+
+            sb.append("Lecturer: ");
+            sb.append(table[0][5]);
+            sb.append("\n");
+
+            sb.append("Time: ");
+            sb.append(table[0][6]);
+            sb.append("\n");
+
+            sb.append("Room number: ");
+            sb.append(table[0][7]);
+            sb.append(" ");
+
+            sb.append("Building number: ");
+            sb.append(table[0][8]);
+            sb.append("\n");
+
+            sb.append("Grade factor: ");
+            sb.append(table[0][9]);
+            sb.append(" ");
+
+            lecturesDetailsView.setTextPane(sb.toString());
+        } catch (SQLException e) {
+            System.out.println("Error executing query " + e.toString());
+        }
+    }
+
+    private QueryBuilder queryLectureDetails(String lectureId) {
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+
+        query.addSelect("ID", "LECTURES");
+        query.addSelect("TITLE", "LECTURES");
+        query.addSelect("CHAIR", "LECTURES");
+        query.addSelect("ECTS", "LECTURES");
+        query.addSelect("SEMESTER", "LECTURES");
+        query.addSelect("LECTURER", "LECTURES");
+        query.addSelect("TIME", "LECTURES");
+        query.addSelect("ROOMNUMBER", "LECTURES");
+        query.addSelect("BUILDINGNUMBER", "LECTURES");
+        query.addSelect("GRADE_FACTOR", "LECTURES");
+
+        query.addFrom("LECTURES");
+
+        query.addWhere("L.ID = " + lectureId);
+        return query;
+    }
+
     //<editor-fold desc="Action Section">
     public void addLecture() {
         try {
@@ -94,6 +168,9 @@ public class LecturesDetailsController extends Controller {
                 lecturesTableController.getSelectedRight()?"Drop Lecture":"Join Lecture");
         studentName = menuController.getActiveStudentName();
         lectureID = lecturesTableController.getSelectedLectureId();
+
+        // update TextPane
+        updateTextPane();
     }
     //</editor-fold>
 
