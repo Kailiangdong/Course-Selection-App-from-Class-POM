@@ -1,16 +1,24 @@
 package view;
 
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 import controller.ButtonListener;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 
 public class LecturesDetailsView implements View {
 
     private JPanel mainPane;
-    private JButton joinLectureButton;
-    private JButton dropLectureButton;
+    private JButton joinDropLectureButton;
+    private JPanel buttonPane;
+    private JPanel commentPane;
+    private JPanel detailsPane;
+    private JButton mapLocationButton;
+    private JButton participantsButton;
+    private JTextPane textPane;
 
     //<editor-fold desc="Get Section">
     @Override
@@ -18,19 +26,34 @@ public class LecturesDetailsView implements View {
         return mainPane;
     }
 
-    public JButton getJoinLectureButton() {
-        return joinLectureButton;
+    public JButton getJoinDropLectureButton() {
+        return joinDropLectureButton;
     }
 
-    public JButton getDropLectureButton() {
-        return dropLectureButton;
+    public JButton getMapLocationButton() {
+        return mapLocationButton;
+    }
+
+    public JPanel getCommentPane() {
+        return commentPane;
+    }
+
+    public JPanel getDetailsPane() {
+        return detailsPane;
     }
     //</editor-fold>
 
     //<editor-fold desc="Listener Section">
     public void setRowListener(ButtonListener l) {
-        joinLectureButton.addActionListener(l);
-        dropLectureButton.addActionListener(l);
+        joinDropLectureButton.addActionListener(l);
+    }
+
+    public void setMapListener(ButtonListener l) {
+        mapLocationButton.addActionListener(l);
+    }
+
+    public void setTextPane(String text) {
+        textPane.setText(text);
     }
 
     {
@@ -51,14 +74,29 @@ public class LecturesDetailsView implements View {
         mainPane = new JPanel();
         mainPane.setLayout(new BorderLayout(0, 0));
         mainPane.setPreferredSize(new Dimension(0, 100));
-        joinLectureButton = new JButton();
-        joinLectureButton.setText("Join Lecture");
-        joinLectureButton.setToolTipText("Click here to join the selected lecture");
-        mainPane.add(joinLectureButton, BorderLayout.WEST);
-        dropLectureButton = new JButton();
-        dropLectureButton.setText("Drop Lecture");
-        dropLectureButton.setToolTipText("Click here to drop the selected lecture");
-        mainPane.add(dropLectureButton, BorderLayout.EAST);
+        buttonPane = new JPanel();
+        buttonPane.setLayout(new FormLayout("fill:d:grow", "center:d:noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
+        mainPane.add(buttonPane, BorderLayout.WEST);
+        joinDropLectureButton = new JButton();
+        joinDropLectureButton.setHideActionText(false);
+        joinDropLectureButton.setText("Join Lecture");
+        joinDropLectureButton.setToolTipText("Click here to join the selected lecture");
+        CellConstraints cc = new CellConstraints();
+        buttonPane.add(joinDropLectureButton, cc.xy(1, 1));
+        mapLocationButton = new JButton();
+        mapLocationButton.setText("Map");
+        buttonPane.add(mapLocationButton, cc.xy(1, 3));
+        participantsButton = new JButton();
+        participantsButton.setText("Participants");
+        buttonPane.add(participantsButton, cc.xy(1, 5));
+        commentPane = new JPanel();
+        commentPane.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        mainPane.add(commentPane, BorderLayout.EAST);
+        detailsPane = new JPanel();
+        detailsPane.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        mainPane.add(detailsPane, BorderLayout.CENTER);
+        textPane = new JTextPane();
+        detailsPane.add(textPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
     }
 
     /**
@@ -67,6 +105,7 @@ public class LecturesDetailsView implements View {
     public JComponent $$$getRootComponent$$$() {
         return mainPane;
     }
+
     //</editor-fold>
 
 

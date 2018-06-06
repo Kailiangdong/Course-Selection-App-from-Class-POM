@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.CommentView">
+  <grid id="27dc6" binding="mainPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="85d39" binding="createPane" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+        <constraints border-constraint="North"/>
+        <properties>
+          <preferredSize width="400" height="50"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="7dc3b" class="javax.swing.JTextField" binding="inputField">
+            <constraints/>
+            <properties>
+              <preferredSize width="300" height="50"/>
+            </properties>
+          </component>
+          <component id="38ace" class="javax.swing.JButton" binding="addButton">
+            <constraints/>
+            <properties>
+              <text value="Comment"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="666af" binding="actionPane" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+        <constraints border-constraint="South"/>
+        <properties>
+          <preferredSize width="400" height="50"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="e375f" class="javax.swing.JButton" binding="deleteButton">
+            <constraints/>
+            <properties>
+              <text value="Remove"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="fd494" binding="listPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="54e55" class="javax.swing.JSeparator" binding="topSep">
+            <constraints border-constraint="North"/>
+            <properties/>
+          </component>
+          <component id="14be9" class="javax.swing.JSeparator" binding="bottomSep">
+            <constraints border-constraint="South"/>
+            <properties/>
+          </component>
+          <scrollpane id="4965">
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="93ba4" class="javax.swing.JList" binding="dataList">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </grid>
+    </children>
+  </grid>
+  <inspectionSuppressions>
+    <suppress inspection="NoLabelFor" id="4965"/>
+  </inspectionSuppressions>
+</form>
