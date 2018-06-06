@@ -3,6 +3,10 @@ package controller;
 import view.*;
 import SQLiteManager.*;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 
 public class LecturesDetailsController extends Controller {
@@ -60,6 +64,19 @@ public class LecturesDetailsController extends Controller {
         });
         return deleteBuilder;
     }
+    private QueryBuilder queryLocationDetails(String lectureID) {
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+
+        query.addSelect("ROOMNUMBER", "LECTURES");
+        query.addSelect("BUILDINGNUMBER", "LECTURES");
+
+        query.addFrom("LECTURES");
+
+        query.addWhere("L.ID = " + lectureID);
+
+        return query;
+    }
+
     //</editor-fold>
 
     private void updateTextPane() {
@@ -151,13 +168,32 @@ public class LecturesDetailsController extends Controller {
             System.out.println("Error executing deleting lecture: " + e.toString());
         }
     }
+    public void showMap() {
+        String[][] queryResult = new String[0][];
+        try {
+            queryResult = sqLiteManager.executeQuery(queryLocationDetails(lectureID));
+        } catch (SQLException e) {
+            System.out.println("Error executing showing map: " + e.toString());
+        }
+
+        String roomnumber = queryResult[0][0];
+        String buildingnumber = queryResult[0][1];
+
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().browse(new URI("http://portal.mytum.de/displayRoomMap?" + roomnumber + "@" + buildingnumber));
+            } catch (IOException | URISyntaxException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
     //</editor-fold>
 
     //<editor-fold desc="Rest Section">
     @Override
     void addListeners() {
         lecturesDetailsView.setRowListener(new ButtonListener(this));
-
+        lecturesDetailsView.setMapListener(new ButtonListener(this));
 
     }
 
