@@ -4,6 +4,8 @@ import view.AppFrame;
 import view.View;
 import SQLiteManager.SQLiteManager;
 
+import java.awt.*;
+
 public class AppController extends Controller {
 
     private AppFrame view;
@@ -61,6 +63,10 @@ public class AppController extends Controller {
             view.dispose();
         }
     }
+
+    public void icon() {
+        view.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
+    }
     //</editor-fold>
 
     //<editor-fold desc="Main Section">
@@ -71,6 +77,9 @@ public class AppController extends Controller {
         // display lectures table and details for selected lecture
         app.start();
         app.showLectureScreen();
+
+        // show icon
+        app.icon();
     }
     //</editor-fold>
 
