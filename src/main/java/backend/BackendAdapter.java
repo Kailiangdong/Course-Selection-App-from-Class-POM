@@ -14,6 +14,7 @@ public class BackendAdapter {
   public static final String LECTURES_FILE = "data/lectures.csv";
   public static final String ATTENDS_FILE = "data/attends.csv";
   public static final String CHAIRS_FILE = "data/chairs.csv";
+  public static final String COMMENTS_FILE = "data\\comments.csv";
 
   /**
    * Fills the table 'STUDENTS' with the master data. Make sure to truncate table before calling
@@ -159,6 +160,35 @@ public class BackendAdapter {
       System.out.println("File with 'CHAIRS' data was not found: " + CHAIRS_FILE);
     } catch (RuntimeException e) {
       System.out.println("Error while inserting 'CHAIRS' data.");
+    }
+  }
+
+  public static void fillCommentsTable(PreparedStatement insertStmt) throws SQLException {
+    try {
+      ArrayList<String[]> table = readCSVFile(COMMENTS_FILE);
+
+      for (String[] row : table) {
+
+        String ID = row[0];
+        String studentID = row[1];
+        String lectureID = row[2];
+        String time = row[3];
+        String date = row[4];
+        String content = row[5];
+
+        insertStmt.clearParameters();
+        insertStmt.setString(1, ID);
+        insertStmt.setString(2, studentID);
+        insertStmt.setString(3, lectureID);
+        insertStmt.setString(4, time);
+        insertStmt.setString(5, date);
+        insertStmt.setString(6, content);
+        insertStmt.executeUpdate();
+      }
+    } catch (FileNotFoundException e) {
+      System.out.println("File with 'COMMENTS' data was not found: " + COMMENTS_FILE + e.getLocalizedMessage());
+    } catch (RuntimeException e) {
+      System.out.println("Error while inserting 'COMMENTS' data.");
     }
   }
 
