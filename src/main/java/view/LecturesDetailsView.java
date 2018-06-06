@@ -34,6 +34,10 @@ public class LecturesDetailsView implements View {
         return mapLocationButton;
     }
 
+    public JButton getParticipantsButton() {
+        return participantsButton;
+    }
+
     public JPanel getCommentPane() {
         return commentPane;
     }
@@ -51,6 +55,8 @@ public class LecturesDetailsView implements View {
     public void setMapListener(ButtonListener l) {
         mapLocationButton.addActionListener(l);
     }
+
+    public void setParticipantsButton(ButtonListener l) { participantsButton.addActionListener(l); }
 
     public void setTextPane(String text) {
         textPane.setText(text);

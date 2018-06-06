@@ -3,6 +3,7 @@ package controller;
 import view.*;
 import SQLiteManager.*;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
@@ -187,6 +188,36 @@ public class LecturesDetailsController extends Controller {
             }
         }
     }
+
+    public void showParticipants() {
+        // Query part
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+        query.addSelect("NAME", "STUDENTS");
+        query.addFrom("STUDENTS");
+        query.addFrom("LECTURES");
+        query.addFrom("ATTENDS");
+        query.addWhere("L.ID = " + lectureID);
+        query.addWhere("L.ID = A.LECTURE_ID");
+        query.addWhere("S.ID = A.STUDENT_ID");
+
+        try {
+            String[][] res = sqLiteManager.executeQuery(query);
+            // Create new window and fill it with content
+            JFrame participantsView = new JFrame("Participants");
+            String[] title = {"Participants"};
+            JTable participantsTable = new JTable(res, title);
+            JScrollPane pane = new JScrollPane(participantsTable);
+            JPanel participantsPanel = new JPanel(new BorderLayout());
+
+            participantsPanel.add(pane, BorderLayout.CENTER);
+            participantsView.add(participantsPanel);
+            participantsView.setSize(300, 500);
+            participantsView.setVisible(true);
+        } catch (SQLException e) {
+            System.out.println("Error in participants query " + e.toString());
+        }
+
+    }
     //</editor-fold>
 
     //<editor-fold desc="Rest Section">
@@ -194,7 +225,7 @@ public class LecturesDetailsController extends Controller {
     void addListeners() {
         lecturesDetailsView.setRowListener(new ButtonListener(this));
         lecturesDetailsView.setMapListener(new ButtonListener(this));
-
+        lecturesDetailsView.setParticipantsButton(new ButtonListener(this));
     }
 
     @Override
