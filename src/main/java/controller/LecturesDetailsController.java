@@ -187,6 +187,31 @@ public class LecturesDetailsController extends Controller {
             }
         }
     }
+
+    public void showParticipants() {
+        // Query part
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+        query.addSelect("NAME", "STUDENTS");
+        query.addFrom("STUDENTS");
+        query.addFrom("LECTURES");
+        query.addFrom("ATTENDS");
+        query.addWhere("L.ID = " + lectureID);
+        query.addWhere("L.ID = A.LECTURE_ID");
+        query.addWhere("S.ID = A.STUDENT_ID");
+
+        try {
+            String[][] res = sqLiteManager.executeQuery(query);
+            // Create new window and fill it with content
+            for(int i = 0; i < res.length; i++) {
+                for(int j = 0; j < res[0].length; j++) {
+                    System.out.println(res[i][j]);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error in participants query " + e.toString());
+        }
+
+    }
     //</editor-fold>
 
     //<editor-fold desc="Rest Section">
@@ -194,7 +219,7 @@ public class LecturesDetailsController extends Controller {
     void addListeners() {
         lecturesDetailsView.setRowListener(new ButtonListener(this));
         lecturesDetailsView.setMapListener(new ButtonListener(this));
-
+        lecturesDetailsView.setParticipantsButton(new ButtonListener(this));
     }
 
     @Override
