@@ -30,6 +30,10 @@ public class LecturesDetailsView implements View {
         return joinDropLectureButton;
     }
 
+    public JButton getMapLocationButton() {
+        return mapLocationButton;
+    }
+
     public JPanel getCommentPane() {
         return commentPane;
     }
@@ -42,6 +46,10 @@ public class LecturesDetailsView implements View {
     //<editor-fold desc="Listener Section">
     public void setRowListener(ButtonListener l) {
         joinDropLectureButton.addActionListener(l);
+    }
+
+    public void setMapListener(ButtonListener l) {
+        mapLocationButton.addActionListener(l);
     }
 
     public void setTextPane(String text) {

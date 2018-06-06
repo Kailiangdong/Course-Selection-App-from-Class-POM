@@ -26,7 +26,7 @@ public class ButtonListener implements ActionListener {
                     lecturesDetailsController.addLecture();
                 }
             }
-        } else if (e.getSource() == lecturesDetailsView.getmapButton()){
+        } else if (e.getSource() == lecturesDetailsView.getMapLocationButton()){
             if( lecturesDetailsController.getLectureID() != "") {
                 lecturesDetailsController.showMap();
             }
