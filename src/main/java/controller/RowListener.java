@@ -25,6 +25,7 @@ public class RowListener implements ListSelectionListener {
         int selectedRow;
         if(e.getSource() == lecturesTableView.getLeftTable().getSelectionModel()) {
             // User selected row in left table
+            lecturesTableController.setSelectedRight(false);
             lecturesTableView.getRightTable().getSelectionModel().clearSelection();
             selectedRow = lecturesTableView.getLeftTable().getSelectedRow();
             if(selectedRow != -1) {
@@ -33,6 +34,7 @@ public class RowListener implements ListSelectionListener {
                         (String) lecturesTableView.getLeftTable().getValueAt(selectedRow, 0));
             }
         } else if(e.getSource() == lecturesTableView.getRightTable().getSelectionModel()) {
+            lecturesTableController.setSelectedRight(true);
             lecturesTableView.getLeftTable().getSelectionModel().clearSelection();
             selectedRow = lecturesTableView.getRightTable().getSelectedRow();
             if(selectedRow != -1) {

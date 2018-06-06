@@ -41,9 +41,7 @@ public class AppFrame extends JFrame implements View {
         return menuPane;
     }
 
-    public void setMenuPane(JPanel menuPane) {
-        setPane(this.menuPane, menuPane);
-    }
+    public void setMenuPane(JPanel menuPane) { setPane(this.menuPane, menuPane); }
 
     public JPanel getMiddlePane() {
         return middlePane;
