@@ -91,25 +91,28 @@ public class CommentView implements View {
     private void $$$setupUI$$$() {
         mainPane = new JPanel();
         mainPane.setLayout(new BorderLayout(0, 0));
+        mainPane.setPreferredSize(new Dimension(400, 300));
+        mainPane.setVerifyInputWhenFocusTarget(false);
         createPane = new JPanel();
-        createPane.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+        createPane.setLayout(new BorderLayout(0, 0));
         createPane.setPreferredSize(new Dimension(400, 50));
         mainPane.add(createPane, BorderLayout.NORTH);
         inputField = new JTextField();
         inputField.setPreferredSize(new Dimension(300, 50));
-        createPane.add(inputField);
+        createPane.add(inputField, BorderLayout.WEST);
         addButton = new JButton();
         addButton.setText("Comment");
-        createPane.add(addButton);
+        createPane.add(addButton, BorderLayout.CENTER);
         actionPane = new JPanel();
-        actionPane.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+        actionPane.setLayout(new BorderLayout(0, 0));
         actionPane.setPreferredSize(new Dimension(400, 50));
         mainPane.add(actionPane, BorderLayout.SOUTH);
         deleteButton = new JButton();
         deleteButton.setText("Remove");
-        actionPane.add(deleteButton);
+        actionPane.add(deleteButton, BorderLayout.CENTER);
         listPane = new JPanel();
         listPane.setLayout(new BorderLayout(0, 0));
+        listPane.setPreferredSize(new Dimension(400, 200));
         mainPane.add(listPane, BorderLayout.CENTER);
         topSep = new JSeparator();
         listPane.add(topSep, BorderLayout.NORTH);
@@ -127,6 +130,7 @@ public class CommentView implements View {
     public JComponent $$$getRootComponent$$$() {
         return mainPane;
     }
+
     //</editor-fold>
 
     //<editor-fold desc="Other Class Section">

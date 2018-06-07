@@ -75,6 +75,7 @@ public class CommentController extends Controller {
     @Override
     public void update() {
         studentName = menuController.getActiveStudentName();
+        System.out.println(studentName);
         lectureId = lecturesDetailsController.getLectureID();
         if (!lectureId.equals("")) {
             commentView.setList(comments.toArray(new LectureComment[]{}));

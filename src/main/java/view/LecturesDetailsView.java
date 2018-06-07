@@ -67,7 +67,7 @@ public class LecturesDetailsView implements View {
     private void $$$setupUI$$$() {
         mainPane = new JPanel();
         mainPane.setLayout(new BorderLayout(0, 0));
-        mainPane.setPreferredSize(new Dimension(0, 100));
+        mainPane.setPreferredSize(new Dimension(600, 300));
         buttonPane = new JPanel();
         buttonPane.setLayout(new BorderLayout(0, 0));
         mainPane.add(buttonPane, BorderLayout.WEST);
