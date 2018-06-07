@@ -2,6 +2,7 @@ package view;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import controller.ButtonListener;
@@ -20,7 +21,13 @@ public class LecturesDetailsView implements View {
     private JButton participantsButton;
     private JTextPane textPane;
 
-    //<editor-fold desc="Get Section">
+    //<editor-fold desc="Get/Set Section">
+    private void setPane(JPanel pane, JPanel paneContent) {
+        pane.removeAll();
+        pane.add(paneContent, BorderLayout.CENTER);
+        pane.setPreferredSize(paneContent.getPreferredSize());
+    }
+
     @Override
     public JPanel getMainPane() {
         return mainPane;
@@ -42,6 +49,10 @@ public class LecturesDetailsView implements View {
         return commentPane;
     }
 
+    public void setCommentPane(JPanel commentPane) {
+        setPane(this.commentPane, commentPane);
+    }
+
     public JPanel getDetailsPane() {
         return detailsPane;
     }
@@ -56,7 +67,9 @@ public class LecturesDetailsView implements View {
         mapLocationButton.addActionListener(l);
     }
 
-    public void setParticipantsButton(ButtonListener l) { participantsButton.addActionListener(l); }
+    public void setParticipantsButton(ButtonListener l) {
+        participantsButton.addActionListener(l);
+    }
 
     public void setTextPane(String text) {
         textPane.setText(text);
@@ -79,30 +92,32 @@ public class LecturesDetailsView implements View {
     private void $$$setupUI$$$() {
         mainPane = new JPanel();
         mainPane.setLayout(new BorderLayout(0, 0));
-        mainPane.setPreferredSize(new Dimension(0, 100));
+        mainPane.setPreferredSize(new Dimension(800, 300));
         buttonPane = new JPanel();
-        buttonPane.setLayout(new FormLayout("fill:d:grow", "center:d:noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
+        buttonPane.setLayout(new BorderLayout(0, 0));
+        buttonPane.setPreferredSize(new Dimension(150, 300));
+        buttonPane.setVerifyInputWhenFocusTarget(true);
         mainPane.add(buttonPane, BorderLayout.WEST);
         joinDropLectureButton = new JButton();
-        joinDropLectureButton.setHideActionText(false);
         joinDropLectureButton.setText("Join Lecture");
         joinDropLectureButton.setToolTipText("Click here to join the selected lecture");
-        CellConstraints cc = new CellConstraints();
-        buttonPane.add(joinDropLectureButton, cc.xy(1, 1));
+        buttonPane.add(joinDropLectureButton, BorderLayout.NORTH);
         mapLocationButton = new JButton();
         mapLocationButton.setText("Map");
-        buttonPane.add(mapLocationButton, cc.xy(1, 3));
+        buttonPane.add(mapLocationButton, BorderLayout.CENTER);
         participantsButton = new JButton();
         participantsButton.setText("Participants");
-        buttonPane.add(participantsButton, cc.xy(1, 5));
+        buttonPane.add(participantsButton, BorderLayout.SOUTH);
         commentPane = new JPanel();
-        commentPane.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        commentPane.setLayout(new BorderLayout(0, 0));
+        commentPane.setPreferredSize(new Dimension(400, 300));
         mainPane.add(commentPane, BorderLayout.EAST);
         detailsPane = new JPanel();
-        detailsPane.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        detailsPane.setLayout(new BorderLayout(0, 0));
+        detailsPane.setPreferredSize(new Dimension(250, 300));
         mainPane.add(detailsPane, BorderLayout.CENTER);
         textPane = new JTextPane();
-        detailsPane.add(textPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        detailsPane.add(textPane, BorderLayout.CENTER);
     }
 
     /**
