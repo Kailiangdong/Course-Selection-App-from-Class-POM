@@ -24,22 +24,26 @@ public class CommentController extends Controller {
      * - make sure that only one item can be selected in list
      */
 
-    CommentView view;
-    LecturesTableController tableController;
-    MenuController menuController;
+    private CommentView commentView;
+    private LecturesDetailsController lecturesDetailsController;
+    private LecturesTableController tableController;
     private SQLiteManager sqLiteManager;
+    private MenuController menuController;
+    private String lectureId;
+    private String studentName;
+    private ArrayList<LectureComment> comments = new ArrayList<>();
+    private LectureComment selectedComment;
 
-    String lectureId;
-    String studentName;
-
-    ArrayList<LectureComment> comments = new ArrayList<>();
-    LectureComment selectedComment;
-
-    public CommentController(LecturesTableController tableController, MenuController menuController) {
-        this.view = new CommentView();
-        this.tableController = tableController;
+    public CommentController(
+            LecturesDetailsController lecturesDetailsController,
+            MenuController menuController,
+            SQLiteManager sqLiteManager,
+            LecturesTableController lecturesTableController) {
+        this.commentView = new CommentView();
+        this.lecturesDetailsController = lecturesDetailsController;
         this.menuController = menuController;
         this.sqLiteManager = sqLiteManager;
+        this.tableController = lecturesTableController;
         addListeners();
         addDummyComments();
         update();
@@ -70,6 +74,30 @@ public class CommentController extends Controller {
         return beijingDateTime.withZoneSameInstant(ZoneId.of("UTC"));
     }
 
+    //<editor-fold desc="Get/Set Section">
+    @Override
+    public CommentView getView() {
+        return commentView;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public ArrayList<LectureComment> getComments() {
+        return comments;
+    }
+
+    public LectureComment getSelectedComment() {
+        return selectedComment;
+    }
+
+    public void setSelectedComment(LectureComment selectedComment) {
+        this.selectedComment = selectedComment;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Action Section">
     private void addDummyComments() {
 
         String[][] queryResult = new String[0][];
@@ -83,74 +111,31 @@ public class CommentController extends Controller {
             comments.add(new LectureComment(queryResult[i][0], queryResult[i][1], changeStringToUTC(queryResult[i][2] + "," + queryResult[i][3]),
                     false));
         }
-/*        comments.add(new LectureComment("Stefan", "Lorem ipsum dolor sit amet, consectetur adipisici " +
-                "elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.", ZonedDateTime.now().minusHours(1), false));
-        comments.add(new LectureComment("Markus", "Ut enim ad minim veniam, quis nostrud exercitation " +
-                "ullamco laboris nisi ut aliquid ex ea commodi consequat.", ZonedDateTime.now().minusHours(2), false));
-        comments.add(new LectureComment("Robert", "Quis aute iure reprehenderit in voluptate velit esse " +
-                "cillum dolore eu fugiat nulla pariatur. ", ZonedDateTime.now().minusHours(1), false));
-        comments.add(new LectureComment("Joana", "Excepteur sint obcaecat cupiditat non proident, sunt in " +
-                "culpa qui officia deserunt mollit anim id est laborum.", ZonedDateTime.now().minusHours(1), true));*/
+
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Rest Section">
+    @Override
+    void addListeners() {
+        commentView.setCreationListener(new CommentCreateListener(this));
+        commentView.setSelectionListener(new CommentSelectListener(this));
+        commentView.setDeletionListener(new CommentDeleteListener(this));
     }
 
     @Override
-    void addListeners() {
-        view.addCreationListener(new CommentCreateListener());
-        view.addSelectionListener(new CommentSelectListener());
-        view.addDeletionListener(new CommentDeleteListener());
-    }
-
-    public CommentView getView() {
-        return view;
-    }
-
     public void update() {
         studentName = menuController.getActiveStudentName();
-        lectureId = tableController.getSelectedLectureId();
+        System.out.println(studentName);
+        lectureId = lecturesDetailsController.getLectureID();
+        comments = getComments();
         if (!lectureId.equals("")) {
-            view.setList(comments.toArray(new LectureComment[]{}));
-            view.show();
+            commentView.setList(comments.toArray(new LectureComment[]{}));
+            commentView.getMainPane().setVisible(true);
         } else {
-            view.hide();
+            commentView.getMainPane().setVisible(false);
         }
     }
-
-    class CommentCreateListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String input = view.getInputText();
-            if (input != null && !input.isEmpty()) {
-                comments.add(new LectureComment(studentName, input, ZonedDateTime.now(), false));
-                view.clearInputField();
-                update();
-            }
-        }
-    }
-
-    class CommentSelectListener implements ListSelectionListener {
-        @Override
-        public void valueChanged(ListSelectionEvent e) {
-            ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-            int index = lsm.getMinSelectionIndex();
-            if (index < 0) {
-                return;
-            }
-            selectedComment = (LectureComment) view.getObject(index);
-
-            if (selectedComment.getAuthor().equals(studentName)) {
-                view.showOptions();
-            } else {
-                view.hideOptions();
-            }
-        }
-    }
-
-    class CommentDeleteListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            comments.remove(selectedComment);
-            update();
-        }
-    }
+    //</editor-fold>
 
 }

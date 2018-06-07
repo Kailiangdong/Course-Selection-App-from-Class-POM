@@ -13,19 +13,26 @@ import java.sql.SQLException;
 public class LecturesDetailsController extends Controller {
 
     private LecturesDetailsView lecturesDetailsView;
-    private CommentController commentController;
     private SQLiteManager sqLiteManager;
     private MenuController menuController;
     private LecturesTableController lecturesTableController;
+    private CommentController commentController;
     private String studentName;
     private String lectureID;
 
     public LecturesDetailsController(
-            SQLiteManager sqLiteManager, MenuController menuController, LecturesTableController tableController) {
+            SQLiteManager sqLiteManager,
+            MenuController menuController,
+            LecturesTableController lecturesTableController) {
         this.lecturesDetailsView = new LecturesDetailsView();
         this.sqLiteManager = sqLiteManager;
         this.menuController = menuController;
-        this.lecturesTableController = tableController;
+        this.lecturesTableController = lecturesTableController;
+        this.lectureID = "";
+        this.commentController = new CommentController(this, this.menuController, sqLiteManager, lecturesTableController);
+        this.lecturesDetailsView.setCommentPane(commentController.getView().getMainPane());
+        this.attach(commentController);
+
         update();
         addListeners();
     }
@@ -235,9 +242,8 @@ public class LecturesDetailsController extends Controller {
                 lecturesTableController.getSelectedRight()?"Drop Lecture":"Join Lecture");
         studentName = menuController.getActiveStudentName();
         lectureID = lecturesTableController.getSelectedLectureId();
-
-        // update TextPane
         updateTextPane();
+        notifyAllObservers();
     }
     //</editor-fold>
 

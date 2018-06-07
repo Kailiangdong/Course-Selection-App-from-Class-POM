@@ -16,6 +16,7 @@ public class LectureComment {
         this.answer = answer;
     }
 
+    //<editor-fold desc="Get Section">
     public String getAuthor() {
         return author;
     }
@@ -28,8 +29,9 @@ public class LectureComment {
         return DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm").format(time);
     }
 
-    public boolean isAnswer() {
-        return this.answer;
+    public boolean getAnswer() {
+        return answer;
     }
+    //</editor-fold>
 
 }

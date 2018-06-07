@@ -12,7 +12,7 @@ public class AppFrame extends JFrame implements View {
 
     public AppFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setTitle("University App feat. Team 13");
         this.add(mainPane);
     }
@@ -41,7 +41,9 @@ public class AppFrame extends JFrame implements View {
         return menuPane;
     }
 
-    public void setMenuPane(JPanel menuPane) { setPane(this.menuPane, menuPane); }
+    public void setMenuPane(JPanel menuPane) {
+        setPane(this.menuPane, menuPane);
+    }
 
     public JPanel getMiddlePane() {
         return middlePane;
@@ -98,7 +100,6 @@ public class AppFrame extends JFrame implements View {
     public JComponent $$$getRootComponent$$$() {
         return mainPane;
     }
-
     //</editor-fold>
 
 }
