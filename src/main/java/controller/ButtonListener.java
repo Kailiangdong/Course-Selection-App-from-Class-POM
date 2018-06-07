@@ -15,6 +15,7 @@ public class ButtonListener implements ActionListener {
         lecturesDetailsView = (LecturesDetailsView) lecturesDetailsController.getView();
     }
 
+    //<editor-fold desc="Action Section">
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == lecturesDetailsView.getJoinDropLectureButton()) {
@@ -31,5 +32,6 @@ public class ButtonListener implements ActionListener {
         }
         lecturesDetailsController.notifyAllObservers();
     }
+    //</editor-fold>
 
 }

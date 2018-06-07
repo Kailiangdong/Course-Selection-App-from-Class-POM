@@ -8,19 +8,24 @@ import java.sql.SQLException;
 public class LecturesDetailsController extends Controller {
 
     private LecturesDetailsView lecturesDetailsView;
-    private CommentController commentController;
     private SQLiteManager sqLiteManager;
     private MenuController menuController;
     private LecturesTableController lecturesTableController;
+    private CommentController commentController;
     private String studentName;
     private String lectureID;
 
     public LecturesDetailsController(
-            SQLiteManager sqLiteManager, MenuController menuController, LecturesTableController tableController) {
+            SQLiteManager sqLiteManager,
+            MenuController menuController,
+            LecturesTableController lecturesTableController) {
         this.lecturesDetailsView = new LecturesDetailsView();
         this.sqLiteManager = sqLiteManager;
         this.menuController = menuController;
-        this.lecturesTableController = tableController;
+        this.lecturesTableController = lecturesTableController;
+        this.commentController = new CommentController(this.lecturesTableController, this.menuController);
+        this.lecturesDetailsView.setCommentPane(commentController.getView().getMainPane());
+
         update();
         addListeners();
     }

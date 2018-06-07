@@ -17,25 +17,41 @@ public class CommentController extends Controller {
      * - make sure that only one item can be selected in list
      */
 
-    CommentView view;
-    LecturesTableController tableController;
-    MenuController menuController;
+    private CommentView commentView;
+    private LecturesTableController lecturesTableController;
+    private MenuController menuController;
+    private String lectureId;
+    private String studentName;
+    private ArrayList<LectureComment> comments = new ArrayList<>();
+    private LectureComment selectedComment;
 
-    String lectureId;
-    String studentName;
-
-    ArrayList<LectureComment> comments = new ArrayList<>();
-    LectureComment selectedComment;
-
-    public CommentController(LecturesTableController tableController, MenuController menuController) {
-        this.view = new CommentView();
-        this.tableController = tableController;
+    public CommentController(
+            LecturesTableController lecturesTableController,
+            MenuController menuController) {
+        this.commentView = new CommentView();
+        this.lecturesTableController = lecturesTableController;
         this.menuController = menuController;
         addListeners();
         addDummyComments();
         update();
     }
 
+    //<editor-fold desc="Get/Set Section">
+    @Override
+    public CommentView getView() {
+        return commentView;
+    }
+
+    public String getStudentName() {return studentName;}
+
+    public ArrayList<LectureComment> getComments() {return comments;}
+
+    public LectureComment getSelectedComment() {return selectedComment;}
+
+    public void setSelectedComment(LectureComment selectedComment) {this.selectedComment = selectedComment;}
+    //</editor-fold>
+
+    //<editor-fold desc="Action Section">
     private void addDummyComments() {
         comments.add(new LectureComment("Stefan", "Lorem ipsum dolor sit amet, consectetur adipisici " +
                 "elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.", ZonedDateTime.now().minusHours(1), false));
@@ -46,65 +62,27 @@ public class CommentController extends Controller {
         comments.add(new LectureComment("Joana", "Excepteur sint obcaecat cupiditat non proident, sunt in " +
                 "culpa qui officia deserunt mollit anim id est laborum.", ZonedDateTime.now().minusHours(1), true));
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Rest Section">
     @Override
     void addListeners() {
-        view.addCreationListener(new CommentCreateListener());
-        view.addSelectionListener(new CommentSelectListener());
-        view.addDeletionListener(new CommentDeleteListener());
+        commentView.setCreationListener(new CommentCreateListener(this));
+        commentView.setSelectionListener(new CommentSelectListener(this));
+        commentView.setDeletionListener(new CommentDeleteListener(this));
     }
 
-    public CommentView getView() {
-        return view;
-    }
-
+    @Override
     public void update() {
         studentName = menuController.getActiveStudentName();
-        lectureId = tableController.getSelectedLectureId();
+        lectureId = lecturesTableController.getSelectedLectureId();
         if (!lectureId.equals("")) {
-            view.setList(comments.toArray(new LectureComment[]{}));
-            view.show();
+            commentView.setList(comments.toArray(new LectureComment[]{}));
+            commentView.getMainPane().setVisible(true);
         } else {
-            view.hide();
+            commentView.getMainPane().setVisible(false);
         }
     }
-
-    class CommentCreateListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String input = view.getInputText();
-            if (input != null && !input.isEmpty()) {
-                comments.add(new LectureComment(studentName, input, ZonedDateTime.now(), false));
-                view.clearInputField();
-                update();
-            }
-        }
-    }
-
-    class CommentSelectListener implements ListSelectionListener {
-        @Override
-        public void valueChanged(ListSelectionEvent e) {
-            ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-            int index = lsm.getMinSelectionIndex();
-            if (index < 0) {
-                return;
-            }
-            selectedComment = (LectureComment) view.getObject(index);
-
-            if (selectedComment.getAuthor().equals(studentName)) {
-                view.showOptions();
-            } else {
-                view.hideOptions();
-            }
-        }
-    }
-
-    class CommentDeleteListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            comments.remove(selectedComment);
-            update();
-        }
-    }
+    //</editor-fold>
 
 }
