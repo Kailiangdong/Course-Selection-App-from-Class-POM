@@ -18,7 +18,7 @@ public class CommentController extends Controller {
      */
 
     private CommentView commentView;
-    private LecturesTableController lecturesTableController;
+    private LecturesDetailsController lecturesDetailsController;
     private MenuController menuController;
     private String lectureId;
     private String studentName;
@@ -26,10 +26,10 @@ public class CommentController extends Controller {
     private LectureComment selectedComment;
 
     public CommentController(
-            LecturesTableController lecturesTableController,
+            LecturesDetailsController lecturesDetailsController,
             MenuController menuController) {
         this.commentView = new CommentView();
-        this.lecturesTableController = lecturesTableController;
+        this.lecturesDetailsController = lecturesDetailsController;
         this.menuController = menuController;
         addListeners();
         addDummyComments();
@@ -75,7 +75,7 @@ public class CommentController extends Controller {
     @Override
     public void update() {
         studentName = menuController.getActiveStudentName();
-        lectureId = lecturesTableController.getSelectedLectureId();
+        lectureId = lecturesDetailsController.getLectureID();
         if (!lectureId.equals("")) {
             commentView.setList(comments.toArray(new LectureComment[]{}));
             commentView.getMainPane().setVisible(true);

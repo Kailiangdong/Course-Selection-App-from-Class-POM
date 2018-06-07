@@ -10,6 +10,7 @@ public class LecturesTableController extends Controller {
     private LecturesTableView lecturesTableView;
     private MenuController menuController;
     private SQLiteManager sqLiteManager;
+    private LecturesDetailsController lecturesDetailsController;
     private String[] colNames;
     private String[][] leftTableContent;
     private String[][] rightTableContent;

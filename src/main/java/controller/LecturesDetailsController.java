@@ -23,8 +23,10 @@ public class LecturesDetailsController extends Controller {
         this.sqLiteManager = sqLiteManager;
         this.menuController = menuController;
         this.lecturesTableController = lecturesTableController;
-        this.commentController = new CommentController(this.lecturesTableController, this.menuController);
+        this.lectureID = "";
+        this.commentController = new CommentController(this, this.menuController);
         this.lecturesDetailsView.setCommentPane(commentController.getView().getMainPane());
+        this.attach(commentController);
 
         update();
         addListeners();
@@ -99,6 +101,7 @@ public class LecturesDetailsController extends Controller {
                 lecturesTableController.getSelectedRight()?"Drop Lecture":"Join Lecture");
         studentName = menuController.getActiveStudentName();
         lectureID = lecturesTableController.getSelectedLectureId();
+        notifyAllObservers();
     }
     //</editor-fold>
 
