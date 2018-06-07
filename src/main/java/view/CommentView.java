@@ -130,7 +130,6 @@ public class CommentView implements View {
     public JComponent $$$getRootComponent$$$() {
         return mainPane;
     }
-
     //</editor-fold>
 
     //<editor-fold desc="Other Class Section">

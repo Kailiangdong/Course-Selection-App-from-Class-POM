@@ -114,6 +114,15 @@ public class SQLiteManager {
                     ");";
             stmt.executeUpdate(sql);
 
+            sql = "CREATE TABLE COMMENTS " +
+                    "(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    " STUDENT_ID INTEGER REFERENCES STUDENTS ON DELETE CASCADE," +
+                    " LECTURE_ID INTEGER REFERENCES LECTURES ON DELETE CASCADE," +
+                    " TIME TEXT NOT NULL," +
+                    " DATE TEXT NOT NULL," +
+                    " CONTENT TEXT);";
+            stmt.executeUpdate(sql);
+
         } catch (SQLException e) {
             System.out.println("Error executing query " + e.toString());
             System.exit(-1);
@@ -126,11 +135,13 @@ public class SQLiteManager {
             PreparedStatement stmtLectures = c.prepareStatement("insert into Lectures values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             PreparedStatement stmtStudents = c.prepareStatement("insert into Students values(?, ?, ?, ?)");
             PreparedStatement stmtAttends = c.prepareStatement("insert into Attends values(?, ?)");
-            PreparedStatement stmtChairs = c.prepareStatement("insert into Chairs values(?, ?, ?)")) {
+            PreparedStatement stmtChairs = c.prepareStatement("insert into Chairs values(?, ?, ?)");
+            PreparedStatement stmtComments = c.prepareStatement("insert into Comments values(?, ?, ?, ?, ?, ?)")) {
             BackendAdapter.fillLecturesTable(stmtLectures);
             BackendAdapter.fillStudentsTable(stmtStudents);
             BackendAdapter.fillAttendsTable(stmtAttends);
             BackendAdapter.fillChairsTable(stmtChairs);
+            BackendAdapter.fillCommentsTable(stmtComments);
         } catch (SQLException e) {
             System.out.println("Error importing records " + e.toString());
         }
@@ -146,6 +157,7 @@ public class SQLiteManager {
             executeStatement("SELECT * FROM STUDENTS");
             executeStatement("SELECT * FROM ATTENDS");
             executeStatement("SELECT * FROM CHAIRS");
+            executeStatement("SELECT * FROM COMMENTS");
         } catch (SQLException e) {
             System.out.println("Database corrupted: " + e.toString());
             return false;
@@ -185,6 +197,13 @@ public class SQLiteManager {
             System.out.println("CHAIRS table is deleted");
         } catch(SQLException e) {
             System.out.println("CHAIRS table is missing");
+        }
+        try {
+            executeStatement("SELECT * FROM COMMENTS");
+            executeStatement("DROP TABLE COMMENTS");
+            System.out.println("COMMENTS table is deleted");
+        } catch(SQLException e) {
+            System.out.println("COMMENTS table is missing");
         }
     }
     //</editor-fold>
