@@ -29,7 +29,7 @@ public class LecturesDetailsController extends Controller {
         this.menuController = menuController;
         this.lecturesTableController = lecturesTableController;
         this.lectureID = "";
-        this.commentController = new CommentController(this, this.menuController);
+        this.commentController = new CommentController(this, this.menuController, sqLiteManager, lecturesTableController);
         this.lecturesDetailsView.setCommentPane(commentController.getView().getMainPane());
         this.attach(commentController);
 

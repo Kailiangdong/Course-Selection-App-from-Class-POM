@@ -91,14 +91,14 @@ public class CommentView implements View {
     private void $$$setupUI$$$() {
         mainPane = new JPanel();
         mainPane.setLayout(new BorderLayout(0, 0));
-        mainPane.setPreferredSize(new Dimension(400, 300));
+        mainPane.setPreferredSize(new Dimension(300, 300));
         mainPane.setVerifyInputWhenFocusTarget(false);
         createPane = new JPanel();
         createPane.setLayout(new BorderLayout(0, 0));
         createPane.setPreferredSize(new Dimension(400, 50));
         mainPane.add(createPane, BorderLayout.NORTH);
         inputField = new JTextField();
-        inputField.setPreferredSize(new Dimension(300, 50));
+        inputField.setPreferredSize(new Dimension(200, 50));
         createPane.add(inputField, BorderLayout.WEST);
         addButton = new JButton();
         addButton.setText("Comment");
@@ -130,6 +130,7 @@ public class CommentView implements View {
     public JComponent $$$getRootComponent$$$() {
         return mainPane;
     }
+
     //</editor-fold>
 
     //<editor-fold desc="Other Class Section">
