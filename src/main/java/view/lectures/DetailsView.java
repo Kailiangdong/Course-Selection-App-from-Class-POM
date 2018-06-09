@@ -1,27 +1,24 @@
-package view;
+package view.lectures;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.FormLayout;
-import controller.ButtonListener;
+import view.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
-public class LecturesDetailsView implements View {
+public class DetailsView implements View {
 
     private JPanel mainPane;
     private JButton joinDropLectureButton;
     private JPanel buttonPane;
-    private JPanel commentPane;
+    private JPanel rightPane;
     private JPanel detailsPane;
     private JButton mapLocationButton;
     private JButton participantsButton;
     private JTextPane textPane;
+    private JPanel leftPane;
 
-    //<editor-fold desc="Get/Set Section">
+    //<editor-fold desc="Getters & Setters">
     private void setPane(JPanel pane, JPanel paneContent) {
         pane.removeAll();
         pane.add(paneContent, BorderLayout.CENTER);
@@ -45,12 +42,12 @@ public class LecturesDetailsView implements View {
         return participantsButton;
     }
 
-    public JPanel getCommentPane() {
-        return commentPane;
+    public JPanel getRightPane() {
+        return rightPane;
     }
 
-    public void setCommentPane(JPanel commentPane) {
-        setPane(this.commentPane, commentPane);
+    public void setRightPane(JPanel rightPane) {
+        setPane(this.rightPane, rightPane);
     }
 
     public JPanel getDetailsPane() {
@@ -59,15 +56,15 @@ public class LecturesDetailsView implements View {
     //</editor-fold>
 
     //<editor-fold desc="Listener Section">
-    public void setRowListener(ButtonListener l) {
+    public void setRowListener(ActionListener l) {
         joinDropLectureButton.addActionListener(l);
     }
 
-    public void setMapListener(ButtonListener l) {
+    public void setMapListener(ActionListener l) {
         mapLocationButton.addActionListener(l);
     }
 
-    public void setParticipantsButton(ButtonListener l) {
+    public void setParticipantsButton(ActionListener l) {
         participantsButton.addActionListener(l);
     }
 
@@ -92,32 +89,39 @@ public class LecturesDetailsView implements View {
     private void $$$setupUI$$$() {
         mainPane = new JPanel();
         mainPane.setLayout(new BorderLayout(0, 0));
-        mainPane.setPreferredSize(new Dimension(800, 300));
+        mainPane.setPreferredSize(new Dimension(1000, 300));
+        rightPane = new JPanel();
+        rightPane.setLayout(new BorderLayout(0, 0));
+        rightPane.setPreferredSize(new Dimension(500, 300));
+        mainPane.add(rightPane, BorderLayout.EAST);
+        rightPane.setBorder(BorderFactory.createTitledBorder("Comments"));
+        leftPane = new JPanel();
+        leftPane.setLayout(new BorderLayout(0, 0));
+        leftPane.setPreferredSize(new Dimension(500, 300));
+        mainPane.add(leftPane, BorderLayout.WEST);
+        leftPane.setBorder(BorderFactory.createTitledBorder("Details & Actions"));
+        detailsPane = new JPanel();
+        detailsPane.setLayout(new BorderLayout(0, 0));
+        detailsPane.setMaximumSize(new Dimension(350, 300));
+        leftPane.add(detailsPane, BorderLayout.EAST);
+        textPane = new JTextPane();
+        textPane.setPreferredSize(new Dimension(350, 300));
+        detailsPane.add(textPane, BorderLayout.CENTER);
         buttonPane = new JPanel();
-        buttonPane.setLayout(new BorderLayout(0, 0));
-        buttonPane.setPreferredSize(new Dimension(150, 300));
+        buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        buttonPane.setPreferredSize(new Dimension(150, 10));
         buttonPane.setVerifyInputWhenFocusTarget(true);
-        mainPane.add(buttonPane, BorderLayout.WEST);
+        leftPane.add(buttonPane, BorderLayout.WEST);
         joinDropLectureButton = new JButton();
         joinDropLectureButton.setText("Join Lecture");
         joinDropLectureButton.setToolTipText("Click here to join the selected lecture");
-        buttonPane.add(joinDropLectureButton, BorderLayout.NORTH);
+        buttonPane.add(joinDropLectureButton);
         mapLocationButton = new JButton();
         mapLocationButton.setText("Map");
-        buttonPane.add(mapLocationButton, BorderLayout.CENTER);
+        buttonPane.add(mapLocationButton);
         participantsButton = new JButton();
         participantsButton.setText("Participants");
-        buttonPane.add(participantsButton, BorderLayout.SOUTH);
-        commentPane = new JPanel();
-        commentPane.setLayout(new BorderLayout(0, 0));
-        commentPane.setPreferredSize(new Dimension(400, 300));
-        mainPane.add(commentPane, BorderLayout.EAST);
-        detailsPane = new JPanel();
-        detailsPane.setLayout(new BorderLayout(0, 0));
-        detailsPane.setPreferredSize(new Dimension(250, 300));
-        mainPane.add(detailsPane, BorderLayout.CENTER);
-        textPane = new JTextPane();
-        detailsPane.add(textPane, BorderLayout.CENTER);
+        buttonPane.add(participantsButton);
     }
 
     /**
@@ -128,6 +132,5 @@ public class LecturesDetailsView implements View {
     }
 
     //</editor-fold>
-
 
 }

@@ -2,12 +2,9 @@ package controller;
 
 import javax.swing.table.DefaultTableModel;
 
-/**
- * Custom TableModel to represent lecture data in a JTable.
- */
-public class LectureTableModel extends DefaultTableModel {
+public class TableModel extends DefaultTableModel {
 
-    public LectureTableModel(String[][] rowData, String[] colNames) {
+    public TableModel(String[][] rowData, String[] colNames) {
         super(rowData, colNames);
     }
 

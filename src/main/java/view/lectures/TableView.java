@@ -1,26 +1,28 @@
-package view;
+package view.lectures;
+
+import view.Section;
+import view.View;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseListener;
 
-public class LecturesTableView implements View {
+public class TableView implements View {
 
     private JPanel mainPane;
     private JScrollPane leftPane;
     private JScrollPane rightPane;
     private JTable leftTable;
     private JTable rightTable;
-    private JTextArea infoArea;
 
-
-    public LecturesTableView() {
+    public TableView() {
         leftTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         rightTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
-    //<editor-fold desc="Get Section">
+    //<editor-fold desc="Getters">
     public JPanel getMainPane() {
         return mainPane;
     }
@@ -62,18 +64,20 @@ public class LecturesTableView implements View {
     private void $$$setupUI$$$() {
         mainPane = new JPanel();
         mainPane.setLayout(new BorderLayout(0, 0));
-        mainPane.setPreferredSize(new Dimension(908, 435));
+        mainPane.setPreferredSize(new Dimension(1000, 300));
         leftPane = new JScrollPane();
+        leftPane.setPreferredSize(new Dimension(500, 300));
         mainPane.add(leftPane, BorderLayout.WEST);
+        leftPane.setBorder(BorderFactory.createTitledBorder("Joinable Lectures"));
         leftTable = new JTable();
         leftPane.setViewportView(leftTable);
         rightPane = new JScrollPane();
+        rightPane.setPreferredSize(new Dimension(500, 300));
         mainPane.add(rightPane, BorderLayout.EAST);
+        rightPane.setBorder(BorderFactory.createTitledBorder("Joined Lectures"));
         rightTable = new JTable();
+        rightTable.setPreferredSize(new Dimension(500, 300));
         rightPane.setViewportView(rightTable);
-        infoArea = new JTextArea();
-        infoArea.setText("Joined lectures / Joinable lectures");
-        mainPane.add(infoArea, BorderLayout.NORTH);
     }
 
     /**
@@ -82,6 +86,11 @@ public class LecturesTableView implements View {
     public JComponent $$$getRootComponent$$$() {
         return mainPane;
     }
+
+    //</editor-fold>
+
+    //<editor-fold desc="---">
+    //
     //</editor-fold>
 
 }

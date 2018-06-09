@@ -1,5 +1,8 @@
 package controller;
 
+import controller.lectures.LectureController;
+import controller.login.LoginController;
+import controller.students.StudentsController;
 import view.AppFrame;
 import view.View;
 import SQLiteManager.SQLiteManager;
@@ -15,11 +18,24 @@ public class AppController extends Controller {
     public AppController() {
         view = new AppFrame();
         sqLiteManager = new SQLiteManager();
-        menuController = new MenuController(sqLiteManager);
-        view.setMenuPane(menuController.getView().getMainPane());
+
+        // Add Controllers
+        LoginController loginController = new LoginController(sqLiteManager);
+        menuController = new MenuController(sqLiteManager, loginController);
+        LectureController lectureController = new LectureController(sqLiteManager, loginController, menuController);
+        StudentsController studentsController = new StudentsController(sqLiteManager, loginController);
+
+        // Add Views
+        view.setMenuPane(menuController.getView());
+        view.setLogInPane(loginController.getView());
+        view.setLecturesPane(lectureController.getView());
+        view.setStudentsPane(studentsController.getView());
+
+        // Logic Observers
+        menuController.attach(this); // check if user closed the app
     }
 
-    //<editor-fold desc="Get Section">
+    //<editor-fold desc="Getters">
     @Override
     public View getView() {
         return view;
@@ -31,52 +47,35 @@ public class AppController extends Controller {
         view.open();
     }
 
-    public void showLectureScreen() {
-
-        // Set up controllers
-        LecturesTableController tableController = new LecturesTableController(sqLiteManager, menuController);
-        LecturesDetailsController detailsController = new LecturesDetailsController(sqLiteManager, menuController, tableController);
-
-        // Show views in AppFrame
-        view.setMiddlePane(tableController.getView().getMainPane());
-        view.setBottomPane(detailsController.getView().getMainPane());
-
-        // Set observers
-        menuController.attach(this); // app reacts to quit button in menu
-        menuController.attach(tableController); // lecture tables react to menu settings
-        menuController.attach(detailsController); // lecture details react to changing student name
-        tableController.attach(detailsController); // lecture details react to lecture selection
-        detailsController.attach(tableController); // lecture tables react to joining/dropping lectures
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="Rest Section">
-    @Override
-    void addListeners() {
-        // does not react to user input
+    public void end() {
+        view.close();
     }
 
     @Override
     public void update() {
         if(!menuController.isAppActive()) {
-            view.setVisible(false);
-            view.dispose();
+            end();
         }
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Listeners">
+    @Override
+    public void addListeners() {
+        // does not react to user input
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Other">
     public void icon() {
         view.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
     }
     //</editor-fold>
 
-    //<editor-fold desc="Main Section">
+    //<editor-fold desc="Main Method">
     public static void main(String[] args) {
-        // initialize main frame where the application lives in
         AppController app = new AppController();
-
-        // display lectures table and details for selected lecture
         app.start();
-        app.showLectureScreen();
 
         // show icon
         app.icon();
