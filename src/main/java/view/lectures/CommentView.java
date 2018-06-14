@@ -1,11 +1,12 @@
-package view;
+package view.lectures;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-import controller.LectureComment;
+import university.LectureComment;
+import view.View;
 
 
 public class CommentView implements View {
@@ -14,8 +15,6 @@ public class CommentView implements View {
     private JPanel createPane;
     private JPanel listPane;
     private JPanel actionPane;
-    private JSeparator topSep;
-    private JSeparator bottomSep;
     private JList dataList;
     private JTextField inputField;
     private JButton addButton;
@@ -23,15 +22,28 @@ public class CommentView implements View {
 
     public CommentView() {
         DefaultListModel listModel = new DefaultListModel();
-        dataList.setCellRenderer(new CommentCellRenderer(200));
+        dataList.setCellRenderer(new CommentCellRenderer(300));
     }
+
+    //<editor-fold desc="Actions">
+    public void showOptions() {
+        deleteButton.setVisible(true);
+    }
+
+    public void hideOptions() {
+        deleteButton.setVisible(false);
+    }
+    //</editor-fold>
 
     //<editor-fold desc="Get/Set Section">
     @Override
     public JPanel getMainPane() {
         return mainPane;
     }
-    //</editor-fold>
+
+    public Object getObject(int index) {
+        return dataList.getModel().getElementAt(index);
+    }
 
     public String getInputText() {
         return inputField.getText();
@@ -46,20 +58,11 @@ public class CommentView implements View {
         for (LectureComment comment : commentTable) {
             listModel.addElement(comment);
         }
+        //dataList.setListData(commentTable);
+        //dataList.removeAll();
         dataList.setModel(listModel);
     }
-
-    public void showOptions() {
-        deleteButton.setVisible(true);
-    }
-
-    public void hideOptions() {
-        deleteButton.setVisible(false);
-    }
-
-    public Object getObject(int index) {
-        return dataList.getModel().getElementAt(index);
-    }
+    //</editor-fold>
 
     //<editor-fold desc="Listener Section">
     public void setDeletionListener(ActionListener l) {
@@ -91,34 +94,30 @@ public class CommentView implements View {
     private void $$$setupUI$$$() {
         mainPane = new JPanel();
         mainPane.setLayout(new BorderLayout(0, 0));
-        mainPane.setPreferredSize(new Dimension(300, 300));
+        mainPane.setPreferredSize(new Dimension(500, 300));
         mainPane.setVerifyInputWhenFocusTarget(false);
         createPane = new JPanel();
-        createPane.setLayout(new BorderLayout(0, 0));
-        createPane.setPreferredSize(new Dimension(400, 50));
+        createPane.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+        createPane.setPreferredSize(new Dimension(500, 50));
         mainPane.add(createPane, BorderLayout.NORTH);
         inputField = new JTextField();
-        inputField.setPreferredSize(new Dimension(200, 50));
-        createPane.add(inputField, BorderLayout.WEST);
+        inputField.setPreferredSize(new Dimension(350, 40));
+        createPane.add(inputField);
         addButton = new JButton();
         addButton.setText("Comment");
-        createPane.add(addButton, BorderLayout.CENTER);
+        createPane.add(addButton);
         actionPane = new JPanel();
-        actionPane.setLayout(new BorderLayout(0, 0));
-        actionPane.setPreferredSize(new Dimension(400, 50));
+        actionPane.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+        actionPane.setPreferredSize(new Dimension(500, 50));
         mainPane.add(actionPane, BorderLayout.SOUTH);
         deleteButton = new JButton();
         deleteButton.setText("Remove");
-        actionPane.add(deleteButton, BorderLayout.CENTER);
+        actionPane.add(deleteButton);
         listPane = new JPanel();
         listPane.setLayout(new BorderLayout(0, 0));
-        listPane.setPreferredSize(new Dimension(400, 200));
         mainPane.add(listPane, BorderLayout.CENTER);
-        topSep = new JSeparator();
-        listPane.add(topSep, BorderLayout.NORTH);
-        bottomSep = new JSeparator();
-        listPane.add(bottomSep, BorderLayout.SOUTH);
         final JScrollPane scrollPane1 = new JScrollPane();
+        scrollPane1.setPreferredSize(new Dimension(500, 200));
         listPane.add(scrollPane1, BorderLayout.CENTER);
         dataList = new JList();
         scrollPane1.setViewportView(dataList);
@@ -163,8 +162,10 @@ public class CommentView implements View {
                                                       int index, boolean isSelected, boolean cellHasFocus) {
             LectureComment comment = (LectureComment) value;
 
+            this.setToolTipText("" + comment.getId());
             String template = comment.getAnswer() ? HTML_ANSWER : HTML_REG;
-            String text = String.format(template, width, comment.getAuthor(), comment.getText(), comment.getTime().toString());
+            String text = String.format(template, width, comment.getAuthor().getName(), comment.getText(),
+                    comment.getDate() + " - " + comment.getTime());
             return super.getListCellRendererComponent(list, text, index, isSelected,
                     cellHasFocus);
         }

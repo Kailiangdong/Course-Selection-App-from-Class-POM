@@ -9,17 +9,11 @@
       <color color="-13602637"/>
     </border>
     <children>
-      <grid id="71b6c" binding="middlePane" layout-manager="BorderLayout" hgap="0" vgap="0">
-        <constraints border-constraint="Center"/>
-        <properties/>
-        <border type="none">
-          <color color="-10182456"/>
-        </border>
-        <children/>
-      </grid>
       <grid id="6c471" binding="menuPane" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="North"/>
-        <properties/>
+        <properties>
+          <preferredSize width="0" height="30"/>
+        </properties>
         <border type="none">
           <font/>
           <title-color color="-4473925"/>
@@ -27,12 +21,41 @@
         </border>
         <children/>
       </grid>
-      <grid id="7fa3b" binding="bottomPane" layout-manager="BorderLayout" hgap="0" vgap="0">
-        <constraints border-constraint="South"/>
+      <tabbedpane id="43096" binding="tabPane">
+        <constraints border-constraint="Center"/>
         <properties/>
         <border type="none"/>
-        <children/>
-      </grid>
+        <children>
+          <grid id="e35a4" binding="loginPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Login"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="686e5" binding="lecturesPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Lectures"/>
+            </constraints>
+            <properties>
+              <enabled value="true"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="e1319" binding="studentsPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Students"/>
+            </constraints>
+            <properties>
+              <enabled value="true"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </tabbedpane>
     </children>
   </grid>
 </form>

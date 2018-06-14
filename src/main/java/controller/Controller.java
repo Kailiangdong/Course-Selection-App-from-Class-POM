@@ -29,11 +29,11 @@ public abstract class Controller implements Observer {
         }
     }
 
-    abstract void addListeners();
+    public abstract void addListeners();
 
-    abstract View getView();
+    public abstract View getView();
 
     @Override
-    abstract public void update();
+    public abstract void update();
 
 }

@@ -1,6 +1,8 @@
 package SQLiteManager;
 
 import backend.BackendAdapter;
+import university.Lecture;
+import university.Student;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -207,6 +209,56 @@ public class SQLiteManager {
         }
     }
     //</editor-fold>
+
+    public Student getStudent(int studentID) {
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+        query.addSelect("ID", "STUDENTS");
+        query.addSelect("NAME", "STUDENTS");
+        query.addSelect("MAJOR", "STUDENTS");
+        query.addSelect("MINOR", "STUDENTS");
+        query.addFrom("STUDENTS");
+        query.addWhere("S.ID = " + studentID);
+        try {
+            String[][] results = executeQuery(query);
+            if(results.length > 1) {
+                throw new RuntimeException("Multiple students with id " + studentID);
+            }
+            String[] studentInfo = results[0];
+            int id = Integer.parseInt(studentInfo[0]);
+            String name = studentInfo[1];
+            String major = studentInfo[2];
+            String minor = studentInfo[3];
+            return new Student(id, name, major, minor);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Lecture getLecture(int lectureID) {
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+        query.addSelect("ID", "LECTURES");
+        query.addSelect("TITLE", "LECTURES");
+        query.addSelect("CHAIR", "LECTURES");
+        query.addSelect("ECTS", "LECTURES");
+        query.addFrom("LECTURES");
+        query.addWhere("l.ID = " + lectureID);
+        try {
+            String[][] results = executeQuery(query);
+            if(results.length > 1) {
+                throw new RuntimeException("Multiple lectures with id " + lectureID);
+            }
+            String[] lectureInfo = results[0];
+            int id = Integer.parseInt(lectureInfo[0]);
+            String title = lectureInfo[1];
+            String chair = lectureInfo[2];
+            int credits = Integer.parseInt(lectureInfo[3]);
+            return new Lecture(id, title, chair, credits);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     //<editor-fold desc="!!!Probably Deletable!!!">
     /** Executes a query split into three parts on the local database:

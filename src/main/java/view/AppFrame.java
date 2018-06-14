@@ -6,18 +6,20 @@ import java.awt.*;
 public class AppFrame extends JFrame implements View {
 
     private JPanel mainPane;
-    private JPanel middlePane;
     private JPanel menuPane;
-    private JPanel bottomPane;
+    private JTabbedPane tabPane;
+    private JPanel loginPane;
+    private JPanel lecturesPane;
+    private JPanel studentsPane;
 
     public AppFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(true);
+        this.setResizable(false);
         this.setTitle("University App feat. Team 13");
         this.add(mainPane);
     }
 
-    //<editor-fold desc="Open/Close Section">
+    //<editor-fold desc="Open / Close Window">
     public void open() {
         this.pack();
         this.setVisible(true);
@@ -29,7 +31,7 @@ public class AppFrame extends JFrame implements View {
     }
     //</editor-fold>
 
-    //<editor-fold desc="Get/Set Section">
+    //<editor-fold desc="Getters & Setters">
     private void setPane(JPanel pane, JPanel paneContent) {
         pane.removeAll();
         pane.add(paneContent, BorderLayout.CENTER);
@@ -41,24 +43,32 @@ public class AppFrame extends JFrame implements View {
         return menuPane;
     }
 
-    public void setMenuPane(JPanel menuPane) {
-        setPane(this.menuPane, menuPane);
+    public void setMenuPane(View menuView) {
+        setPane(this.menuPane, menuView.getMainPane());
     }
 
-    public JPanel getMiddlePane() {
-        return middlePane;
+    public JPanel getLogInPane() {
+        return loginPane;
     }
 
-    public void setMiddlePane(JPanel middlePane) {
-        setPane(this.middlePane, middlePane);
+    public void setLogInPane(View logInView) {
+        setPane(this.loginPane, logInView.getMainPane());
     }
 
-    public JPanel getBottomPane() {
-        return bottomPane;
+    public JPanel getLecturesPane() {
+        return lecturesPane;
     }
 
-    public void setBottomPane(JPanel bottomPane) {
-        setPane(this.bottomPane, bottomPane);
+    public void setLecturesPane(View lecturesView) {
+        setPane(this.lecturesPane, lecturesView.getMainPane());
+    }
+
+    public JPanel getStudentsPane() {
+        return studentsPane;
+    }
+
+    public void setStudentsPane(View peopleView) {
+        setPane(this.studentsPane, peopleView.getMainPane());
     }
 
     public JPanel getMainPane() {
@@ -83,15 +93,23 @@ public class AppFrame extends JFrame implements View {
         mainPane = new JPanel();
         mainPane.setLayout(new BorderLayout(0, 0));
         mainPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-13602637)), null));
-        middlePane = new JPanel();
-        middlePane.setLayout(new BorderLayout(0, 0));
-        mainPane.add(middlePane, BorderLayout.CENTER);
         menuPane = new JPanel();
         menuPane.setLayout(new BorderLayout(0, 0));
+        menuPane.setPreferredSize(new Dimension(0, 30));
         mainPane.add(menuPane, BorderLayout.NORTH);
-        bottomPane = new JPanel();
-        bottomPane.setLayout(new BorderLayout(0, 0));
-        mainPane.add(bottomPane, BorderLayout.SOUTH);
+        tabPane = new JTabbedPane();
+        mainPane.add(tabPane, BorderLayout.CENTER);
+        loginPane = new JPanel();
+        loginPane.setLayout(new BorderLayout(0, 0));
+        tabPane.addTab("Login", loginPane);
+        lecturesPane = new JPanel();
+        lecturesPane.setLayout(new BorderLayout(0, 0));
+        lecturesPane.setEnabled(true);
+        tabPane.addTab("Lectures", lecturesPane);
+        studentsPane = new JPanel();
+        studentsPane.setLayout(new BorderLayout(0, 0));
+        studentsPane.setEnabled(true);
+        tabPane.addTab("Students", studentsPane);
     }
 
     /**
@@ -100,6 +118,10 @@ public class AppFrame extends JFrame implements View {
     public JComponent $$$getRootComponent$$$() {
         return mainPane;
     }
+
+    //<editor-fold desc="---">
+    //
     //</editor-fold>
+
 
 }

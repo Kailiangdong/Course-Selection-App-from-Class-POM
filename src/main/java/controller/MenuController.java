@@ -1,5 +1,7 @@
 package controller;
 
+import controller.login.LoginController;
+import university.Student;
 import view.MenuView;
 import view.View;
 import SQLiteManager.*;
@@ -16,8 +18,11 @@ public class MenuController extends Controller {
 
     private MenuView view;
     private SQLiteManager sqLiteManager;
+    private LoginController loginController;
 
     private boolean appActive = true;
+
+    private Student student;
 
     private String[] studentNames;
     private String activeStudentName;
@@ -31,14 +36,21 @@ public class MenuController extends Controller {
 
     // Initialization
 
-    public MenuController(SQLiteManager sqLiteManager) {
+    public MenuController(SQLiteManager sqLiteManager, LoginController loginController) {
         view = new MenuView();
         this.sqLiteManager = sqLiteManager;
+        this.loginController = loginController;
 
         initStudentMenu();
         initColumnMenu();
         initChairMenu();
         addListeners();
+    }
+
+    //<editor-fold desc="Actions">
+    @Override
+    public void update() {
+        initChairMenu();
     }
 
     private void initColumnMenu() {
@@ -62,21 +74,19 @@ public class MenuController extends Controller {
         view.setChairMenu(chairNames);
         view.setChairMenuListener(new ChairLabelListener());
     }
+    //</editor-fold>
 
-    @Override
-    void addListeners() {
-        view.setQuitButtonListener(new QuitButtonListener());
-        view.setRefreshButtonListener(new RefreshButtonListener());
-    }
-
-    // Methods for the observer pattern
-
+    //<editor-fold desc="Getters & Setters">
     public List<String> getActiveChairNames() {
         return activeChairNames;
     }
 
     public List<String> getActiveColNames() {
         return activeColNames;
+    }
+
+    public Student getActiveStudent() {
+        return student;
     }
 
     public String getActiveStudentName() {
@@ -91,14 +101,9 @@ public class MenuController extends Controller {
     public View getView() {
         return view;
     }
+    //</editor-fold>
 
-    @Override
-    public void update() {
-        initChairMenu();
-    }
-
-    // Business Logic
-
+    //<editor-fold desc="Queries">
     private String[] getStudentNames() {
         QueryBuilder query = new QueryBuilder(QueryType.SELECT);
         query.addSelect("NAME", "STUDENTS");
@@ -137,6 +142,16 @@ public class MenuController extends Controller {
             return new String[]{};
         }
     }
+
+    //</editor-fold>
+
+    //<editor-fold desc="Listeners">
+    @Override
+    public void addListeners() {
+        view.setQuitButtonListener(new QuitButtonListener());
+        view.setRefreshButtonListener(new RefreshButtonListener());
+    }
+
 
     class QuitButtonListener implements ActionListener {
         @Override
@@ -177,4 +192,5 @@ public class MenuController extends Controller {
             notifyAllObservers();
         }
     }
+    //</editor-fold>
 }
