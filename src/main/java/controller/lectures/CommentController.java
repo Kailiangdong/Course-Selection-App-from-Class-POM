@@ -57,16 +57,26 @@ public class CommentController extends Controller {
     }
 
     private void addComment(String text) {
-        // TODO: call insert query
         view.clearInputField();
         LectureComment comment = new LectureComment(student, text);
+        try {
+            sqLiteManager.executeQuery(addcommentQuery(student.getId(),lecture.getId(),comment.getTime(), comment.getDate(),comment.getText()));
+
+        } catch (SQLException e) {
+            System.out.println("Error executing add comment: " + e.toString());
+        }
         update();
     }
 
     private void deleteComment() {
         LectureComment comment = getSelectedComment();
         // TODO: call delete query
+        try {
+            sqLiteManager.executeQuery(deletecommentQuery(comment.getId()));
 
+        } catch (SQLException e) {
+            System.out.println("Error executing delete comment: " + e.toString());
+        }
         update();
     }
 
@@ -112,6 +122,25 @@ public class CommentController extends Controller {
 
         return query;
     }
+    private QueryBuilder addcommentQuery(int studentID, int lectureID, String time, String date,String content) {
+        content = "'" + content + "'";
+        time = "'" + time + "'";
+        date = "'" + date + "'";
+        QueryBuilder addBuilder = new QueryBuilder(QueryType.INSERT);
+        addBuilder.addInsertTab("COMMENTS");
+        addBuilder.addInsertCols(new String[]{"ID","STUDENT_ID", "LECTURE_ID","TIME", "DATE","CONTENT"});
+        addBuilder.addInsertVals(new String[]{null,Integer.toString(studentID), Integer.toString(lectureID), time, date, content});
+        return addBuilder;
+    }
+
+    private QueryBuilder deletecommentQuery(int commentID) {
+        QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
+        deleteBuilder.addDeleteTab("COMMENTS");
+        deleteBuilder.addDeleteWhere(new String[]{
+                "ID = " + commentID,
+        });
+        return deleteBuilder;
+    }
     //</editor-fold>
 
     //<editor-fold desc="Getters">
@@ -136,14 +165,6 @@ public class CommentController extends Controller {
     //</editor-fold>
 
     //<editor-fold desc="Other">
-    public static ZonedDateTime changeStringToUTC(String DateTimeStr) {
-        DateTimeFormatter beijingFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneId.of("Asia/Shanghai"));
-        if (DateTimeStr == "") {
-            return null;
-        }
-        ZonedDateTime beijingDateTime = ZonedDateTime.parse(DateTimeStr, beijingFormatter);
-        return beijingDateTime.withZoneSameInstant(ZoneId.of("UTC"));
-    }
     //</editor-fold>
 
     //<editor-fold desc="Listeners">
