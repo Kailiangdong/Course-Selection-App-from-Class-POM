@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.students.TableViewStudents">
+  <grid id="27dc6" binding="mainStudentsPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <preferredSize width="1000" height="300"/>
+      <toolTipText value=""/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <scrollpane id="ce43" binding="leftStudentsPane">
+        <constraints border-constraint="West"/>
+        <properties>
+          <preferredSize width="500" height="300"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="2ce0e" class="javax.swing.JTable" binding="rightStudentsTable">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <scrollpane id="b0805" binding="rightStudentsPane">
+        <constraints border-constraint="East"/>
+        <properties>
+          <preferredSize width="500" height="300"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="194d9" class="javax.swing.JTable" binding="leftStudentsTable">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+    </children>
+  </grid>
+</form>
