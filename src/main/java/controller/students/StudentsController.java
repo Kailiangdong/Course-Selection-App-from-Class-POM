@@ -2,29 +2,40 @@ package controller.students;
 
 import SQLiteManager.SQLiteManager;
 import controller.Controller;
-import controller.TableModel;
 import controller.login.LoginController;
+import view.Section;
 import view.View;
-import view.lectures.TableView;
 import view.students.StudentsView;
-import view.students.TableViewStudents;
 
 public class StudentsController extends Controller {
 
     private StudentsView studentsView;
     private SQLiteManager sqLiteManager;
     private LoginController loginController;
-    private TableViewStudents tableView;
 
-    private String[] colName;
-    private String[][] leftTableContent;
-    private String[][] rightTableContent;
+    //private TableViewStudents tableView;
 
     public StudentsController(SQLiteManager sqLiteManager, LoginController loginController) {
-        this.studentsView = new StudentsView();
-        this.tableView = new TableViewStudents();
+        // Setting up references
+        studentsView = new StudentsView();
         this.sqLiteManager = sqLiteManager;
         this.loginController = loginController;
+
+        // Add sub-controllers
+        StudentsTableController studentsTableController = new StudentsTableController(sqLiteManager, loginController);
+        // TODO: StudentDetailsController studentDetailsController = new StudentDetailsController(sqLiteManager, loginController);
+
+        // Add sub-views
+        studentsView.setView(studentsTableController.getView(), Section.Upper);
+        // TODO: studentsView.setView(studentsDetailsController.getView(), Section.Lower);
+
+        // User-observer
+        loginController.attach(studentsTableController);
+        // TODO: loginController.attach(studentsDetailsController);
+
+        // Logic observer
+        // TODO: studentsDetailsController.attach(studentsTableController);
+        // TODO: studentsTableController.attach(studentsDetailsController);
 
         addListeners();
     }
@@ -32,11 +43,7 @@ public class StudentsController extends Controller {
     //<editor-fold desc="Actions">
     @Override
     public void update() {
-        colName = new String[]{"Friends"};
-        leftTableContent = new String[] []{{"Stefan"}};
-        tableView.getLeftStudentsTable().setModel(new TableModel(leftTableContent, new String[]{"Firends"}));
-        rightTableContent = new  String[] []{{"Joana"}};
-        tableView.getRightStudentsTable().setModel(new TableModel(leftTableContent, new String[]{"Firends"}));
+
     }
     //</editor-fold>
 

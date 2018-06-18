@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class StudentsView implements View {
+
     private JPanel mainPane;
     private JPanel upperPane;
     private JPanel lowerPane;
@@ -54,10 +55,10 @@ public class StudentsView implements View {
         mainPane = new JPanel();
         mainPane.setLayout(new BorderLayout(0, 0));
         upperPane = new JPanel();
-        upperPane.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        upperPane.setLayout(new BorderLayout(0, 0));
         mainPane.add(upperPane, BorderLayout.NORTH);
         lowerPane = new JPanel();
-        lowerPane.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        lowerPane.setLayout(new BorderLayout(0, 0));
         mainPane.add(lowerPane, BorderLayout.SOUTH);
         centerSep = new JSeparator();
         mainPane.add(centerSep, BorderLayout.CENTER);

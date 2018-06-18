@@ -1,7 +1,5 @@
 package view.students;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
 import view.View;
 
 import javax.swing.*;
@@ -11,38 +9,37 @@ import java.awt.event.MouseListener;
 
 public class TableViewStudents implements View {
 
-    private JPanel mainStudentsPane;
-    private JScrollPane leftStudentsPane;
-    private JScrollPane rightStudentsPane;
-    private JTable rightStudentsTable;
-    private JTable leftStudentsTable;
+    private JPanel mainPane;
+    private JScrollPane leftPane;
+    private JScrollPane rightPane;
+    private JTable leftTable;
+    private JTable rightTable;
 
     public TableViewStudents() {
-        leftStudentsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        rightStudentsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        rightTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        leftTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
-    @Override
     public JPanel getMainPane() {
-        return mainStudentsPane;
+        return mainPane;
     }
 
-    public JTable getLeftStudentsTable() {
-        return leftStudentsTable;
+    public JTable getRightTable() {
+        return rightTable;
     }
 
-    public JTable getRightStudentsTable() {
-        return rightStudentsTable;
+    public JTable getLeftTable() {
+        return leftTable;
     }
 
     public void setRowListener(ListSelectionListener l) {
-        leftStudentsTable.getSelectionModel().addListSelectionListener(l);
-        rightStudentsTable.getSelectionModel().addListSelectionListener(l);
+        rightTable.getSelectionModel().addListSelectionListener(l);
+        leftTable.getSelectionModel().addListSelectionListener(l);
     }
 
     public void setHeaderListener(MouseListener l) {
-        leftStudentsTable.getTableHeader().addMouseListener(l);
-        rightStudentsTable.getTableHeader().addMouseListener(l);
+        rightTable.getTableHeader().addMouseListener(l);
+        leftTable.getTableHeader().addMouseListener(l);
     }
 
 
@@ -61,26 +58,27 @@ public class TableViewStudents implements View {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        mainStudentsPane = new JPanel();
-        mainStudentsPane.setLayout(new BorderLayout(0, 0));
-        mainStudentsPane.setPreferredSize(new Dimension(1000, 300));
-        mainStudentsPane.setToolTipText("");
-        leftStudentsPane = new JScrollPane();
-        leftStudentsPane.setPreferredSize(new Dimension(500, 300));
-        mainStudentsPane.add(leftStudentsPane, BorderLayout.WEST);
-        rightStudentsTable = new JTable();
-        leftStudentsPane.setViewportView(rightStudentsTable);
-        rightStudentsPane = new JScrollPane();
-        rightStudentsPane.setPreferredSize(new Dimension(500, 300));
-        mainStudentsPane.add(rightStudentsPane, BorderLayout.EAST);
-        leftStudentsTable = new JTable();
-        rightStudentsPane.setViewportView(leftStudentsTable);
+        mainPane = new JPanel();
+        mainPane.setLayout(new BorderLayout(0, 0));
+        mainPane.setEnabled(true);
+        mainPane.setPreferredSize(new Dimension(1000, 300));
+        mainPane.setToolTipText("");
+        leftPane = new JScrollPane();
+        leftPane.setPreferredSize(new Dimension(500, 300));
+        mainPane.add(leftPane, BorderLayout.WEST);
+        leftTable = new JTable();
+        leftPane.setViewportView(leftTable);
+        rightPane = new JScrollPane();
+        rightPane.setPreferredSize(new Dimension(500, 300));
+        mainPane.add(rightPane, BorderLayout.CENTER);
+        rightTable = new JTable();
+        rightPane.setViewportView(rightTable);
     }
 
     /**
      * @noinspection ALL
      */
     public JComponent $$$getRootComponent$$$() {
-        return mainStudentsPane;
+        return mainPane;
     }
 }
