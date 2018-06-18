@@ -15,9 +15,6 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class CommentController extends Controller {
@@ -60,7 +57,7 @@ public class CommentController extends Controller {
         view.clearInputField();
         LectureComment comment = new LectureComment(student, text);
         try {
-            sqLiteManager.executeQuery(addcommentQuery(student.getId(),lecture.getId(),comment.getTime(), comment.getDate(),comment.getText()));
+            sqLiteManager.executeQuery(addCommentQuery(student.getId(),lecture.getId(),comment.getTime(), comment.getDate(),comment.getText()));
 
         } catch (SQLException e) {
             System.out.println("Error executing add comment: " + e.toString());
@@ -70,9 +67,8 @@ public class CommentController extends Controller {
 
     private void deleteComment() {
         LectureComment comment = getSelectedComment();
-        // TODO: call delete query
         try {
-            sqLiteManager.executeQuery(deletecommentQuery(comment.getId()));
+            sqLiteManager.executeQuery(deleteCommentQuery(comment.getId()));
 
         } catch (SQLException e) {
             System.out.println("Error executing delete comment: " + e.toString());
@@ -122,7 +118,7 @@ public class CommentController extends Controller {
 
         return query;
     }
-    private QueryBuilder addcommentQuery(int studentID, int lectureID, String time, String date,String content) {
+    private QueryBuilder addCommentQuery(int studentID, int lectureID, String time, String date, String content) {
         content = "'" + content + "'";
         time = "'" + time + "'";
         date = "'" + date + "'";
@@ -133,7 +129,7 @@ public class CommentController extends Controller {
         return addBuilder;
     }
 
-    private QueryBuilder deletecommentQuery(int commentID) {
+    private QueryBuilder deleteCommentQuery(int commentID) {
         QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
         deleteBuilder.addDeleteTab("COMMENTS");
         deleteBuilder.addDeleteWhere(new String[]{
