@@ -57,6 +57,7 @@ public class StudentsView implements View {
         upperPane = new JPanel();
         upperPane.setLayout(new BorderLayout(0, 0));
         mainPane.add(upperPane, BorderLayout.NORTH);
+        upperPane.setBorder(BorderFactory.createTitledBorder(""));
         lowerPane = new JPanel();
         lowerPane.setLayout(new BorderLayout(0, 0));
         mainPane.add(lowerPane, BorderLayout.SOUTH);

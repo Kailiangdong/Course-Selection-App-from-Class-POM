@@ -10,7 +10,7 @@
       <grid id="4d6d" binding="upperPane" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="North"/>
         <properties/>
-        <border type="none"/>
+        <border type="none" title=""/>
         <children/>
       </grid>
       <grid id="62b38" binding="lowerPane" layout-manager="BorderLayout" hgap="0" vgap="0">

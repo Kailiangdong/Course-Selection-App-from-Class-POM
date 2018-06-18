@@ -16,7 +16,7 @@
         <properties>
           <preferredSize width="500" height="300"/>
         </properties>
-        <border type="none"/>
+        <border type="none" title="Friends"/>
         <children>
           <component id="2ce0e" class="javax.swing.JTable" binding="leftTable">
             <constraints/>
@@ -29,7 +29,7 @@
         <properties>
           <preferredSize width="500" height="300"/>
         </properties>
-        <border type="none"/>
+        <border type="none" title="Not Friends"/>
         <children>
           <component id="194d9" class="javax.swing.JTable" binding="rightTable">
             <constraints/>

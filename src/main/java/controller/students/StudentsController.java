@@ -23,19 +23,19 @@ public class StudentsController extends Controller {
 
         // Add sub-controllers
         StudentsTableController studentsTableController = new StudentsTableController(sqLiteManager, loginController);
-        // TODO: StudentDetailsController studentDetailsController = new StudentDetailsController(sqLiteManager, loginController);
+        StudentsDetailsController studentsDetailsController = new StudentsDetailsController(sqLiteManager, loginController);
 
         // Add sub-views
         studentsView.setView(studentsTableController.getView(), Section.Upper);
-        // TODO: studentsView.setView(studentsDetailsController.getView(), Section.Lower);
+        studentsView.setView(studentsDetailsController.getView(), Section.Lower);
 
         // User-observer
         loginController.attach(studentsTableController);
-        // TODO: loginController.attach(studentsDetailsController);
+        loginController.attach(studentsDetailsController);
 
         // Logic observer
-        // TODO: studentsDetailsController.attach(studentsTableController);
-        // TODO: studentsTableController.attach(studentsDetailsController);
+        studentsDetailsController.attach(studentsTableController);
+        studentsTableController.attach(studentsDetailsController);
 
         addListeners();
     }
