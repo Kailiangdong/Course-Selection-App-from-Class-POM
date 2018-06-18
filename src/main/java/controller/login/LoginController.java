@@ -2,6 +2,7 @@ package controller.login;
 
 import SQLiteManager.*;
 import controller.Controller;
+import controller.MenuController;
 import university.Student;
 import view.View;
 import view.login.LoginView;
@@ -16,11 +17,10 @@ public class LoginController extends Controller {
 
     LoginView loginView;
     SQLiteManager sqLiteManager;
+    MenuController menuController;
 
     Student loggedInStudent;
-
-    String[] studentNames;
-    String[] studentIds;
+    boolean loginActive;
 
     public LoginController(SQLiteManager sqLiteManager) {
         this.loginView = new LoginView();
@@ -29,8 +29,9 @@ public class LoginController extends Controller {
         loginView.setMajorBoxChoices(getSubjects());
         loginView.setMinorBoxChoices(getSubjects());
 
-        loggedInStudent = new Student(3953, "Robert", "Management", "Computer Science");
-
+        loginActive = false;
+        // other subscribers can't handle null objects
+        loggedInStudent = new Student(9999, "Dummy", "Management", "Computer Science");
 
         addListeners();
     }
@@ -38,7 +39,10 @@ public class LoginController extends Controller {
     //<editor-fold desc="Actions">
     @Override
     public void update() {
-
+        if(!menuController.isLoginActive()) {
+            loginActive = false;
+            notifyAllObservers();
+        }
     }
 
     private void registerStudent() {
@@ -46,9 +50,17 @@ public class LoginController extends Controller {
     }
 
     private void loginStudent() {
-        // TODO: login student --> set loggedInStudent & notify (password needs to be added to table first)
+        String userName = loginView.getUserNameInput();
+        String enteredPwd = loginView.getPasswordInput();
+        String userPwd = "";
 
-        // loginView.showErrorMessage("You entered wrong credentials."); // activate if wrong password / username was entered
+        if(!enteredPwd.equals(userPwd)) {
+            loginView.showErrorMessage("You've entered a wrong password. Please try again.");
+            return;
+        }
+
+        loginActive = true;
+        loggedInStudent = sqLiteManager.getStudent(userName);
         notifyAllObservers();
     }
 
@@ -87,19 +99,27 @@ public class LoginController extends Controller {
     }
 
     private void checkUserName() {
-        if(loginView.isLoginSelected()) {
-            loginView.setUserNameState(true);
-            return;
-        }
         String userName = loginView.getUserNameInput();
         String[] existingUserNames = getStudentNames();
+        boolean existingName = false;
         for(String existingUserName : existingUserNames) {
             if(existingUserName.equals(userName)) {
-                loginView.setUserNameState(false);
-                return;
+                existingName = true;
             }
         }
-        loginView.setUserNameState(true);
+        if(loginView.isLoginSelected()) {
+            if(existingName) {
+                loginView.setUserNameState(true);
+            } else {
+                loginView.setUserNameState(false);
+            }
+        } else {
+            if(existingName) {
+                loginView.setUserNameState(false);
+            } else {
+                loginView.setUserNameState(true);
+            }
+        }
     }
 
     private void checkStudentId() {
@@ -205,6 +225,14 @@ public class LoginController extends Controller {
     //</editor-fold>
 
     //<editor-fold desc="Getters & Setters">
+    public boolean isLoginActive() {
+        return loginActive;
+    }
+
+    public void setMenuController(MenuController menuController) {
+        this.menuController = menuController;
+    }
+
     public Student getLoggedInStudent() {
         return loggedInStudent;
     }
@@ -220,12 +248,13 @@ public class LoginController extends Controller {
     public void addListeners() {
         loginView.addUserDocumentListener(new UserDocumentListener());
         loginView.addSelectionActionListener(new SelectionActionListener());
+        loginView.addConfirmActionListener(new ConfirmListener());
     }
 
     class ConfirmListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(loginView.isLoginSelected()) {
+            if(!loginView.isLoginSelected()) {
                 registerStudent();
             } else {
                 loginStudent();

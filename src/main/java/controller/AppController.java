@@ -13,6 +13,7 @@ public class AppController extends Controller {
 
     private AppFrame view;
     private MenuController menuController;
+    private LoginController loginController;
     private SQLiteManager sqLiteManager;
 
     public AppController() {
@@ -20,8 +21,9 @@ public class AppController extends Controller {
         sqLiteManager = new SQLiteManager();
 
         // Add Controllers
-        LoginController loginController = new LoginController(sqLiteManager);
+        loginController = new LoginController(sqLiteManager);
         menuController = new MenuController(sqLiteManager, loginController);
+        loginController.setMenuController(menuController);
         LectureController lectureController = new LectureController(sqLiteManager, loginController, menuController);
         StudentsController studentsController = new StudentsController(sqLiteManager, loginController);
 
@@ -30,9 +32,12 @@ public class AppController extends Controller {
         view.setLogInPane(loginController.getView());
         view.setLecturesPane(lectureController.getView());
         view.setStudentsPane(studentsController.getView());
+        view.disableApp();
 
         // Logic Observers
         menuController.attach(this); // check if user closed the app
+        menuController.attach(loginController);
+        loginController.attach(this); // check if user logged in
     }
 
     //<editor-fold desc="Getters">
@@ -55,6 +60,11 @@ public class AppController extends Controller {
     public void update() {
         if(!menuController.isAppActive()) {
             end();
+        }
+        if(loginController.isLoginActive()) {
+            view.enableApp();
+        } else {
+            view.disableApp();
         }
     }
     //</editor-fold>

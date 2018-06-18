@@ -3,6 +3,7 @@ package view.login;
 import com.intellij.uiDesigner.core.Spacer;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import controller.login.LoginController;
 import view.View;
 
 import javax.swing.*;
@@ -42,6 +43,11 @@ public class LoginView implements View {
         } else {
             showRegisterPane();
         }
+    }
+
+
+    public void addConfirmActionListener(ActionListener actionListener) {
+        confirmButton.addActionListener(actionListener);
     }
 
     public void addSelectionActionListener(ActionListener actionListener) {

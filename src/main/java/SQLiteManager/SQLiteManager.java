@@ -210,6 +210,24 @@ public class SQLiteManager {
     }
     //</editor-fold>
 
+    public Student getStudent(String studentName) {
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+        query.addSelect("ID", "STUDENTS");
+        query.addFrom("STUDENTS");
+        query.addWhere("S.NAME = '" + studentName + "'");
+        try {
+            String[][] results = executeQuery(query);
+            if(results.length > 1) {
+                throw new RuntimeException("Multiple students with id " + studentName);
+            }
+            int studentId = Integer.parseInt(results[0][0]);
+            return getStudent(studentId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public Student getStudent(int studentID) {
         QueryBuilder query = new QueryBuilder(QueryType.SELECT);
         query.addSelect("ID", "STUDENTS");
