@@ -1,18 +1,40 @@
 package view.students;
 
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import view.Section;
 import view.View;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class StudentsView implements View {
+
     private JPanel mainPane;
+    private JPanel upperPane;
+    private JPanel lowerPane;
+    private JSeparator centerSep;
 
     //<editor-fold desc="Getters & Setters">
     @Override
     public JPanel getMainPane() {
         return mainPane;
+    }
+
+    public void setView(View view, Section section) {
+        JPanel pane;
+        switch (section) {
+            case Upper:
+                pane = upperPane;
+                break;
+            case Lower:
+                pane = lowerPane;
+                break;
+            default:
+                throw new RuntimeException("Invalid section given: " + section.toString());
+        }
+        pane.removeAll();
+        pane.add(view.getMainPane());
+        pane.setVisible(true);
     }
 
     {
@@ -31,7 +53,16 @@ public class StudentsView implements View {
      */
     private void $$$setupUI$$$() {
         mainPane = new JPanel();
-        mainPane.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        mainPane.setLayout(new BorderLayout(0, 0));
+        upperPane = new JPanel();
+        upperPane.setLayout(new BorderLayout(0, 0));
+        mainPane.add(upperPane, BorderLayout.NORTH);
+        upperPane.setBorder(BorderFactory.createTitledBorder(""));
+        lowerPane = new JPanel();
+        lowerPane.setLayout(new BorderLayout(0, 0));
+        mainPane.add(lowerPane, BorderLayout.SOUTH);
+        centerSep = new JSeparator();
+        mainPane.add(centerSep, BorderLayout.CENTER);
     }
 
     /**
@@ -40,5 +71,6 @@ public class StudentsView implements View {
     public JComponent $$$getRootComponent$$$() {
         return mainPane;
     }
+
     //</editor-fold>
 }
