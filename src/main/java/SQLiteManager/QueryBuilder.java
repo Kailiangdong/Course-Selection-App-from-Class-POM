@@ -196,4 +196,14 @@ public class QueryBuilder {
     }
     //</editor-fold>
 
+    public String queryFriends(String studentId) {
+        QueryBuilder queryBuilder = new QueryBuilder(QueryType.SELECT);
+        String select = "CASE WHEN STUDENT_ID1 = '" + studentId + "' THEN STUDENT_ID2 ELSE STUDENT_ID1 END";
+        String where = "STUDENT_ID1 = " + studentId + " OR STUDENT_ID2 = '" + studentId + "'";
+        queryBuilder.addSelect(select, "Friends");
+        queryBuilder.addFrom("FRIENDSWITH");
+        queryBuilder.addWhere(where);
+        System.out.println(queryBuilder.toString()+"\n");
+        return queryBuilder.toString();
+    }
 }

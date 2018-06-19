@@ -25,7 +25,7 @@
         </children>
       </scrollpane>
       <scrollpane id="b0805" binding="rightPane">
-        <constraints border-constraint="Center"/>
+        <constraints border-constraint="East"/>
         <properties>
           <preferredSize width="500" height="300"/>
         </properties>

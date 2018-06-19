@@ -44,6 +44,8 @@ public class StudentsTableController extends Controller {
         addListeners();
     }
 
+
+
     @Override
     public void update() {
         // TODO: Query functions
