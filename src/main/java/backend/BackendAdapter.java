@@ -34,14 +34,16 @@ public class BackendAdapter {
 
         int id = Integer.parseInt(row[0]);
         String name = row[1];
-        String major = row[2];
-        String minor = row[3];
+        String password = row[2];
+        String major = row[3];
+        String minor = row[4];
 
         insertStmt.clearParameters();
         insertStmt.setInt(1, id);
         insertStmt.setString(2, name);
-        insertStmt.setString(3, major);
-        insertStmt.setString(4, minor);
+        insertStmt.setString(3, password);
+        insertStmt.setString(4, major);
+        insertStmt.setString(5, minor);
         insertStmt.executeUpdate();
 
       }

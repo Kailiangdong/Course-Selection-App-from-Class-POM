@@ -29,8 +29,7 @@ public class LoginController extends Controller {
         loginView.setMajorBoxChoices(getSubjects());
         loginView.setMinorBoxChoices(getSubjects());
 
-        loggedInStudent = new Student(3953, "Robert", "Management", "Computer Science");
-
+        loggedInStudent = new Student(3953, "Robert", "robert123","Management", "Computer Science");
 
         addListeners();
     }
@@ -140,13 +139,35 @@ public class LoginController extends Controller {
     //</editor-fold>
 
     //<editor-fold desc="Queries">
-    private void insertStudent(Student student) {
-        // TODO: add new student - include password either in student object or as separate string ?!
+    private  QueryBuilder insertStudentQuery(Student student) {
+        QueryBuilder addBuilder = new QueryBuilder(QueryType.INSERT);
+        addBuilder.addInsertTab("STUDENTS");
+        addBuilder.addInsertCols(new String[]{"ID","NAME", "PASSWORD","MAJOR", "MINOR"});
+        addBuilder.addInsertVals(new String[]{Integer.toString(student.getId()),student.getName(), student.getPassword(), student.getMajor(), student.getMinor()});
+        return addBuilder;
     }
 
+
     private Student getStudent(String name) {
-        // TODO: query student by name
-        return null;
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+        query.addSelect("ID", "STUDENTS");
+        query.addSelect("NAME", "STUDENTS");
+        query.addSelect("PASSWORD", "STUDENTS");
+        query.addSelect("MAJOR", "STUDENTS");
+        query.addSelect("MINOR", "STUDENTS");
+        query.addFrom("STUDENTS");
+        query.addWhere("S.NAME = " + name);
+        String[][] queryresult = new String[0][];
+        try {
+            queryresult = sqLiteManager.executeQuery(query);
+        } catch (SQLException e) {
+            System.out.println("Error querying student: " + e.toString());
+        }
+        String id = queryresult[0][0];
+        String password = queryresult[0][2];
+        String major = queryresult[0][3];
+        String minor = queryresult[0][4];
+        return new Student(Integer.parseInt(id), name, password, major, minor);
     }
 
     private String[] getSubjects() {
