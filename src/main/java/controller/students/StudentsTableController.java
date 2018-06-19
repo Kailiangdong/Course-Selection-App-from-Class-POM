@@ -133,4 +133,5 @@ public class StudentsTableController extends Controller {
             notifyAllObservers();
         }
     }
+
 }

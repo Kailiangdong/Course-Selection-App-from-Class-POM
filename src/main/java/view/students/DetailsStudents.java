@@ -90,11 +90,8 @@ public class DetailsStudents implements View {
         buttonPane.setPreferredSize(new Dimension(150, 10));
         leftPane.add(buttonPane, BorderLayout.WEST);
         addRemoveFriendButton = new JButton();
-        addRemoveFriendButton.setText("Add Button");
+        addRemoveFriendButton.setText("Add");
         buttonPane.add(addRemoveFriendButton);
-        detailsButton = new JButton();
-        detailsButton.setText("Details Button");
-        buttonPane.add(detailsButton);
     }
 
     /**

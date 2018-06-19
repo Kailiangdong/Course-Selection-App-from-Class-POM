@@ -13,7 +13,7 @@ public class StudentsController extends Controller {
     private SQLiteManager sqLiteManager;
     private LoginController loginController;
 
-    //private TableViewStudents tableView;
+
 
     public StudentsController(SQLiteManager sqLiteManager, LoginController loginController) {
         // Setting up references
@@ -23,8 +23,7 @@ public class StudentsController extends Controller {
 
         // Add sub-controllers
         StudentsTableController studentsTableController = new StudentsTableController(sqLiteManager, loginController);
-        StudentsDetailsController studentsDetailsController = new StudentsDetailsController(sqLiteManager, loginController);
-
+        StudentsDetailsController studentsDetailsController = new StudentsDetailsController(sqLiteManager, loginController, studentsTableController);
         // Add sub-views
         studentsView.setView(studentsTableController.getView(), Section.Upper);
         studentsView.setView(studentsDetailsController.getView(), Section.Lower);

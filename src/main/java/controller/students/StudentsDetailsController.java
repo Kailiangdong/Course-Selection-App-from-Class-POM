@@ -15,16 +15,20 @@ public class StudentsDetailsController extends Controller {
     private DetailsStudents detailsView;
     private SQLiteManager sqLiteManager;
     private LoginController loginController;
+    private StudentsTableController tableController;
 
     private Student student;
+    private Lecture lecture;
 
     public StudentsDetailsController(SQLiteManager sqLiteManager,
-                                     LoginController loginController) {
+                                     LoginController loginController,
+                                     StudentsTableController tableController) {
         this.detailsView = new DetailsStudents();
         this.loginController = loginController;
+        this.tableController = tableController;
 
-        detailsView.getTextPane().setText("Select a lecture to view its details");
-        detailsView.getAddRemoveFriendButton().setText("Add");
+        detailsView.getTextPane().setText("Select a student to view its details");
+        //detailsView.getAddRemoveFriendButton().setText("Add");
     }
 
     @Override
@@ -40,5 +44,7 @@ public class StudentsDetailsController extends Controller {
     @Override
     public void update() {
         student = loginController.getLoggedInStudent();
+        detailsView.getAddRemoveFriendButton().setText(
+                tableController.isJoinedSelected() ? "Remove" : "Add");
     }
 }

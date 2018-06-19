@@ -49,13 +49,7 @@
               <component id="912fb" class="javax.swing.JButton" binding="addRemoveFriendButton">
                 <constraints/>
                 <properties>
-                  <text value="Add Button"/>
-                </properties>
-              </component>
-              <component id="c5191" class="javax.swing.JButton" binding="detailsButton">
-                <constraints/>
-                <properties>
-                  <text value="Details Button"/>
+                  <text value="Add"/>
                 </properties>
               </component>
             </children>
