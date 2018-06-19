@@ -36,6 +36,10 @@ public class DetailsStudents implements View {
         return textPane;
     }
 
+    public void setTextPane(String text) {
+        textPane.setText(text);
+    }
+
     public JPanel getButtonPane() {
         return buttonPane;
     }

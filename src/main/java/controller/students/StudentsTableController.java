@@ -73,7 +73,7 @@ public class StudentsTableController extends Controller {
         this.selectedRight = selectedRight;
     }
 
-    public Student getLecture() {
+    public Student getSelectedStudent() {
         return selectedStudent;
     }
 
