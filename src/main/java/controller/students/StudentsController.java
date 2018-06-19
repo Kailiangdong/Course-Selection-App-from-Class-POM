@@ -42,7 +42,6 @@ public class StudentsController extends Controller {
     //<editor-fold desc="Actions">
     @Override
     public void update() {
-
     }
     //</editor-fold>
 
