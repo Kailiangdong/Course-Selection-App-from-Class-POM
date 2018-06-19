@@ -131,6 +131,12 @@ public class SQLiteManager {
                     " PRIMARY KEY (STUDENT_ID1, STUDENT_ID2));";
             stmt.executeUpdate(sql);
 
+            sql = "CREATE TABLE LIKES" +
+                    "(STUDENT_ID INTEGER REFERENCES STUDENTS ON DELETE CASCADE," +
+                    " COMMENT_ID INTEGER REFERENCES COMMENTS ON DELETE CASCADE," +
+                    " PRIMARY KEY (STUDENT_ID, COMMENT_ID));";
+            stmt.executeUpdate(sql);
+
         } catch (SQLException e) {
             System.out.println("Error executing query " + e.toString());
             System.exit(-1);
@@ -145,13 +151,15 @@ public class SQLiteManager {
             PreparedStatement stmtAttends = c.prepareStatement("insert into Attends values(?, ?)");
             PreparedStatement stmtChairs = c.prepareStatement("insert into Chairs values(?, ?, ?)");
             PreparedStatement stmtComments = c.prepareStatement("insert into Comments values(?, ?, ?, ?, ?, ?)");
-            PreparedStatement stmtFriendsWith = c.prepareStatement("insert into FriendsWith values(?, ?)")) {
+            PreparedStatement stmtFriendsWith = c.prepareStatement("insert into FriendsWith values(?, ?)");
+            PreparedStatement stmtLikes = c.prepareStatement("insert into Likes values(?, ?)")) {
             BackendAdapter.fillLecturesTable(stmtLectures);
             BackendAdapter.fillStudentsTable(stmtStudents);
             BackendAdapter.fillAttendsTable(stmtAttends);
             BackendAdapter.fillChairsTable(stmtChairs);
             BackendAdapter.fillCommentsTable(stmtComments);
             BackendAdapter.fillFriendsWithTable(stmtFriendsWith);
+            BackendAdapter.fillLikesTable(stmtLikes);
         } catch (SQLException e) {
             System.out.println("Error importing records " + e.toString());
         }
@@ -169,6 +177,7 @@ public class SQLiteManager {
             executeStatement("SELECT * FROM CHAIRS");
             executeStatement("SELECT * FROM COMMENTS");
             executeStatement("SELECT * FROM FRIENDSWITH");
+            executeStatement("SELECT * FROM LIKES");
         } catch (SQLException e) {
             System.out.println("Database corrupted: " + e.toString());
             return false;
@@ -222,6 +231,13 @@ public class SQLiteManager {
             System.out.println("FRIENDSWITH table is deleted");
         } catch(SQLException e) {
             System.out.println("FRIENDSWITH table is missing");
+        }
+        try {
+            executeStatement("SELECT * FROM LIKES");
+            executeStatement("DROP TABLE LIKES");
+            System.out.println("LIKES table is deleted");
+        } catch(SQLException e) {
+            System.out.println("LIKES table is missing");
         }
     }
     //</editor-fold>
