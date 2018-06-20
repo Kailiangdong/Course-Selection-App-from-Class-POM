@@ -119,7 +119,7 @@ public class QueryBuilder {
         }
         if (where != null && where.size() > 0) {
             builder.append("\n" + "WHERE");
-            listAddingToBuilder(builder, where.listIterator(), " and", true);
+            listAddingToBuilder(builder, where.listIterator(), " AND", true);
         }
         if (groupBy != null && groupBy.size() > 0) {
             builder.append("\n" + "GROUP BY");
