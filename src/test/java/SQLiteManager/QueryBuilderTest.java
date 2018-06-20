@@ -42,7 +42,7 @@ public class QueryBuilderTest {
     public void testBuildInsertStatement() {
         String expectedSQLStatement =
                 "INSERT INTO aTable (aColumn, bColumn)\n" +
-                "VALUES (aValue,bValue)";
+                "VALUES (aValue, bValue)";
         secondQueryBuilder.addInsertTab("aTable");
         secondQueryBuilder.addInsertCols(new String[] {"aColumn","bColumn"});
         secondQueryBuilder.addInsertVals(new String[] {"aValue","bValue"});
