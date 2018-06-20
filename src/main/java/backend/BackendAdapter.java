@@ -15,6 +15,8 @@ public class BackendAdapter {
   public static final String ATTENDS_FILE = "data/attends.csv";
   public static final String CHAIRS_FILE = "data/chairs.csv";
   public static final String COMMENTS_FILE = "data\\comments.csv";
+  public static final String FRIENDS_WITH_FILE = "data\\friendswith.csv";
+  public static final String LIKES_FILE = "data\\likes.csv";
 
   /**
    * Fills the table 'STUDENTS' with the master data. Make sure to truncate table before calling
@@ -34,14 +36,16 @@ public class BackendAdapter {
 
         int id = Integer.parseInt(row[0]);
         String name = row[1];
-        String major = row[2];
-        String minor = row[3];
+        String password = row[2];
+        String major = row[3];
+        String minor = row[4];
 
         insertStmt.clearParameters();
         insertStmt.setInt(1, id);
         insertStmt.setString(2, name);
-        insertStmt.setString(3, major);
-        insertStmt.setString(4, minor);
+        insertStmt.setString(3, password);
+        insertStmt.setString(4, major);
+        insertStmt.setString(5, minor);
         insertStmt.executeUpdate();
 
       }
@@ -130,6 +134,48 @@ public class BackendAdapter {
     }
   }
 
+  public static void fillFriendsWithTable(PreparedStatement insertStmt) throws SQLException {
+    try {
+      ArrayList<String[]> table = readCSVFile(FRIENDS_WITH_FILE);
+
+      for (String[] row : table) {
+
+        int studentID1 = Integer.parseInt(row[0]);
+        int studentID2 = Integer.parseInt(row[1]);
+
+        insertStmt.clearParameters();
+        insertStmt.setInt(1, studentID1);
+        insertStmt.setInt(2, studentID2);
+        insertStmt.executeUpdate();
+      }
+    } catch (FileNotFoundException e) {
+      System.out.println("File with 'FRIENDSWITH' data was not found: " + FRIENDS_WITH_FILE);
+    } catch (RuntimeException e) {
+      System.out.println("Error while inserting 'FRIENDSWITH' data.");
+    }
+  }
+
+  public static void fillLikesTable(PreparedStatement insertStmt) throws SQLException {
+    try {
+      ArrayList<String[]> table = readCSVFile(LIKES_FILE);
+
+      for (String[] row : table) {
+
+        int studentID = Integer.parseInt(row[0]);
+        int commentID = Integer.parseInt(row[1]);
+
+        insertStmt.clearParameters();
+        insertStmt.setInt(1, studentID);
+        insertStmt.setInt(2, commentID);
+        insertStmt.executeUpdate();
+      }
+    } catch (FileNotFoundException e) {
+      System.out.println("File with 'LIKES' data was not found: " + LIKES_FILE);
+    } catch (RuntimeException e) {
+      System.out.println("Error while inserting 'LIKES' data.");
+    }
+  }
+
   /**
    * Fills the table 'CHAIRS' with the master data. Make sure to truncate table before calling this
    * method, otherwise the table may be corrupted afterwards.
@@ -197,7 +243,7 @@ public class BackendAdapter {
    *
    * @author Robert zur Bonsen
    */
-  private static ArrayList<String[]> readCSVFile(String fileName) throws FileNotFoundException {
+  public static ArrayList<String[]> readCSVFile(String fileName) throws FileNotFoundException {
 
     ArrayList<String[]> table = new ArrayList();
     String delim = ";";

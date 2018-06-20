@@ -98,6 +98,7 @@ public class SQLiteManager {
             sql = "CREATE TABLE STUDENTS " +
                     "(ID   INT PRIMARY KEY NOT NULL," +
                     " NAME TEXT NOT NULL," +
+                    " PASSWORD TEXT NOT NULL," +
                     " MAJOR TEXT NOT NULL, " +
                     " MINOR TEXT" +
                     ");";
@@ -125,6 +126,18 @@ public class SQLiteManager {
                     " CONTENT TEXT);";
             stmt.executeUpdate(sql);
 
+            sql = "CREATE TABLE FRIENDSWITH" +
+                    "(STUDENT_ID1 INTEGER REFERENCES STUDENTS ON DELETE CASCADE," +
+                    " STUDENT_ID2 INTEGER REFERENCES STUDENTS ON DELETE CASCADE," +
+                    " PRIMARY KEY (STUDENT_ID1, STUDENT_ID2));";
+            stmt.executeUpdate(sql);
+
+            sql = "CREATE TABLE LIKES" +
+                    "(STUDENT_ID INTEGER REFERENCES STUDENTS ON DELETE CASCADE," +
+                    " COMMENT_ID INTEGER REFERENCES COMMENTS ON DELETE CASCADE," +
+                    " PRIMARY KEY (STUDENT_ID, COMMENT_ID));";
+            stmt.executeUpdate(sql);
+
         } catch (SQLException e) {
             System.out.println("Error executing query " + e.toString());
             System.exit(-1);
@@ -135,15 +148,19 @@ public class SQLiteManager {
     private void populateDatabase() {
         try(Connection c = DriverManager.getConnection(DB_URL);
             PreparedStatement stmtLectures = c.prepareStatement("insert into Lectures values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            PreparedStatement stmtStudents = c.prepareStatement("insert into Students values(?, ?, ?, ?)");
+            PreparedStatement stmtStudents = c.prepareStatement("insert into Students values(?, ?, ?, ?, ?)");
             PreparedStatement stmtAttends = c.prepareStatement("insert into Attends values(?, ?)");
             PreparedStatement stmtChairs = c.prepareStatement("insert into Chairs values(?, ?, ?)");
-            PreparedStatement stmtComments = c.prepareStatement("insert into Comments values(?, ?, ?, ?, ?, ?)")) {
+            PreparedStatement stmtComments = c.prepareStatement("insert into Comments values(?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmtFriendsWith = c.prepareStatement("insert into FriendsWith values(?, ?)");
+            PreparedStatement stmtLikes = c.prepareStatement("insert into Likes values(?, ?)")) {
             BackendAdapter.fillLecturesTable(stmtLectures);
             BackendAdapter.fillStudentsTable(stmtStudents);
             BackendAdapter.fillAttendsTable(stmtAttends);
             BackendAdapter.fillChairsTable(stmtChairs);
             BackendAdapter.fillCommentsTable(stmtComments);
+            BackendAdapter.fillFriendsWithTable(stmtFriendsWith);
+            BackendAdapter.fillLikesTable(stmtLikes);
         } catch (SQLException e) {
             System.out.println("Error importing records " + e.toString());
         }
@@ -160,6 +177,8 @@ public class SQLiteManager {
             executeStatement("SELECT * FROM ATTENDS");
             executeStatement("SELECT * FROM CHAIRS");
             executeStatement("SELECT * FROM COMMENTS");
+            executeStatement("SELECT * FROM FRIENDSWITH");
+            executeStatement("SELECT * FROM LIKES");
         } catch (SQLException e) {
             System.out.println("Database corrupted: " + e.toString());
             return false;
@@ -207,6 +226,20 @@ public class SQLiteManager {
         } catch(SQLException e) {
             System.out.println("COMMENTS table is missing");
         }
+        try {
+            executeStatement("SELECT * FROM FRIENDSWITH");
+            executeStatement("DROP TABLE FRIENDSWITH");
+            System.out.println("FRIENDSWITH table is deleted");
+        } catch(SQLException e) {
+            System.out.println("FRIENDSWITH table is missing");
+        }
+        try {
+            executeStatement("SELECT * FROM LIKES");
+            executeStatement("DROP TABLE LIKES");
+            System.out.println("LIKES table is deleted");
+        } catch(SQLException e) {
+            System.out.println("LIKES table is missing");
+        }
     }
     //</editor-fold>
 
@@ -214,6 +247,7 @@ public class SQLiteManager {
         QueryBuilder query = new QueryBuilder(QueryType.SELECT);
         query.addSelect("ID", "STUDENTS");
         query.addSelect("NAME", "STUDENTS");
+        query.addSelect("PASSWORD", "STUDENTS");
         query.addSelect("MAJOR", "STUDENTS");
         query.addSelect("MINOR", "STUDENTS");
         query.addFrom("STUDENTS");
@@ -226,9 +260,10 @@ public class SQLiteManager {
             String[] studentInfo = results[0];
             int id = Integer.parseInt(studentInfo[0]);
             String name = studentInfo[1];
-            String major = studentInfo[2];
-            String minor = studentInfo[3];
-            return new Student(id, name, major, minor);
+            String password = studentInfo[2];
+            String major = studentInfo[3];
+            String minor = studentInfo[4];
+            return new Student(id, name,password, major, minor);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
