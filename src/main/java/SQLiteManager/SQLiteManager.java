@@ -329,7 +329,7 @@ public class SQLiteManager {
             for (int i = 0; i <= where.length - 1; i++) {
                 builder.append(" " + where[i]);
                 if (i < where.length - 1) {
-                    builder.append(" and ");
+                    builder.append(" AND ");
                 }
             }
         }
