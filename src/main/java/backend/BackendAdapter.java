@@ -15,6 +15,8 @@ public class BackendAdapter {
   public static final String ATTENDS_FILE = "data/attends.csv";
   public static final String CHAIRS_FILE = "data/chairs.csv";
   public static final String COMMENTS_FILE = "data\\comments.csv";
+  public static final String FRIENDS_WITH_FILE = "data\\friendswith.csv";
+  public static final String LIKES_FILE = "data\\likes.csv";
 
   /**
    * Fills the table 'STUDENTS' with the master data. Make sure to truncate table before calling
@@ -129,6 +131,48 @@ public class BackendAdapter {
       System.out.println("File with 'ATTENDS' data was not found: " + ATTENDS_FILE);
     } catch (RuntimeException e) {
       System.out.println("Error while inserting 'ATTENDS' data.");
+    }
+  }
+
+  public static void fillFriendsWithTable(PreparedStatement insertStmt) throws SQLException {
+    try {
+      ArrayList<String[]> table = readCSVFile(FRIENDS_WITH_FILE);
+
+      for (String[] row : table) {
+
+        int studentID1 = Integer.parseInt(row[0]);
+        int studentID2 = Integer.parseInt(row[1]);
+
+        insertStmt.clearParameters();
+        insertStmt.setInt(1, studentID1);
+        insertStmt.setInt(2, studentID2);
+        insertStmt.executeUpdate();
+      }
+    } catch (FileNotFoundException e) {
+      System.out.println("File with 'FRIENDSWITH' data was not found: " + FRIENDS_WITH_FILE);
+    } catch (RuntimeException e) {
+      System.out.println("Error while inserting 'FRIENDSWITH' data.");
+    }
+  }
+
+  public static void fillLikesTable(PreparedStatement insertStmt) throws SQLException {
+    try {
+      ArrayList<String[]> table = readCSVFile(LIKES_FILE);
+
+      for (String[] row : table) {
+
+        int studentID = Integer.parseInt(row[0]);
+        int commentID = Integer.parseInt(row[1]);
+
+        insertStmt.clearParameters();
+        insertStmt.setInt(1, studentID);
+        insertStmt.setInt(2, commentID);
+        insertStmt.executeUpdate();
+      }
+    } catch (FileNotFoundException e) {
+      System.out.println("File with 'LIKES' data was not found: " + LIKES_FILE);
+    } catch (RuntimeException e) {
+      System.out.println("Error while inserting 'LIKES' data.");
     }
   }
 

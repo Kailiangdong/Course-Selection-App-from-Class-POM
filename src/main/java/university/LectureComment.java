@@ -20,7 +20,7 @@ public class LectureComment {
         this.author = author;
         this.text = text;
         ZonedDateTime timestamp = ZonedDateTime.now();
-        this.date = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(timestamp);
+        this.date = DateTimeFormatter.ofPattern("dd-MM-yy").format(timestamp);
         this.time = DateTimeFormatter.ofPattern("hh:mm").format(timestamp);
         this.id = -1;
     }
