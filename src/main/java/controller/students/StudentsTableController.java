@@ -8,11 +8,15 @@ import controller.login.LoginController;
 import university.Student;
 import view.View;
 import view.students.TableViewStudents;
+import SQLiteManager.*;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Array;
+import java.sql.SQLException;
+import java.util.Arrays;
 
 public class StudentsTableController extends Controller {
 
@@ -44,16 +48,43 @@ public class StudentsTableController extends Controller {
         addListeners();
     }
 
+    private void friends() {
+        QueryBuilder builder = new QueryBuilder(QueryType.SELECT);
+        try {
+            String[][] redundantFriends = sqLiteManager.executeQuery(builder.queryFriends("" + loginController.getLoggedInStudent().getId()));
+            rightTableContent = new String[redundantFriends.length][redundantFriends[0].length];
+            for(int i = 0; i < redundantFriends.length; i++) {
+                if(redundantFriends[i][0].equals("" + loginController.getLoggedInStudent().getId())) {
+                    int friendID = Integer.parseInt(redundantFriends[i][1]);
+                    rightTableContent[i][0] = "" + sqLiteManager.getStudent(friendID).getId();
+                    rightTableContent[i][1] = "" + sqLiteManager.getStudent(friendID).getName();
+                } else {
+                    int friendID = Integer.parseInt(redundantFriends[i][0]);
+                    rightTableContent[i][0] = "" + sqLiteManager.getStudent(friendID).getId();
+                    rightTableContent[i][1] = "" + sqLiteManager.getStudent(friendID).getName();
+                }
+            }
+            System.out.println(Arrays.deepToString(rightTableContent));
+        } catch (SQLException e) {
+            System.out.println("Error loading friends");
+        }
+    }
 
+    private void notFriends() {
+
+    }
 
     @Override
     public void update() {
         // TODO: Query functions
-        leftTableContent = new String[][]{new String[]{"7355", "Stefan"}};
-        rightTableContent = new String[][]{new String[]{"971", "Markus"}};
 
-        tableViewStudents.getRightTable().setModel(new TableModel(leftTableContent, new String[]{"ID", "Students"}));
-        tableViewStudents.getLeftTable().setModel(new TableModel(rightTableContent, new String[]{"ID", "Friends"}));
+        friends();
+
+        leftTableContent = new String[][]{new String[]{"7355", "Stefan"}};
+        //rightTableContent = new String[][]{new String[]{"971", "Markus"}};
+
+        tableViewStudents.getRightTable().setModel(new TableModel(rightTableContent, new String[]{"ID", "Friends"}));
+        tableViewStudents.getLeftTable().setModel(new TableModel(leftTableContent, new String[]{"ID", "Students"}));
     }
 
     @Override
