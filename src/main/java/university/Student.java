@@ -6,12 +6,14 @@ public class Student {
 
     private int id;
     private String name;
+    private String password;
     private String major;
     private String minor;
 
-    public Student(int id, String name, String major, String minor) {
+    public Student(int id, String name, String password, String major, String minor) {
         this.id = id;
         this.name = name;
+        this.password = password;
         this.major = major;
         this.minor = minor;
     }
@@ -24,6 +26,8 @@ public class Student {
     public String getName() {
         return name;
     }
+
+    public String getPassword() {return password; }
 
     public String getMajor() {
         return major;
