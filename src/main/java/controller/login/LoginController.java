@@ -61,6 +61,12 @@ public class LoginController extends Controller {
     private void registerStudent() {
         String name = loginView.getUserNameInput();
         String password = loginView.getPasswordInput();
+
+        if(name.equals("") || password.equals("")) {
+            loginView.showErrorMessage("You have not filled out all fields. Please try again.");
+            return;
+        }
+
         String major = loginView.getMajorInput();
         String minor = loginView.getMinorInput();
         int id = Integer.parseInt(loginView.getStudentIdInput());

@@ -277,7 +277,7 @@ public class LoginView implements View {
         if (warningLabelIDFont != null) warningLabelID.setFont(warningLabelIDFont);
         warningLabelID.setForeground(new Color(-2013634));
         warningLabelID.setText("⚠");
-        warningLabelID.setToolTipText("The entered is is either taken or no integer greater than 0.");
+        warningLabelID.setToolTipText("The entered ID is either taken or no integer greater than 0.");
         warningLabelID.setVisible(false);
         registerPanel.add(warningLabelID, cc.xy(5, 3));
         warningLabelSubject = new JLabel();
