@@ -243,7 +243,7 @@ public class BackendAdapter {
    *
    * @author Robert zur Bonsen
    */
-  private static ArrayList<String[]> readCSVFile(String fileName) throws FileNotFoundException {
+  public static ArrayList<String[]> readCSVFile(String fileName) throws FileNotFoundException {
 
     ArrayList<String[]> table = new ArrayList();
     String delim = ";";

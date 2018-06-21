@@ -137,6 +137,38 @@ public class CommentController extends Controller {
         });
         return deleteBuilder;
     }
+
+    private QueryBuilder addLikeQuery(int studentID, int commentID) {
+        QueryBuilder addBuilder = new QueryBuilder(QueryType.INSERT);
+        addBuilder.addInsertTab("LIKES");
+        addBuilder.addInsertCols(new String[]{"STUDENT_ID","COMMENT_ID"});
+        addBuilder.addInsertVals(new String[]{Integer.toString(studentID),Integer.toString(commentID)});
+        return addBuilder;
+    }
+
+    private QueryBuilder RemoveLikeQuery(int studentID, int commentID) {
+        QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
+        deleteBuilder.addDeleteTab("LIKES");
+        deleteBuilder.addDeleteWhere(new String[]{
+                "STUDENT_ID = " + studentID,
+                "COMMENT_ID = " + commentID,
+        });
+        return deleteBuilder;
+    }
+
+    private int getLikeNumber(int commentID) {
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+        query.addSelect("STUDENT_ID", "LIKES");
+        query.addFrom("LIKES");
+        query.addWhere("L.COMMENT_ID = " + commentID);
+        String[][] likeMatrix = new String[0][];
+        try {
+            likeMatrix = sqLiteManager.executeQuery(query);
+        } catch (SQLException e) {
+            System.out.println("Error querying like numbers: " + e.toString());
+        }
+        return likeMatrix.length;
+    }
     //</editor-fold>
 
     //<editor-fold desc="Getters">
