@@ -2,6 +2,7 @@ package controller.login;
 
 import SQLiteManager.*;
 import controller.Controller;
+import controller.MenuController;
 import university.Student;
 import view.View;
 import view.login.LoginView;
@@ -11,43 +12,100 @@ import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.List;
 
 public class LoginController extends Controller {
 
-    LoginView loginView;
-    SQLiteManager sqLiteManager;
+    private LoginView loginView;
+    private SQLiteManager sqLiteManager;
 
-    Student loggedInStudent;
+    private List<Student> students;
+    private String[] subjects;
 
-    String[] studentNames;
-    String[] studentIds;
+    private Student loggedInStudent;
+    private Student dummyStudent = new Student(3953, "Robert","Management", "Computer Science" );
+    private boolean loginActive;
 
     public LoginController(SQLiteManager sqLiteManager) {
         this.loginView = new LoginView();
         this.sqLiteManager = new SQLiteManager();
+        subjects = getSubjects();
 
-        loginView.setMajorBoxChoices(getSubjects());
-        loginView.setMinorBoxChoices(getSubjects());
 
-        loggedInStudent = new Student(3953, "Robert", "robert123","Management", "Computer Science");
+        loginActive = false;
+        // other subscribers can't handle null objects
+        loggedInStudent = dummyStudent;
 
+        students = sqLiteManager.getStudents();
+        subjects = getSubjects();
+
+        loginView.setMinorBoxChoices(subjects);
+        loginView.setMajorBoxChoices(subjects);
         addListeners();
     }
 
     //<editor-fold desc="Actions">
     @Override
     public void update() {
+        students = sqLiteManager.getStudents();
+        subjects = getSubjects();
+    }
 
+    public void logout() {
+        update();
+        loggedInStudent = dummyStudent;
+        loginActive = false;
+        notifyAllObservers();
     }
 
     private void registerStudent() {
-        // TODO: get inputs and create new Student + login
+        String name = loginView.getUserNameInput();
+        String password = loginView.getPasswordInput();
+
+        if(name.equals("") || password.equals("")) {
+            loginView.showErrorMessage("You have not filled out all fields. Please try again.");
+            return;
+        }
+
+        String major = loginView.getMajorInput();
+        String minor = loginView.getMinorInput();
+        int id = Integer.parseInt(loginView.getStudentIdInput());
+        Student student = new Student(id, name, password, major, minor);
+
+        try {
+            sqLiteManager.executeStatement(insertStudent(student));
+        } catch (SQLException e) {
+            System.out.println("Error registering student: " + student.toString());
+            return;
+        }
+
+        loginActive = true;
+        loggedInStudent = student;
+        notifyAllObservers();
     }
 
     private void loginStudent() {
-        // TODO: login student --> set loggedInStudent & notify (password needs to be added to table first)
+        String userName = loginView.getUserNameInput();
+        Student account = null;
+        for(Student existingStudent : students) {
+            if(existingStudent.getName().equals(userName)) {
+                account = existingStudent;
+            }
+        }
+        if(account == null) {
+            loginView.showErrorMessage("You've entered a wrong username. Please try again.");
+            return;
+        }
 
-        // loginView.showErrorMessage("You entered wrong credentials."); // activate if wrong password / username was entered
+        String enteredPwd = loginView.getPasswordInput();
+
+        if (!enteredPwd.equals(account.getPassword())) {
+            loginView.showErrorMessage("You've entered a wrong password. Please try again.");
+            return;
+        }
+
+        loginActive = true;
+        loggedInStudent = sqLiteManager.getStudent(userName);
         notifyAllObservers();
     }
 
@@ -58,7 +116,7 @@ public class LoginController extends Controller {
         result = result && loginView.getConfPasswordInput().matches(regex);
         result = result && loginView.getStudentIdInput().matches(regex);
 
-        if(!result) {
+        if (!result) {
             loginView.showErrorMessage("Please use only use characters matching" + regex + ".");
         }
     }
@@ -72,7 +130,7 @@ public class LoginController extends Controller {
     }
 
     private void checkPassword() {
-        if(loginView.isLoginSelected()) {
+        if (loginView.isLoginSelected()) {
             loginView.setPasswordState(true);
             return;
         }
@@ -86,51 +144,59 @@ public class LoginController extends Controller {
     }
 
     private void checkUserName() {
-        if(loginView.isLoginSelected()) {
-            loginView.setUserNameState(true);
-            return;
-        }
         String userName = loginView.getUserNameInput();
-        String[] existingUserNames = getStudentNames();
-        for(String existingUserName : existingUserNames) {
-            if(existingUserName.equals(userName)) {
-                loginView.setUserNameState(false);
-                return;
+        boolean existingName = false;
+        for(Student existingStudent: students) {
+            if (existingStudent.getName().toLowerCase().equals(userName.toLowerCase())) {
+                existingName = true;
             }
         }
-        loginView.setUserNameState(true);
+        if (!loginView.isLoginSelected()) {
+            if (existingName) {
+                loginView.setUserNameState(false);
+            } else {
+                loginView.setUserNameState(true);
+            }
+        }
     }
 
     private void checkStudentId() {
-        if(loginView.isLoginSelected()) {
+        if (loginView.isLoginSelected()) {
             loginView.setStudentIdState(true);
             return;
         }
-        String studentId = loginView.getStudentIdInput();
+
+        // Is an ID > 0 given?
+        int studentId;
         try {
-            Integer.parseInt(studentId);
-        } catch (NumberFormatException e) {
+            studentId = Integer.parseInt(loginView.getStudentIdInput());
+            if(studentId <= 0) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
             loginView.setStudentIdState(false);
             return;
         }
-        String[] currStudentIds = getStudentIds();
-        for(String currStudentId : currStudentIds) {
-            if(currStudentId.equals(studentId)) {
+
+        // is studentID already taken?
+        for(Student existingStudent : students) {
+            if (existingStudent.getId() ==  studentId) {
                 loginView.setStudentIdState(false);
                 return;
             }
         }
+
         loginView.setStudentIdState(true);
     }
 
     private void checkSubject() {
-        if(loginView.isLoginSelected()) {
+        if (loginView.isLoginSelected()) {
             loginView.setSubjectState(true);
             return;
         }
         String major = loginView.getMajorInput();
         String minor = loginView.getMinorInput();
-        if(major.equals(minor)) {
+        if (major.equals(minor)) {
             loginView.setSubjectState(false);
         } else {
             loginView.setSubjectState(true);
@@ -139,14 +205,18 @@ public class LoginController extends Controller {
     //</editor-fold>
 
     //<editor-fold desc="Queries">
-    private  QueryBuilder insertStudentQuery(Student student) {
+    private QueryBuilder insertStudent(Student student) {
         QueryBuilder addBuilder = new QueryBuilder(QueryType.INSERT);
         addBuilder.addInsertTab("STUDENTS");
-        addBuilder.addInsertCols(new String[]{"ID","NAME", "PASSWORD","MAJOR", "MINOR"});
-        addBuilder.addInsertVals(new String[]{Integer.toString(student.getId()),student.getName(), student.getPassword(), student.getMajor(), student.getMinor()});
+        addBuilder.addInsertCols(new String[]{"ID", "NAME", "PASSWORD", "MAJOR", "MINOR"});
+        String id = "'" + student.getId() + "'";
+        String name = "'" + student.getName() + "'";
+        String pwd = "'" + student.getPassword() + "'";
+        String major = "'" + student.getMajor() + "'";
+        String minor = "'" + student.getMinor() + "'";
+        addBuilder.addInsertVals(new String[]{id, name, pwd, major, minor});
         return addBuilder;
     }
-
 
     private Student getStudent(String name) {
         QueryBuilder query = new QueryBuilder(QueryType.SELECT);
@@ -168,6 +238,7 @@ public class LoginController extends Controller {
         String major = queryresult[0][3];
         String minor = queryresult[0][4];
         return new Student(Integer.parseInt(id), name, password, major, minor);
+
     }
 
     private String[] getSubjects() {
@@ -188,44 +259,48 @@ public class LoginController extends Controller {
         }
     }
 
-    private String[] getStudentNames() {
-        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
-        query.addSelect("NAME", "STUDENTS");
-        query.addFrom("STUDENTS");
-        query.addGroupBy("NAME", "STUDENTS");
-        try {
-            String[][] resultMatrix = sqLiteManager.executeQuery(query);
-            String[] resultVector = new String[resultMatrix.length];
-            for (int i = 0; i < resultVector.length; i++) {
-                resultVector[i] = resultMatrix[i][0];
-            }
-            return resultVector;
-        } catch (SQLException e) {
-            System.out.println("Error querying student names: " + e.toString());
-            return new String[]{};
-        }
-    }
-
-    private String[] getStudentIds() {
-        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
-        query.addSelect("ID", "STUDENTS");
-        query.addFrom("STUDENTS");
-        query.addGroupBy("ID", "STUDENTS");
-        try {
-            String[][] resultMatrix = sqLiteManager.executeQuery(query);
-            String[] resultVector = new String[resultMatrix.length];
-            for (int i = 0; i < resultVector.length; i++) {
-                resultVector[i] = resultMatrix[i][0];
-            }
-            return resultVector;
-        } catch (SQLException e) {
-            System.out.println("Error querying student ids: " + e.toString());
-            return new String[]{};
-        }
-    }
+//    private String[] getStudentNames() {
+//        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+//        query.addSelect("NAME", "STUDENTS");
+//        query.addFrom("STUDENTS");
+//        query.addGroupBy("NAME", "STUDENTS");
+//        try {
+//            String[][] resultMatrix = sqLiteManager.executeQuery(query);
+//            String[] resultVector = new String[resultMatrix.length];
+//            for (int i = 0; i < resultVector.length; i++) {
+//                resultVector[i] = resultMatrix[i][0];
+//            }
+//            return resultVector;
+//        } catch (SQLException e) {
+//            System.out.println("Error querying student names: " + e.toString());
+//            return new String[]{};
+//        }
+//    }
+//
+//    private String[] getStudentIds() {
+//        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+//        query.addSelect("ID", "STUDENTS");
+//        query.addFrom("STUDENTS");
+//        query.addGroupBy("ID", "STUDENTS");
+//        try {
+//            String[][] resultMatrix = sqLiteManager.executeQuery(query);
+//            String[] resultVector = new String[resultMatrix.length];
+//            for (int i = 0; i < resultVector.length; i++) {
+//                resultVector[i] = resultMatrix[i][0];
+//            }
+//            return resultVector;
+//        } catch (SQLException e) {
+//            System.out.println("Error querying student ids: " + e.toString());
+//            return new String[]{};
+//        }
+//    }
     //</editor-fold>
 
     //<editor-fold desc="Getters & Setters">
+    public boolean isLoginActive() {
+        return loginActive;
+    }
+
     public Student getLoggedInStudent() {
         return loggedInStudent;
     }
@@ -241,23 +316,25 @@ public class LoginController extends Controller {
     public void addListeners() {
         loginView.addUserDocumentListener(new UserDocumentListener());
         loginView.addSelectionActionListener(new SelectionActionListener());
+        loginView.addConfirmActionListener(new ConfirmListener());
     }
 
     class ConfirmListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(loginView.isLoginSelected()) {
+            if (!loginView.isLoginSelected()) {
                 registerStudent();
             } else {
                 loginStudent();
             }
+            loginView.clearInputs();
         }
     }
 
     class SelectionActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(loginView.isLoginSelected()) {
+            if (loginView.isLoginSelected()) {
                 loginView.hideRegisterPane();
             } else {
                 loginView.showRegisterPane();

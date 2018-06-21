@@ -39,6 +39,20 @@ public class AppFrame extends JFrame implements View {
         this.pack();
     }
 
+    public void enableApp() {
+        tabPane.setEnabledAt(0, false);
+        tabPane.setEnabledAt(1, true);
+        tabPane.setEnabledAt(2, true);
+        tabPane.setSelectedIndex(1);
+    }
+
+    public void disableApp() {
+        tabPane.setEnabledAt(0, true);
+        tabPane.setEnabledAt(1, false);
+        tabPane.setEnabledAt(2, false);
+        tabPane.setSelectedIndex(0);
+    }
+
     public JPanel getMenuPane() {
         return menuPane;
     }
@@ -105,11 +119,15 @@ public class AppFrame extends JFrame implements View {
         lecturesPane = new JPanel();
         lecturesPane.setLayout(new BorderLayout(0, 0));
         lecturesPane.setEnabled(true);
+        lecturesPane.setVisible(false);
         tabPane.addTab("Lectures", lecturesPane);
+        tabPane.setEnabledAt(1, false);
         studentsPane = new JPanel();
         studentsPane.setLayout(new BorderLayout(0, 0));
         studentsPane.setEnabled(true);
+        studentsPane.setVisible(true);
         tabPane.addTab("Students", studentsPane);
+        tabPane.setEnabledAt(2, false);
     }
 
     /**

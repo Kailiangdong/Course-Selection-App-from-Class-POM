@@ -3,6 +3,7 @@ package view.login;
 import com.intellij.uiDesigner.core.Spacer;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import controller.login.LoginController;
 import view.View;
 
 import javax.swing.*;
@@ -42,6 +43,11 @@ public class LoginView implements View {
         } else {
             showRegisterPane();
         }
+    }
+
+
+    public void addConfirmActionListener(ActionListener actionListener) {
+        confirmButton.addActionListener(actionListener);
     }
 
     public void addSelectionActionListener(ActionListener actionListener) {
@@ -140,6 +146,13 @@ public class LoginView implements View {
         }
     }
 
+    public void clearInputs() {
+        loginButton.setSelected(true);
+        hideRegisterPane();
+        userNameField.setText("");
+        passwordField.setText("");
+    }
+
     private void updateWarnings() {
         if (!(studentIdState && passwordState && userNameState && subjectState)) {
             confirmButton.setVisible(false);
@@ -222,7 +235,7 @@ public class LoginView implements View {
         warningLabelUserName = new JLabel();
         warningLabelUserName.setForeground(new Color(-2013634));
         warningLabelUserName.setText("⚠");
-        warningLabelUserName.setToolTipText("Please enter available user name.");
+        warningLabelUserName.setToolTipText("The chosen user name is already taken.");
         warningLabelUserName.setVisible(false);
         loginPanel.add(warningLabelUserName, cc.xy(5, 1));
         registerPanel = new JPanel();
@@ -249,7 +262,7 @@ public class LoginView implements View {
         warningLabelPassword.setForeground(new Color(-2013634));
         warningLabelPassword.setPreferredSize(new Dimension(20, 20));
         warningLabelPassword.setText("⚠");
-        warningLabelPassword.setToolTipText("Please enter matching passwords.");
+        warningLabelPassword.setToolTipText("The entered passwords are not matching.");
         warningLabelPassword.setVisible(false);
         registerPanel.add(warningLabelPassword, cc.xy(5, 1));
         final JLabel label6 = new JLabel();
@@ -264,13 +277,13 @@ public class LoginView implements View {
         if (warningLabelIDFont != null) warningLabelID.setFont(warningLabelIDFont);
         warningLabelID.setForeground(new Color(-2013634));
         warningLabelID.setText("⚠");
-        warningLabelID.setToolTipText("Please enter numeric value / available student id.");
+        warningLabelID.setToolTipText("The entered ID is either taken or no integer greater than 0.");
         warningLabelID.setVisible(false);
         registerPanel.add(warningLabelID, cc.xy(5, 3));
         warningLabelSubject = new JLabel();
         warningLabelSubject.setForeground(new Color(-2013634));
         warningLabelSubject.setText("⚠");
-        warningLabelSubject.setToolTipText("Please select different subjects.");
+        warningLabelSubject.setToolTipText("The selected major subject cannot equal the selected minor subject.");
         warningLabelSubject.setVisible(false);
         registerPanel.add(warningLabelSubject, cc.xy(5, 5));
         ActionPanel = new JPanel();

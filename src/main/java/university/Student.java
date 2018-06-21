@@ -10,6 +10,10 @@ public class Student {
     private String major;
     private String minor;
 
+    public Student(int id, String name, String major, String minor) {
+        this(id, name, "", major, minor);
+    }
+
     public Student(int id, String name, String password, String major, String minor) {
         this.id = id;
         this.name = name;

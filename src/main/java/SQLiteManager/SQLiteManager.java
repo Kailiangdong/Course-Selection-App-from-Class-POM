@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SQLiteManager {
 
@@ -243,6 +244,24 @@ public class SQLiteManager {
     }
     //</editor-fold>
 
+    public Student getStudent(String studentName) {
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+        query.addSelect("ID", "STUDENTS");
+        query.addFrom("STUDENTS");
+        query.addWhere("S.NAME = '" + studentName + "'");
+        try {
+            String[][] results = executeQuery(query);
+            if(results.length > 1) {
+                throw new RuntimeException("Multiple students with id " + studentName);
+            }
+            int studentId = Integer.parseInt(results[0][0]);
+            return getStudent(studentId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public Student getStudent(int studentID) {
         QueryBuilder query = new QueryBuilder(QueryType.SELECT);
         query.addSelect("ID", "STUDENTS");
@@ -263,7 +282,34 @@ public class SQLiteManager {
             String password = studentInfo[2];
             String major = studentInfo[3];
             String minor = studentInfo[4];
-            return new Student(id, name,password, major, minor);
+            return new Student(id, name, password, major, minor);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Student> getStudents() {
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+        query.addSelect("ID", "STUDENTS");
+        query.addSelect("NAME", "STUDENTS");
+        query.addSelect("PASSWORD", "STUDENTS");
+        query.addSelect("MAJOR", "STUDENTS");
+        query.addSelect("MINOR", "STUDENTS");
+        query.addFrom("STUDENTS");
+        try {
+            String[][] results = executeQuery(query);
+            List<Student> studentList = new ArrayList<>();
+
+            for (String[] studentInfo : results) {
+                int id = Integer.parseInt(studentInfo[0]);
+                String name = studentInfo[1];
+                String password = studentInfo[2];
+                String major = studentInfo[3];
+                String minor = studentInfo[4];
+                studentList.add(new Student(id, name, password, major, minor));
+            }
+            return studentList;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

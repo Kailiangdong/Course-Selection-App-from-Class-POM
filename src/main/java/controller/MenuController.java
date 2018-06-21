@@ -8,6 +8,7 @@ import SQLiteManager.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.activation.ActivationInstantiator;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,11 +22,6 @@ public class MenuController extends Controller {
     private LoginController loginController;
 
     private boolean appActive = true;
-
-    private Student student;
-
-    private String[] studentNames;
-    private String activeStudentName;
 
     private String[] chairNames;
     private List<String> activeChairNames;
@@ -41,7 +37,6 @@ public class MenuController extends Controller {
         this.sqLiteManager = sqLiteManager;
         this.loginController = loginController;
 
-        initStudentMenu();
         initColumnMenu();
         initChairMenu();
         addListeners();
@@ -59,12 +54,6 @@ public class MenuController extends Controller {
         activeColNames.addAll(Arrays.asList(colNames));
         view.setColumnMenu(colNames, staticColNames);
         view.setColumnMenuListener(new ColumnLabelListener());
-    }
-
-    private void initStudentMenu() {
-        studentNames = getStudentNames();
-        view.setStudentMenu(studentNames);
-        view.setStudentChoiceListener(new StudentLabelListener());
     }
 
     private void initChairMenu() {
@@ -85,14 +74,6 @@ public class MenuController extends Controller {
         return activeColNames;
     }
 
-    public Student getActiveStudent() {
-        return student;
-    }
-
-    public String getActiveStudentName() {
-        return activeStudentName;
-    }
-
     public boolean isAppActive() {
         return appActive;
     }
@@ -104,30 +85,12 @@ public class MenuController extends Controller {
     //</editor-fold>
 
     //<editor-fold desc="Queries">
-    private String[] getStudentNames() {
-        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
-        query.addSelect("NAME", "STUDENTS");
-        query.addFrom("STUDENTS");
-        query.addGroupBy("NAME", "STUDENTS");
-        try {
-            String[][] resultMatrix = sqLiteManager.executeQuery(query);
-            String[] resultVector = new String[resultMatrix.length];
-            for (int i = 0; i < resultVector.length; i++) {
-                resultVector[i] = resultMatrix[i][0];
-            }
-            return resultVector;
-        } catch (SQLException e) {
-            System.out.println("Error querying chair names: " + e.toString());
-            return new String[]{};
-        }
-    }
-
     private String[] getChairNames() {
         QueryBuilder query = new QueryBuilder(QueryType.SELECT);
         query.addSelect("CHAIR", "CHAIRS");
         query.addFrom("CHAIRS");
         query.addFrom("STUDENTS");
-        query.addWhere("s.NAME = " + "'" + activeStudentName + "'");
+        query.addWhere("s.NAME = " + "'" + loginController.getLoggedInStudent().getName() + "'");
         query.addWhere("(c.SUBJECT = s.MINOR or c.SUBJECT = s.MAJOR)");
         query.addGroupBy("CHAIR", "CHAIRS");
         try {
@@ -150,6 +113,14 @@ public class MenuController extends Controller {
     public void addListeners() {
         view.setQuitButtonListener(new QuitButtonListener());
         view.setRefreshButtonListener(new RefreshButtonListener());
+        view.setLogoutButtonListener(new LogoutButtonListener());
+    }
+
+    class LogoutButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            loginController.logout();
+        }
     }
 
 
@@ -180,15 +151,6 @@ public class MenuController extends Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             activeColNames = view.getColumnChoiceMenu().getActiveLabels();
-            notifyAllObservers();
-        }
-    }
-
-    class StudentLabelListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            activeStudentName = view.getStudentMenu().getActiveLabel();
-            update();
             notifyAllObservers();
         }
     }
