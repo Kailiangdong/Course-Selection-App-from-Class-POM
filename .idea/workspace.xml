@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="83ad940b-622c-4e57-87a9-1d8cdd21061f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache.db" beforeDir="false" afterPath="$PROJECT_DIR$/cache.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/SQLiteManager/QueryBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SQLiteManager/QueryBuilderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,20 +15,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LectureTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/university/LectureTest.java">
+      <file leaf-file-name="SQLiteManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="40" column="76" selection-start-line="40" selection-start-column="76" selection-end-line="40" selection-end-column="76" />
+            <state relative-caret-position="5474">
+              <caret line="331" column="40" selection-start-line="331" selection-start-column="37" selection-end-line="331" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BackendAdapterTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/Backend/BackendAdapterTest.java">
+      <file leaf-file-name="DetailsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/lectures/DetailsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="149" selection-start-line="27" selection-start-column="149" selection-end-line="27" selection-end-column="149" />
+            <state relative-caret-position="561">
+              <caret line="48" column="58" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QueryBuilder.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="177" column="68" selection-start-line="177" selection-start-column="68" selection-end-line="177" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StudentsDetailsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/students/StudentsDetailsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -37,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QueryBuilderTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/SQLiteManager/QueryBuilderTest.java">
+      <file leaf-file-name="StudentsTableController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/students/StudentsTableController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
+            <state relative-caret-position="306">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -49,20 +75,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lectures.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/lectures.csv">
+      <file leaf-file-name="TableController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/lectures/TableController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="95" selection-start-line="1" selection-end-line="1" selection-end-column="95" />
+            <state relative-caret-position="2329">
+              <caret line="169" column="4" selection-start-line="169" selection-start-column="4" selection-end-line="175" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="students.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/students.csv">
+      <file leaf-file-name="BackendAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="49" />
+            <state relative-caret-position="2142">
+              <caret line="132" column="56" selection-start-line="132" selection-start-column="56" selection-end-line="132" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -95,6 +121,8 @@
       <find>setStudent</find>
       <find>setView</find>
       <find>update</find>
+      <find>and</find>
+      <find>delete</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\stefa\IdeaProjects\University-app</dir>
@@ -104,21 +132,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/POM18TEAM13-85-update-database-schema" />
+        <entry key="$PROJECT_DIR$" value="feature/POM18TEAM13-79-add-query-functions" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/controller/AppController.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/LectureDetailsView.form" />
         <option value="$PROJECT_DIR$/src/main/java/controller/LectureDetailsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/LecturesTableController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/AppController.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.form" />
@@ -149,7 +174,6 @@
         <option value="$PROJECT_DIR$/src/main/java/controller/students/StudentsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/students/StudentsTableController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/students/StudentsDetailsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
@@ -158,10 +182,14 @@
         <option value="$PROJECT_DIR$/test/main/java/SQLiteManager/QueryBuilderTest.java" />
         <option value="$PROJECT_DIR$/test/main/java/SQLiteManager/SQLiteManagerTest.java" />
         <option value="$PROJECT_DIR$/test/main/java/Backend/BackendAdapterTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/SQLiteManager/QueryBuilderTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/university/StudentTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/university/LectureTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/Backend/BackendAdapterTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/SQLiteManager/QueryBuilderTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java" />
       </list>
     </option>
   </component>
@@ -188,9 +216,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-39" />
+    <option name="y" value="-14" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -200,77 +230,51 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="SQLiteManager" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
+              <item name="University-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="University-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="university" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -526,36 +530,47 @@
       <option name="project" value="LOCAL" />
       <updated>1529426893854</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="&quot;and&quot; is in capital letters now">
+      <created>1529526934267</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1529526934267</updated>
+    </task>
+    <task id="LOCAL-00019" summary="&quot;and&quot; is in capital letters now">
+      <created>1529528541143</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1529528541143</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067115" side_tool="true" weight="0.23789173" />
-      <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.3184524" />
+      <window_info anchor="right" id="Maven Projects" order="3" weight="0.31879196" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4986577" weight="0.32827586" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.44488978" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.44551724" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" weight="0.25783476" />
-      <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16190477" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24414062" />
+      <window_info id="Learn" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3986207" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.31659693" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info id="Learn" order="2" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.31659693" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -564,12 +579,12 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.1923077" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19664429" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -578,7 +593,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32905984" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.31862068" />
@@ -616,7 +631,8 @@
     <MESSAGE value="Updated database schema with a FriendsWith table, which shows who is friends with whom. Also commited the updated db." />
     <MESSAGE value="Updated database schema with a Likes table, which shows who likes which comment. Also commited the updated db." />
     <MESSAGE value="Changed java version to 9 to ensure compatibility with bamboo." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed java version to 9 to ensure compatibility with bamboo." />
+    <MESSAGE value="&quot;and&quot; is in capital letters now" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;and&quot; is in capital letters now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -624,13 +640,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="61" column="67" selection-start-line="61" selection-start-column="67" selection-end-line="61" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.form" />
     <entry file="file://$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/RowListener.java" />
@@ -768,8 +777,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/students/StudentsTableController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="75" column="37" selection-start-line="75" selection-start-column="37" selection-end-line="75" selection-end-column="37" />
+        <state relative-caret-position="306">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -782,8 +794,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/students/StudentsDetailsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+        <state relative-caret-position="51">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -799,36 +814,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/SQLiteManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="179" column="49" selection-start-line="179" selection-start-column="49" selection-end-line="179" selection-end-column="49" />
+        <state relative-caret-position="5474">
+          <caret line="331" column="40" selection-start-line="331" selection-start-column="37" selection-end-line="331" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/lectures/DetailsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
+        <state relative-caret-position="561">
           <caret line="48" column="58" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/lectures/TableController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
+        <state relative-caret-position="2329">
           <caret line="169" column="4" selection-start-line="169" selection-start-column="4" selection-end-line="175" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/BackendAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="245" column="36" selection-start-line="245" selection-start-column="36" selection-end-line="245" selection-end-column="36" />
+        <state relative-caret-position="2142">
+          <caret line="132" column="56" selection-start-line="132" selection-start-column="56" selection-end-line="132" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="107" column="45" lean-forward="true" selection-start-line="107" selection-start-column="45" selection-end-line="107" selection-end-column="45" />
+        <state relative-caret-position="187">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/SQLiteManager/QueryBuilderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="36" column="69" selection-start-line="36" selection-start-column="69" selection-end-line="36" selection-end-column="69" />
         </state>
       </provider>
     </entry>
@@ -856,7 +878,7 @@
     <entry file="file://$PROJECT_DIR$/data/lectures.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
-          <caret line="1" column="95" selection-start-line="1" selection-end-line="1" selection-end-column="95" />
+          <caret line="1" column="95" lean-forward="true" selection-start-line="1" selection-end-line="1" selection-end-column="95" />
         </state>
       </provider>
     </entry>
@@ -871,19 +893,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="149" selection-start-line="27" selection-start-column="149" selection-end-line="27" selection-end-column="149" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/SQLiteManager/QueryBuilderTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/SQLiteManager/QueryBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="420">
+          <caret line="177" column="68" selection-start-line="177" selection-start-column="68" selection-end-line="177" selection-end-column="68" />
         </state>
       </provider>
     </entry>
