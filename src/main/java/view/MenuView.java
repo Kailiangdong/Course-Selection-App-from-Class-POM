@@ -15,11 +15,11 @@ public class MenuView implements View {
     private JMenu mainMenu;
     private CheckBoxMenu columnMenu;
     private CheckBoxMenu chairMenu;
-    private ChoiceMenu studentMenu;
 
     // Menu contents
     private JMenuItem quitItem;
     private JMenuItem refreshItem;
+    private JMenuItem logoutItem;
 
     public MenuView() {
         menuBar = new JMenuBar(); // top menu bar
@@ -28,6 +28,10 @@ public class MenuView implements View {
     }
 
     // Main Menu
+
+    public void setLogoutButtonListener(ActionListener actionListener) {
+        logoutItem.addActionListener(actionListener);
+    }
 
     public void setRefreshButtonListener(ActionListener l) {
         refreshItem.addActionListener(l);
@@ -41,9 +45,11 @@ public class MenuView implements View {
         mainMenu = new JMenu("☰"); // program control
         quitItem = new JMenuItem("Quit");
         refreshItem = new JMenuItem("Refresh");
+        logoutItem = new JMenuItem("Logout");
 
         // Add items
         mainMenu.add(refreshItem);
+        mainMenu.add(logoutItem);
         mainMenu.add(quitItem);
 
         // Add menu
@@ -85,24 +91,6 @@ public class MenuView implements View {
 
     public CheckBoxMenu getChairMenu() {
         return chairMenu;
-    }
-
-    // Choose student name
-
-    public void setStudentMenu(String[] labels) {
-        if (studentMenu != null) {
-            menuBar.remove(studentMenu);
-        }
-        studentMenu = new ChoiceMenu("Student", labels);
-        menuBar.add(studentMenu);
-    }
-
-    public void setStudentChoiceListener(ActionListener l) {
-        studentMenu.addLabelListener(l);
-    }
-
-    public ChoiceMenu getStudentMenu() {
-        return studentMenu;
     }
 
     @Override

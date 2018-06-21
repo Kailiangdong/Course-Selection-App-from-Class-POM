@@ -128,7 +128,7 @@
               <foreground color="-2013634"/>
               <labelFor value="d8fea"/>
               <text value="⚠"/>
-              <toolTipText value="Please enter available user name."/>
+              <toolTipText value="The chosen user name is already taken."/>
               <visible value="false"/>
             </properties>
           </component>
@@ -218,7 +218,7 @@
               <labelFor value="a0d2f"/>
               <preferredSize width="20" height="20"/>
               <text value="⚠"/>
-              <toolTipText value="Please enter matching passwords."/>
+              <toolTipText value="The entered passwords are not matching."/>
               <visible value="false"/>
             </properties>
           </component>
@@ -254,7 +254,7 @@
               <foreground color="-2013634"/>
               <labelFor value=""/>
               <text value="⚠"/>
-              <toolTipText value="Please enter numeric value / available student id."/>
+              <toolTipText value="The entered ID is either taken or no integer greater than 0."/>
               <visible value="false"/>
             </properties>
           </component>
@@ -266,7 +266,7 @@
             <properties>
               <foreground color="-2013634"/>
               <text value="⚠"/>
-              <toolTipText value="Please select different subjects."/>
+              <toolTipText value="The selected major subject cannot equal the selected minor subject."/>
               <visible value="false"/>
             </properties>
           </component>
