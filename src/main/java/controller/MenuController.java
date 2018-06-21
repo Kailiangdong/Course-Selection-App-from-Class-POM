@@ -22,12 +22,6 @@ public class MenuController extends Controller {
     private LoginController loginController;
 
     private boolean appActive = true;
-    private boolean loginActive = false;
-
-    private Student student;
-
-    private String[] studentNames;
-    private String activeStudentName;
 
     private String[] chairNames;
     private List<String> activeChairNames;
@@ -52,9 +46,6 @@ public class MenuController extends Controller {
     @Override
     public void update() {
         initChairMenu();
-        if(loginController.getLoggedInStudent() != null) {
-            loginActive = true;
-        }
     }
 
     private void initColumnMenu() {
@@ -83,10 +74,6 @@ public class MenuController extends Controller {
         return activeColNames;
     }
 
-    public boolean isLoginActive() {
-        return loginActive;
-    }
-
     public boolean isAppActive() {
         return appActive;
     }
@@ -103,7 +90,7 @@ public class MenuController extends Controller {
         query.addSelect("CHAIR", "CHAIRS");
         query.addFrom("CHAIRS");
         query.addFrom("STUDENTS");
-        query.addWhere("s.NAME = " + "'" + activeStudentName + "'");
+        query.addWhere("s.NAME = " + "'" + loginController.getLoggedInStudent().getName() + "'");
         query.addWhere("(c.SUBJECT = s.MINOR or c.SUBJECT = s.MAJOR)");
         query.addGroupBy("CHAIR", "CHAIRS");
         try {
@@ -132,8 +119,7 @@ public class MenuController extends Controller {
     class LogoutButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            loginActive = false;
-            notifyAllObservers();
+            loginController.logout();
         }
     }
 

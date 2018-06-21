@@ -23,7 +23,6 @@ public class AppController extends Controller {
         // Add Controllers
         loginController = new LoginController(sqLiteManager);
         menuController = new MenuController(sqLiteManager, loginController);
-        loginController.setMenuController(menuController);
         LectureController lectureController = new LectureController(sqLiteManager, loginController, menuController);
         StudentsController studentsController = new StudentsController(sqLiteManager, loginController);
 
@@ -36,7 +35,6 @@ public class AppController extends Controller {
 
         // Logic Observers
         menuController.attach(this); // check if user closed the app
-        menuController.attach(loginController);
         loginController.attach(this); // check if user logged in
     }
 
