@@ -39,7 +39,7 @@ public class SQLiteManager {
     }
 
     //<editor-fold desc="Execute String Query Section">
-    private String[][] executeQuery(String query) throws SQLException{
+    private String[][] executeQuery(String query) throws SQLException {
         ArrayList<String[]> resultList = new ArrayList<>();
         try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
             ResultSet resultSet = stmt.executeQuery(query);
@@ -66,6 +66,18 @@ public class SQLiteManager {
 
     //<editor-fold desc="Execute QueryBuilder Query Section">
     public String[][] executeQuery(QueryBuilder query) throws SQLException {
+        return executeQuery(query.toString());
+    }
+
+    public String[][] executeExceptQuery(QueryBuilder query1, QueryBuilder query2) throws SQLException {
+        StringBuilder query = new StringBuilder();
+        query.append("(");
+        query.append(query1.toString());
+        query.append(")");
+        query.append("EXCEPT");
+        query.append("(");
+        query.append(query2.toString());
+        query.append(")");
         return executeQuery(query.toString());
     }
 
