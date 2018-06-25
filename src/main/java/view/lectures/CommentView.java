@@ -5,6 +5,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 import university.LectureComment;
 import view.View;
 
@@ -19,6 +21,9 @@ public class CommentView implements View {
     private JTextField inputField;
     private JButton addButton;
     private JButton deleteButton;
+    private JButton likeDislikeButton;
+    private JPanel leftPanel;
+    private JPanel rightPanel;
 
     public CommentView() {
         DefaultListModel listModel = new DefaultListModel();
@@ -32,6 +37,14 @@ public class CommentView implements View {
 
     public void hideOptions() {
         deleteButton.setVisible(false);
+    }
+
+    public void showLikeDislikeOption() {
+        likeDislikeButton.setVisible(true);
+    }
+
+    public void hideLikeDislikeOption() {
+        likeDislikeButton.setVisible(false);
     }
     //</editor-fold>
 
@@ -107,12 +120,21 @@ public class CommentView implements View {
         addButton.setText("Comment");
         createPane.add(addButton);
         actionPane = new JPanel();
-        actionPane.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+        actionPane.setLayout(new BorderLayout(0, 0));
         actionPane.setPreferredSize(new Dimension(500, 50));
         mainPane.add(actionPane, BorderLayout.SOUTH);
+        leftPanel = new JPanel();
+        leftPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        actionPane.add(leftPanel, BorderLayout.WEST);
+        likeDislikeButton = new JButton();
+        likeDislikeButton.setText("Like");
+        leftPanel.add(likeDislikeButton);
+        rightPanel = new JPanel();
+        rightPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+        actionPane.add(rightPanel, BorderLayout.CENTER);
         deleteButton = new JButton();
         deleteButton.setText("Remove");
-        actionPane.add(deleteButton);
+        rightPanel.add(deleteButton);
         listPane = new JPanel();
         listPane.setLayout(new BorderLayout(0, 0));
         mainPane.add(listPane, BorderLayout.CENTER);
