@@ -4,11 +4,14 @@ import SQLiteManager.SQLiteManager;
 import SQLiteManager.QueryBuilder;
 import SQLiteManager.QueryType;
 import controller.Controller;
+import controller.lectures.DetailsController;
 import controller.login.LoginController;
 import university.Student;
 import view.View;
 import view.students.DetailsStudents;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class StudentsDetailsController extends Controller {
@@ -31,11 +34,6 @@ public class StudentsDetailsController extends Controller {
         update();
         addListeners();
         //detailsView.getAddRemoveFriendButton().setText("Add");
-    }
-
-    @Override
-    public void addListeners() {
-        //detailsView.setRowListener(new ButtonListener());
     }
 
     private void updateTextPane() {
@@ -82,6 +80,40 @@ public class StudentsDetailsController extends Controller {
         return query;
     }
 
+    private QueryBuilder queryAddFriend(int studentID) {
+        QueryBuilder addBuilder = new QueryBuilder(QueryType.INSERT);
+        addBuilder.addInsertTab("FRIENDSWITH");
+        addBuilder.addInsertCols(new String[]{"STUDENT_ID1", "STUDENT_ID2"});
+        addBuilder.addInsertVals(new String[]{"" + loginController.getLoggedInStudent().getId(), Integer.toString(studentID)});
+        return addBuilder;
+    }
+
+    public void addFriend() {
+        try {
+            sqLiteManager.executeQuery(queryAddFriend(tableController.getSelectedStudent().getId()));
+        } catch (SQLException e) {
+            System.out.println("Error executing add student: " + e.toString());
+        }
+    }
+
+    private QueryBuilder queryDeleteLecture(int studentID) {
+        QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
+        deleteBuilder.addDeleteTab("FRIENDSWITH");
+        deleteBuilder.addDeleteWhere(new String[]{
+                "STUDENT_ID1 = " + loginController.getLoggedInStudent().getId(),
+                "STUDENT_ID2 = " + studentID
+        });
+        return deleteBuilder;
+    }
+
+    public void removeFriend() {
+        try {
+            sqLiteManager.executeQuery(queryDeleteLecture(tableController.getSelectedStudent().getId()));
+        } catch (SQLException e) {
+            System.out.println("Error executing remove student: " + e.toString());
+        }
+    }
+
     @Override
     public View getView() {
         return detailsView;
@@ -92,5 +124,26 @@ public class StudentsDetailsController extends Controller {
         student = tableController.getSelectedStudent();
         detailsView.getAddRemoveFriendButton().setText(tableController.isJoinedSelected() ? "Remove" : "Add");
         updateTextPane();
+    }
+
+    @Override
+    public void addListeners() {
+        detailsView.setRowListener(new ButtonListener());
+    }
+
+    class ButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == detailsView.getAddRemoveFriendButton()) {
+                if (student != null) {
+                    if (tableController.isJoinedSelected()) {
+                        removeFriend();
+                    } else {
+                        addFriend();
+                    }
+                }
+            }
+            notifyAllObservers();
+        }
     }
 }

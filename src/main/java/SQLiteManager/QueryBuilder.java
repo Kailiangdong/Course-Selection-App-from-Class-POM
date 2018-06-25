@@ -59,6 +59,10 @@ public class QueryBuilder {
 
     public void addFrom(String tabName) { from.add(tabName + " " + returnFirstChar(tabName)); }
 
+    public void addFrom(String tabName, String tabVariable) {
+        from.add(tabName + " " + tabVariable);
+    }
+
     public void addFrom(String[] tabNames) {
         for (String tabName : tabNames) {
             addFrom(tabName);
@@ -195,5 +199,6 @@ public class QueryBuilder {
         return "";
     }
     //</editor-fold>
+
 
 }
