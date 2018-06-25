@@ -80,6 +80,7 @@ public class CommentController extends Controller {
         String[][] queryResult = new String[0][];
         comments = new ArrayList<>();
         view.hideOptions();
+        view.hideLikeDislikeOption();
         try {
             queryResult = sqLiteManager.executeQuery(selectAllComments(Integer.toString(lecture.getId())));
         } catch (SQLException e) {
@@ -240,6 +241,12 @@ public class CommentController extends Controller {
                 view.showOptions();
             } else {
                 view.hideOptions();
+            }
+
+            if (getSelectedComment() == null) {
+                view.hideLikeDislikeOption();
+            } else {
+                view.showLikeDislikeOption();
             }
         }
     }
