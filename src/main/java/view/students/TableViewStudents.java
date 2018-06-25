@@ -71,7 +71,7 @@ public class TableViewStudents implements View {
         leftPane.setViewportView(leftTable);
         rightPane = new JScrollPane();
         rightPane.setPreferredSize(new Dimension(500, 300));
-        mainPane.add(rightPane, BorderLayout.CENTER);
+        mainPane.add(rightPane, BorderLayout.EAST);
         rightPane.setBorder(BorderFactory.createTitledBorder("Friends"));
         rightTable = new JTable();
         rightPane.setViewportView(rightTable);

@@ -8,11 +8,15 @@ import controller.login.LoginController;
 import university.Student;
 import view.View;
 import view.students.TableViewStudents;
+import SQLiteManager.*;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Array;
+import java.sql.SQLException;
+import java.util.Arrays;
 
 public class StudentsTableController extends Controller {
 
@@ -44,14 +48,62 @@ public class StudentsTableController extends Controller {
         addListeners();
     }
 
+    /*private void friends() {
+        QueryBuilder builder = new QueryBuilder(QueryType.SELECT);
+        try {
+            String[][] redundantFriends = sqLiteManager.executeQuery(builder.queryFriends("" + loginController.getLoggedInStudent().getId()));
+            rightTableContent = new String[redundantFriends.length][redundantFriends[0].length];
+            for(int i = 0; i < redundantFriends.length; i++) {
+                if(redundantFriends[i][0].equals("" + loginController.getLoggedInStudent().getId())) {
+                    int friendID = Integer.parseInt(redundantFriends[i][1]);
+                    rightTableContent[i][0] = "" + sqLiteManager.getStudent(friendID).getId();
+                    rightTableContent[i][1] = "" + sqLiteManager.getStudent(friendID).getName();
+                } else {
+                    int friendID = Integer.parseInt(redundantFriends[i][0]);
+                    rightTableContent[i][0] = "" + sqLiteManager.getStudent(friendID).getId();
+                    rightTableContent[i][1] = "" + sqLiteManager.getStudent(friendID).getName();
+                }
+            }
+            System.out.println(Arrays.deepToString(rightTableContent));
+        } catch (SQLException e) {
+            System.out.println("Error loading friends");
+        }
+    }*/
+
+    public QueryBuilder queryFriends(String studentID) {
+        QueryBuilder queryBuilder = new QueryBuilder(QueryType.SELECT);
+        queryBuilder.addSelect("ID", "s");
+        queryBuilder.addSelect("Name", "s");
+        queryBuilder.addFrom("FRIENDSWITH", "f");
+        queryBuilder.addFrom("STUDENTS", "s");
+        queryBuilder.addWhere(studentID + " = f.STUDENT_ID1");
+        queryBuilder.addWhere("s.ID = f.STUDENT_ID2");
+        return queryBuilder;
+    }
+
+    public QueryBuilder queryAllStudents(String studentID) {
+        QueryBuilder queryBuilder = new QueryBuilder(QueryType.SELECT);
+        queryBuilder.addSelect("ID", "s");
+        queryBuilder.addSelect("Name", "s");
+        queryBuilder.addFrom("STUDENTS");
+        queryBuilder.addWhere("s.ID != " + studentID);
+        return queryBuilder;
+    }
+
     @Override
     public void update() {
         // TODO: Query functions
-        leftTableContent = new String[][]{new String[]{"7355", "Stefan"}};
-        rightTableContent = new String[][]{new String[]{"971", "Markus"}};
 
-        tableViewStudents.getRightTable().setModel(new TableModel(leftTableContent, new String[]{"ID", "Students"}));
-        tableViewStudents.getLeftTable().setModel(new TableModel(rightTableContent, new String[]{"ID", "Friends"}));
+        try {
+            rightTableContent = sqLiteManager.executeQuery(queryFriends("" + loginController.getLoggedInStudent().getId()));
+            leftTableContent = sqLiteManager.executeExceptQuery(queryAllStudents("" + loginController.getLoggedInStudent().getId()),
+                    queryFriends("" + loginController.getLoggedInStudent().getId()));
+        } catch (SQLException e) {
+            System.out.println("Error: executeQuery friends " + e.toString());
+        }
+
+        tableViewStudents.getRightTable().setModel(new TableModel(rightTableContent, new String[]{"ID", "Friends"}));
+        tableViewStudents.getLeftTable().setModel(new TableModel(leftTableContent, new String[]{"ID", "Students"}));
     }
 
     @Override
