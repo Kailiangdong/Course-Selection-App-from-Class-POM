@@ -48,7 +48,7 @@ public class StudentsTableController extends Controller {
         addListeners();
     }
 
-    private void friends() {
+    /*private void friends() {
         QueryBuilder builder = new QueryBuilder(QueryType.SELECT);
         try {
             String[][] redundantFriends = sqLiteManager.executeQuery(builder.queryFriends("" + loginController.getLoggedInStudent().getId()));
@@ -68,20 +68,39 @@ public class StudentsTableController extends Controller {
         } catch (SQLException e) {
             System.out.println("Error loading friends");
         }
+    }*/
+
+    public QueryBuilder queryFriends(String studentID) {
+        QueryBuilder queryBuilder = new QueryBuilder(QueryType.SELECT);
+        queryBuilder.addSelect("ID", "s");
+        queryBuilder.addSelect("Name", "s");
+        queryBuilder.addFrom("FRIENDSWITH", "f");
+        queryBuilder.addFrom("STUDENTS", "s");
+        queryBuilder.addWhere(studentID + " = f.STUDENT_ID1");
+        queryBuilder.addWhere("s.ID = f.STUDENT_ID2");
+        return queryBuilder;
     }
 
-    private void notFriends() {
-
+    public QueryBuilder queryAllStudents(String studentID) {
+        QueryBuilder queryBuilder = new QueryBuilder(QueryType.SELECT);
+        queryBuilder.addSelect("ID", "s");
+        queryBuilder.addSelect("Name", "s");
+        queryBuilder.addFrom("STUDENTS");
+        queryBuilder.addWhere("s.ID != " + studentID);
+        return queryBuilder;
     }
 
     @Override
     public void update() {
         // TODO: Query functions
 
-        friends();
-
-        leftTableContent = new String[][]{new String[]{"7355", "Stefan"}};
-        //rightTableContent = new String[][]{new String[]{"971", "Markus"}};
+        try {
+            rightTableContent = sqLiteManager.executeQuery(queryFriends("" + loginController.getLoggedInStudent().getId()));
+            leftTableContent = sqLiteManager.executeExceptQuery(queryAllStudents("" + loginController.getLoggedInStudent().getId()),
+                    queryFriends("" + loginController.getLoggedInStudent().getId()));
+        } catch (SQLException e) {
+            System.out.println("Error: executeQuery friends " + e.toString());
+        }
 
         tableViewStudents.getRightTable().setModel(new TableModel(rightTableContent, new String[]{"ID", "Friends"}));
         tableViewStudents.getLeftTable().setModel(new TableModel(leftTableContent, new String[]{"ID", "Students"}));

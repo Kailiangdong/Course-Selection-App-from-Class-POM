@@ -59,6 +59,10 @@ public class QueryBuilder {
 
     public void addFrom(String tabName) { from.add(tabName + " " + returnFirstChar(tabName)); }
 
+    public void addFrom(String tabName, String tabVariable) {
+        from.add(tabName + " " + tabVariable);
+    }
+
     public void addFrom(String[] tabNames) {
         for (String tabName : tabNames) {
             addFrom(tabName);
@@ -196,14 +200,5 @@ public class QueryBuilder {
     }
     //</editor-fold>
 
-    public QueryBuilder queryFriends(String studentId) {
-        QueryBuilder queryBuilder = new QueryBuilder(QueryType.SELECT);
-        String select = "*";
-        String where = "STUDENT_ID1 = '" + studentId + "' OR STUDENT_ID2 = '" + studentId + "'";
-        queryBuilder.addSelect(select, "Friends");
-        queryBuilder.addFrom("FRIENDSWITH");
-        queryBuilder.addWhere(where);
-        System.out.println(queryBuilder.toString()+"\n");
-        return queryBuilder;
-    }
+
 }

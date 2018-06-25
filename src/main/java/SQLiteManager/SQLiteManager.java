@@ -71,13 +71,9 @@ public class SQLiteManager {
 
     public String[][] executeExceptQuery(QueryBuilder query1, QueryBuilder query2) throws SQLException {
         StringBuilder query = new StringBuilder();
-        query.append("(");
         query.append(query1.toString());
-        query.append(")");
-        query.append("EXCEPT");
-        query.append("(");
+        query.append(" EXCEPT ");
         query.append(query2.toString());
-        query.append(")");
         return executeQuery(query.toString());
     }
 
