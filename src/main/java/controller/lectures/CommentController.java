@@ -4,6 +4,7 @@ import SQLiteManager.QueryBuilder;
 import SQLiteManager.QueryType;
 import SQLiteManager.SQLiteManager;
 import controller.Controller;
+import controller.login.LoginController;
 import university.Lecture;
 import university.LectureComment;
 import university.Student;
@@ -22,17 +23,20 @@ public class CommentController extends Controller {
     private CommentView view;
     private SQLiteManager sqLiteManager;
     private DetailsController detailsController;
+    private LoginController loginController;
 
     private Student student;
     private Lecture lecture;
 
     private ArrayList<LectureComment> comments = new ArrayList<>();
     private LectureComment selectedComment;
+    private boolean commentLiked;
 
-    public CommentController(SQLiteManager sqLiteManager, DetailsController detailsController) {
+    public CommentController(SQLiteManager sqLiteManager, DetailsController detailsController, LoginController loginController) {
         this.view = new CommentView();
         this.detailsController = detailsController;
         this.sqLiteManager = sqLiteManager;
+        this.loginController = loginController;
 
         addListeners();
         update();
@@ -41,7 +45,7 @@ public class CommentController extends Controller {
     //<editor-fold desc="Actions">
     @Override
     public void update() {
-        student = detailsController.getStudent();
+        student = loginController.getLoggedInStudent();
         lecture = detailsController.getLecture();
 
         if (lecture != null) {
@@ -79,7 +83,7 @@ public class CommentController extends Controller {
     private void queryComments() {
         String[][] queryResult = new String[0][];
         comments = new ArrayList<>();
-        view.hideOptions();
+        view.hideDeleteOption();
         view.hideLikeDislikeOption();
         try {
             queryResult = sqLiteManager.executeQuery(selectAllComments(Integer.toString(lecture.getId())));
@@ -94,7 +98,7 @@ public class CommentController extends Controller {
             String date = queryResult[i][3];
             int commentID = Integer.parseInt(queryResult[i][4]);
 
-            LectureComment comment = new LectureComment(student, content, date, time, commentID);
+            LectureComment comment = new LectureComment(student, content, date, time, commentID, getLikeNumber(commentID));
             comments.add(comment);
         }
     }
@@ -147,7 +151,7 @@ public class CommentController extends Controller {
         return addBuilder;
     }
 
-    private QueryBuilder RemoveLikeQuery(int studentID, int commentID) {
+    private QueryBuilder removeLikeQuery(int studentID, int commentID) {
         QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
         deleteBuilder.addDeleteTab("LIKES");
         deleteBuilder.addDeleteWhere(new String[]{
@@ -162,13 +166,33 @@ public class CommentController extends Controller {
         query.addSelect("STUDENT_ID", "LIKES");
         query.addFrom("LIKES");
         query.addWhere("L.COMMENT_ID = " + commentID);
-        String[][] likeMatrix = new String[0][];
+        String[][] likeMatrix = null;
         try {
             likeMatrix = sqLiteManager.executeQuery(query);
         } catch (SQLException e) {
             System.out.println("Error querying like numbers: " + e.toString());
         }
         return likeMatrix.length;
+    }
+
+    private boolean getIfLiked(int commentID) {
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+        query.addSelect("STUDENT_ID", "LIKES");
+        query.addFrom("LIKES");
+        query.addWhere("L.COMMENT_ID = " + commentID);
+        query.addWhere("L.STUDENT_ID = " + student.getId());
+        String[][] likeMatrix = null;
+        try {
+            likeMatrix = sqLiteManager.executeQuery(query);
+        } catch (SQLException e) {
+            System.out.println("Error querying like numbers: " + e.toString());
+        }
+        if(likeMatrix == null || likeMatrix.length==0) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
     //</editor-fold>
 
@@ -202,6 +226,7 @@ public class CommentController extends Controller {
         view.setCreationListener(new CreateListener());
         view.setSelectionListener(new SelectListener());
         view.setDeletionListener(new DeleteListener());
+        view.setLikeDislikeListener(new LikeDislikeListener());
     }
 
     class CreateListener implements ActionListener {
@@ -218,6 +243,22 @@ public class CommentController extends Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             deleteComment();
+        }
+    }
+
+    class LikeDislikeListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                if (commentLiked) {
+                    sqLiteManager.executeStatement(removeLikeQuery(student.getId(), selectedComment.getId()));
+                } else {
+                    sqLiteManager.executeStatement(addLikeQuery(student.getId(), selectedComment.getId()));
+                }
+            } catch (SQLException ex) {
+                System.out.println("Error executing like query " + ex.toString());
+            }
+            CommentController.this.update();
         }
     }
 
@@ -238,14 +279,20 @@ public class CommentController extends Controller {
             }
 
             if (getSelectedComment().getAuthor().equals(student)) {
-                view.showOptions();
+                view.showDeleteOption();
             } else {
-                view.hideOptions();
+                view.hideDeleteOption();
             }
 
             if (getSelectedComment() == null) {
                 view.hideLikeDislikeOption();
             } else {
+                commentLiked = getIfLiked(selectedComment.getId());
+                if(commentLiked) {
+                    view.setLikeDislikeButtonText("Unlike");
+                } else {
+                    view.setLikeDislikeButtonText("Like");
+                }
                 view.showLikeDislikeOption();
             }
         }
