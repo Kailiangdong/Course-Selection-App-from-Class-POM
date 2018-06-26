@@ -114,6 +114,7 @@ public class MenuController extends Controller {
         view.setQuitButtonListener(new QuitButtonListener());
         view.setRefreshButtonListener(new RefreshButtonListener());
         view.setLogoutButtonListener(new LogoutButtonListener());
+        view.setFeedbackButtonListener(new FeedbackButtonListener());
     }
 
     class LogoutButtonListener implements ActionListener {
@@ -123,6 +124,12 @@ public class MenuController extends Controller {
         }
     }
 
+    class FeedbackButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            FeedbackController feedbackController = new FeedbackController();
+        }
+    }
 
     class QuitButtonListener implements ActionListener {
         @Override
