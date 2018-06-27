@@ -9,7 +9,10 @@ import university.Student;
 import view.View;
 import view.students.DetailsStudents;
 
+import java.sql.Array;
 import java.sql.SQLException;
+import java.util.Arrays;
+
 
 public class StudentsDetailsController extends Controller {
 
@@ -19,7 +22,7 @@ public class StudentsDetailsController extends Controller {
     private StudentsTableController tableController;
 
     private Student student;
-
+    private Student loggedstudent;
     public StudentsDetailsController(SQLiteManager sqLiteManager,
                                      LoginController loginController,
                                      StudentsTableController tableController) {
@@ -30,6 +33,7 @@ public class StudentsDetailsController extends Controller {
 
         update();
         addListeners();
+        System.out.println(Arrays.deepToString(queryReceivedRequests()));
         //detailsView.getAddRemoveFriendButton().setText("Add");
     }
 
@@ -67,6 +71,35 @@ public class StudentsDetailsController extends Controller {
         }
     }
 
+    private String[][] queryReceivedRequests() {
+        String[][] queryResult = new String[0][];
+        try {
+            queryResult = sqLiteManager.executeQuery(listAllReceivedRequests(Integer.toString(loggedstudent.getId())));
+        } catch (SQLException e) {
+            System.out.println("Error executing list received request: " + e.toString());
+        }
+        return queryResult;
+    }
+    private void makeRequest() {
+        try {
+            sqLiteManager.executeQuery(makeRequestQuery(loggedstudent.getId(),student.getId()));
+
+        } catch (SQLException e) {
+            System.out.println("Error executing make request: " + e.toString());
+        }
+        update();
+    }
+    //execute after
+    private void removeRequest() {
+        try {
+            sqLiteManager.executeQuery(removeRequestQuery(loggedstudent.getId(),student.getId()));
+
+        } catch (SQLException e) {
+            System.out.println("Error executing remove request: " + e.toString());
+        }
+        update();
+    }
+    //<editor-fold desc="Queries">
     private QueryBuilder queryStudentDetails(int studentID) {
         QueryBuilder query = new QueryBuilder(QueryType.SELECT);
 
@@ -82,6 +115,37 @@ public class StudentsDetailsController extends Controller {
         return query;
     }
 
+    private QueryBuilder listAllReceivedRequests(String studentID) {
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+
+        query.addSelect("REQUEST_FROM", "REQUESTFRIENDS");
+
+        query.addFrom("REQUESTFRIENDS");
+
+        query.addWhere("r.REQUEST_TO = " + studentID);
+
+        return query;
+    }
+
+
+    private QueryBuilder makeRequestQuery(int studentID1, int studentID2) {
+        QueryBuilder addBuilder = new QueryBuilder(QueryType.INSERT);
+        addBuilder.addInsertTab("REQUESTFRIENDS");
+        addBuilder.addInsertCols(new String[]{"REQUEST_TO","REQUEST_FROM"});
+        addBuilder.addInsertVals(new String[]{Integer.toString(studentID1),Integer.toString(studentID2)});
+        return addBuilder;
+    }
+
+    private QueryBuilder removeRequestQuery(int studentID1, int studentID2) {
+        QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
+        deleteBuilder.addDeleteTab("REQUESTFRIENDS");
+        deleteBuilder.addDeleteWhere(new String[]{
+                "REQUEST_TO = " + studentID1,
+                "REQUEST_FROM = " + studentID2,
+        });
+        return deleteBuilder;
+    }
+    //</editor-fold>
     @Override
     public View getView() {
         return detailsView;
@@ -90,6 +154,7 @@ public class StudentsDetailsController extends Controller {
     @Override
     public void update() {
         student = tableController.getSelectedStudent();
+        loggedstudent = loginController.getLoggedInStudent();
         detailsView.getAddRemoveFriendButton().setText(tableController.isJoinedSelected() ? "Remove" : "Add");
         updateTextPane();
     }
