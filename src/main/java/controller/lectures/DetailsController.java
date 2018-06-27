@@ -40,7 +40,7 @@ public class DetailsController extends Controller {
         this.tableController = lecturesTableController;
 
         // Add Sub-Controllers
-        this.commentController = new CommentController(sqLiteManager, this);
+        this.commentController = new CommentController(sqLiteManager, this, loginController);
 
         // Add Sub-Views
         this.detailsView.setRightPane(commentController.getView().getMainPane());

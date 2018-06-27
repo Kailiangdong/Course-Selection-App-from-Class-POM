@@ -31,19 +31,39 @@
           </component>
         </children>
       </grid>
-      <grid id="666af" binding="actionPane" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+      <grid id="666af" binding="actionPane" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="South"/>
         <properties>
           <preferredSize width="500" height="50"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="e375f" class="javax.swing.JButton" binding="deleteButton">
-            <constraints/>
-            <properties>
-              <text value="Remove"/>
-            </properties>
-          </component>
+          <grid id="f4fec" binding="leftPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+            <constraints border-constraint="West"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="b9d1d" class="javax.swing.JButton" binding="likeDislikeButton">
+                <constraints/>
+                <properties>
+                  <text value="Like"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="4b810" binding="rightPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="e375f" class="javax.swing.JButton" binding="deleteButton">
+                <constraints/>
+                <properties>
+                  <text value="Remove"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
         </children>
       </grid>
       <grid id="fd494" binding="listPane" layout-manager="BorderLayout" hgap="0" vgap="0">

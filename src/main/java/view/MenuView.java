@@ -20,6 +20,7 @@ public class MenuView implements View {
     private JMenuItem quitItem;
     private JMenuItem refreshItem;
     private JMenuItem logoutItem;
+    private JMenuItem feedbackItem;
 
     public MenuView() {
         menuBar = new JMenuBar(); // top menu bar
@@ -28,6 +29,10 @@ public class MenuView implements View {
     }
 
     // Main Menu
+
+    public void setFeedbackButtonListener(ActionListener actionListener) {
+        feedbackItem.addActionListener(actionListener);
+    }
 
     public void setLogoutButtonListener(ActionListener actionListener) {
         logoutItem.addActionListener(actionListener);
@@ -46,9 +51,11 @@ public class MenuView implements View {
         quitItem = new JMenuItem("Quit");
         refreshItem = new JMenuItem("Refresh");
         logoutItem = new JMenuItem("Logout");
+        feedbackItem = new JMenuItem("Feedback");
 
         // Add items
         mainMenu.add(refreshItem);
+        mainMenu.add(feedbackItem);
         mainMenu.add(logoutItem);
         mainMenu.add(quitItem);
 
