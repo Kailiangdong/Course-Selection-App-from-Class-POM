@@ -17,6 +17,7 @@ public class BackendAdapter {
   public static final String COMMENTS_FILE = "data\\comments.csv";
   public static final String FRIENDS_WITH_FILE = "data\\friendswith.csv";
   public static final String LIKES_FILE = "data\\likes.csv";
+  public static final String REQUEST_FRIENDS_FILE = "data\\requestfriends.csv";
 
   /**
    * Fills the table 'STUDENTS' with the master data. Make sure to truncate table before calling
@@ -175,7 +176,30 @@ public class BackendAdapter {
       System.out.println("Error while inserting 'LIKES' data.");
     }
   }
+  public static void fillRequestFriendsTable(PreparedStatement insertStmt) throws SQLException {
+    try {
+      ArrayList<String[]> table = readCSVFile(REQUEST_FRIENDS_FILE);
 
+      for (String[] row : table) {
+
+        int requestTo= Integer.parseInt(row[0]);
+        int requestFrom = Integer.parseInt(row[1]);
+        String time = row[2];
+        String date = row[3];
+
+        insertStmt.clearParameters();
+        insertStmt.setInt(1, requestTo);
+        insertStmt.setInt(2, requestFrom);
+        insertStmt.setString(3, time);
+        insertStmt.setString(4, date);
+        insertStmt.executeUpdate();
+      }
+    } catch (FileNotFoundException e) {
+      System.out.println("File with 'REQUESTFRIENDS' data was not found: " + REQUEST_FRIENDS_FILE);
+    } catch (RuntimeException e) {
+      System.out.println("Error while inserting 'REQUESTFRIENDS' data.");
+    }
+  }
   /**
    * Fills the table 'CHAIRS' with the master data. Make sure to truncate table before calling this
    * method, otherwise the table may be corrupted afterwards.
