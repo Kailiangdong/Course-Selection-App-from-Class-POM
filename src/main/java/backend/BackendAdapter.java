@@ -184,10 +184,14 @@ public class BackendAdapter {
 
         int requestTo= Integer.parseInt(row[0]);
         int requestFrom = Integer.parseInt(row[1]);
+        String time = row[2];
+        String date = row[3];
 
         insertStmt.clearParameters();
         insertStmt.setInt(1, requestTo);
         insertStmt.setInt(2, requestFrom);
+        insertStmt.setString(3, time);
+        insertStmt.setString(4, date);
         insertStmt.executeUpdate();
       }
     } catch (FileNotFoundException e) {

@@ -150,7 +150,10 @@ public class SQLiteManager {
             sql = "CREATE TABLE REQUESTFRIENDS" +
                     "(REQUEST_TO INTEGER REFERENCES STUDENTS ON DELETE CASCADE," +
                     " REQUEST_FROM INTEGER REFERENCES STUDENTS ON DELETE CASCADE," +
-                    " PRIMARY KEY (REQUEST_TO, REQUEST_FROM));";
+                    " TIME TEXT NOT NULL," +
+                    " DATE TEXT NOT NULL " +
+                    ");";
+
             stmt.executeUpdate(sql);
 
         } catch (SQLException e) {
@@ -169,7 +172,7 @@ public class SQLiteManager {
             PreparedStatement stmtComments = c.prepareStatement("insert into Comments values(?, ?, ?, ?, ?, ?)");
             PreparedStatement stmtFriendsWith = c.prepareStatement("insert into FriendsWith values(?, ?)");
             PreparedStatement stmtLikes = c.prepareStatement("insert into Likes values(?, ?)");
-            PreparedStatement stmtRequestFriends = c.prepareStatement("insert into RequestFriends values(?, ?)")) {
+            PreparedStatement stmtRequestFriends = c.prepareStatement("insert into RequestFriends values(?, ?, ?, ?)")) {
             BackendAdapter.fillLecturesTable(stmtLectures);
             BackendAdapter.fillStudentsTable(stmtStudents);
             BackendAdapter.fillAttendsTable(stmtAttends);
