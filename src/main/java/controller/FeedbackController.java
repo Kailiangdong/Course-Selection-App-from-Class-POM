@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class FeedbackController extends Controller {
 
-    private final String HOCKEYAPP_ID = "fc83ec2bc6ce4698ab94bf783146cdca";
+    private final String HOCKEYAPP_ID = "e9aa1178670a465d9e0d879310f3ca91";
 
     private FeedbackDialog dialog;
     private FeedbackManager feedbackManager;
