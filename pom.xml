@@ -17,7 +17,7 @@
                         <phase>compile</phase>
                         <configuration>
                             <tasks>
-                                <copy todir="target/data">
+                                <copy todir="target/UniversityApp/data">
                                     <fileset dir="data"/>
                                 </copy>
                             </tasks>
@@ -80,14 +80,12 @@
                             <mainClass>controller.AppController</mainClass>
                         </manifest>
                     </archive>
-                    <descriptors>
-                        <descriptor>src/main/assembly/dist.xml</descriptor>
-                    </descriptors>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                     <finalName>UniversityApp</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
+                    <outputDirectory>target/UniversityApp</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
