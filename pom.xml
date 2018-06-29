@@ -98,14 +98,6 @@
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>data</directory>
-                <includes>
-                    <include>**/*.csv</include>
-                </includes>
-            </resource>
-        </resources>
     </build>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
