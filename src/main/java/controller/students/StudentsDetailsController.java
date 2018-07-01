@@ -4,6 +4,7 @@ import SQLiteManager.SQLiteManager;
 import SQLiteManager.QueryBuilder;
 import SQLiteManager.QueryType;
 import controller.Controller;
+import controller.lectures.CommentController;
 import controller.lectures.DetailsController;
 import controller.login.LoginController;
 import university.Student;
@@ -20,6 +21,7 @@ public class StudentsDetailsController extends Controller {
     private SQLiteManager sqLiteManager;
     private LoginController loginController;
     private StudentsTableController tableController;
+    private RequestsController requestsController;
 
     private Student student;
 
@@ -30,6 +32,15 @@ public class StudentsDetailsController extends Controller {
         this.detailsView = new DetailsStudents();
         this.loginController = loginController;
         this.tableController = tableController;
+
+        // Add Sub-Controllers
+        this.requestsController = new RequestsController(sqLiteManager, this, loginController);
+
+        // Add Sub-Views
+        this.detailsView.setRightPane(requestsController.getView().getMainPane());
+
+        // Logic Observers
+        tableController.attach(requestsController);
 
         update();
         addListeners();
