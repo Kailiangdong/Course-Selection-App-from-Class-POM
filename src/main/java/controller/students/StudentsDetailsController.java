@@ -111,7 +111,7 @@ public class StudentsDetailsController extends Controller {
     private String[][] queryReceivedRequests() {
         String[][] queryResult = new String[0][];
         try {
-            queryResult = sqLiteManager.executeQuery(listAllReceivedRequests(Integer.toString(loggedstudent.getId())));
+            queryResult = sqLiteManager.executeQuery(listAllReceivedRequests(Integer.toString(loginController.getLoggedInStudent().getId())));
         } catch (SQLException e) {
             System.out.println("Error executing list received request: " + e.toString());
         }
