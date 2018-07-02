@@ -22,9 +22,10 @@ public class StudentsDetailsController extends Controller {
     private SQLiteManager sqLiteManager;
     private LoginController loginController;
     private StudentsTableController tableController;
+    private RequestsController requestsController;
 
     private Student student;
-    private Student loggedstudent;
+
     public StudentsDetailsController(SQLiteManager sqLiteManager,
                                      LoginController loginController,
                                      StudentsTableController tableController) {
@@ -32,6 +33,15 @@ public class StudentsDetailsController extends Controller {
         this.detailsView = new DetailsStudents();
         this.loginController = loginController;
         this.tableController = tableController;
+
+        // Add Sub-Controllers
+        this.requestsController = new RequestsController(sqLiteManager, this, loginController);
+
+        // Add Sub-Views
+        this.detailsView.setRightPane(requestsController.getView().getMainPane());
+
+        // Logic Observers
+        tableController.attach(requestsController);
 
         update();
         addListeners();
@@ -101,7 +111,7 @@ public class StudentsDetailsController extends Controller {
     private String[][] queryReceivedRequests() {
         String[][] queryResult = new String[0][];
         try {
-            queryResult = sqLiteManager.executeQuery(listAllReceivedRequests(Integer.toString(loggedstudent.getId())));
+            queryResult = sqLiteManager.executeQuery(listAllReceivedRequests(Integer.toString(loginController.getLoggedInStudent().getId())));
         } catch (SQLException e) {
             System.out.println("Error executing list received request: " + e.toString());
         }
@@ -193,7 +203,6 @@ public class StudentsDetailsController extends Controller {
     @Override
     public void update() {
         student = tableController.getSelectedStudent();
-        loggedstudent = loginController.getLoggedInStudent();
         detailsView.getAddRemoveFriendButton().setText(tableController.isJoinedSelected() ? "Remove" : "Add");
         updateTextPane();
     }
