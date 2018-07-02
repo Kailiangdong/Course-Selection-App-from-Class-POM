@@ -147,6 +147,15 @@ public class SQLiteManager {
                     " PRIMARY KEY (STUDENT_ID, COMMENT_ID));";
             stmt.executeUpdate(sql);
 
+            sql = "CREATE TABLE REQUESTFRIENDS" +
+                    "(REQUEST_TO INTEGER REFERENCES STUDENTS ON DELETE CASCADE," +
+                    " REQUEST_FROM INTEGER REFERENCES STUDENTS ON DELETE CASCADE," +
+                    " TIME TEXT NOT NULL," +
+                    " DATE TEXT NOT NULL " +
+                    ");";
+
+            stmt.executeUpdate(sql);
+
         } catch (SQLException e) {
             System.out.println("Error executing query " + e.toString());
             System.exit(-1);
@@ -162,7 +171,8 @@ public class SQLiteManager {
             PreparedStatement stmtChairs = c.prepareStatement("insert into Chairs values(?, ?, ?)");
             PreparedStatement stmtComments = c.prepareStatement("insert into Comments values(?, ?, ?, ?, ?, ?)");
             PreparedStatement stmtFriendsWith = c.prepareStatement("insert into FriendsWith values(?, ?)");
-            PreparedStatement stmtLikes = c.prepareStatement("insert into Likes values(?, ?)")) {
+            PreparedStatement stmtLikes = c.prepareStatement("insert into Likes values(?, ?)");
+            PreparedStatement stmtRequestFriends = c.prepareStatement("insert into RequestFriends values(?, ?, ?, ?)")) {
             BackendAdapter.fillLecturesTable(stmtLectures);
             BackendAdapter.fillStudentsTable(stmtStudents);
             BackendAdapter.fillAttendsTable(stmtAttends);
@@ -170,6 +180,7 @@ public class SQLiteManager {
             BackendAdapter.fillCommentsTable(stmtComments);
             BackendAdapter.fillFriendsWithTable(stmtFriendsWith);
             BackendAdapter.fillLikesTable(stmtLikes);
+            BackendAdapter.fillRequestFriendsTable(stmtRequestFriends);
         } catch (SQLException e) {
             System.out.println("Error importing records " + e.toString());
         }
@@ -188,6 +199,7 @@ public class SQLiteManager {
             executeStatement("SELECT * FROM COMMENTS");
             executeStatement("SELECT * FROM FRIENDSWITH");
             executeStatement("SELECT * FROM LIKES");
+            executeStatement("SELECT * FROM REQUESTFRIENDS");
         } catch (SQLException e) {
             System.out.println("Database corrupted: " + e.toString());
             return false;
@@ -248,6 +260,13 @@ public class SQLiteManager {
             System.out.println("LIKES table is deleted");
         } catch(SQLException e) {
             System.out.println("LIKES table is missing");
+        }
+        try {
+            executeStatement("SELECT * FROM REQUESTFRIENDS");
+            executeStatement("DROP TABLE REQUESTFRIENDS");
+            System.out.println("REQUESTFRIENDS table is deleted");
+        } catch(SQLException e) {
+            System.out.println("REQUESTFRIENDS table is missing");
         }
     }
     //</editor-fold>
