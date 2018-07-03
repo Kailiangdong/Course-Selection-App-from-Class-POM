@@ -18,13 +18,16 @@ public class AccountController extends Controller {
 
     private AccountView accountView;
     private SQLiteManager sqLiteManager;
+    private LoginController loginController;
     private Student activeStudent;
     private String[] subjects;
     private List<Student> students;
 
-    public AccountController(SQLiteManager sqLiteManager) {
+    public AccountController(SQLiteManager sqLiteManager, LoginController loginController) {
         this.accountView = new AccountView();
-        this.sqLiteManager = new SQLiteManager();
+        this.sqLiteManager = sqLiteManager;
+        this.loginController = loginController;
+        this.loginController.attach(this);
         addListeners();
         update();
     }
@@ -36,7 +39,7 @@ public class AccountController extends Controller {
     }
     //</editor-fold>
 
-    //<editor-fold desc="Querie Builder">
+    //<editor-fold desc="Query Builder">
     private QueryBuilder createSubjectsQuery() {
         QueryBuilder queryBuilder = new QueryBuilder(QueryType.SELECT);
         queryBuilder.addSelect("SUBJECT", "CHAIRS");
@@ -67,6 +70,9 @@ public class AccountController extends Controller {
         accountView.setMinorValue(activeStudent.getMinor());
         accountView.setMajorBoxChoices(subjects);
         accountView.setMinorBoxChoices(subjects);
+        accountView.setUserNameValue(activeStudent.getName());
+        accountView.setMajorValue(activeStudent.getMajor());
+        accountView.setMinorValue(activeStudent.getMinor());
 
     }
     private String[] createSubjects() {
@@ -93,13 +99,11 @@ public class AccountController extends Controller {
                     .collect(Collectors.toList());
         } catch (SQLException e) {
             System.out.println("Error querying student names: " + e.toString());
-            List<Student> output = new ArrayList<Student>();
-            return output;
+            return new ArrayList<Student>();
         }
     }
     private Student createActiveStudent() {
-        // TODO get logged in student
-        return new Student(3953, null, null, null);
+        return loginController.getLoggedInStudent();
     }
     //</editor-fold>
 
@@ -107,7 +111,7 @@ public class AccountController extends Controller {
     private boolean checkUserName(String userNameInput){
         return userNameInput != null &&
                 !userNameInput.equals("") &&
-                students
+                !students
                         .stream()
                         .map(student -> student.getName())
                         .collect(Collectors.toList())
@@ -121,9 +125,9 @@ public class AccountController extends Controller {
                 !passwordInput.equals("") &&
                 passwordRepeatInput.equals(passwordInput) &&
                 activeStudent.getPassword().equals(oldPasswordInput) &&
-                students
+                !students
                         .stream()
-                        .map(student -> student.getName())
+                        .map(student -> student.getPassword())
                         .collect(Collectors.toList())
                         .contains(passwordInput);
 
@@ -148,6 +152,7 @@ public class AccountController extends Controller {
         System.out.println(qb.toString());
         try {
             sqLiteManager.executeStatement(qb);
+            activeStudent.setName(userNameInput);
         } catch(Exception e) {
             System.out.println("Error changing username " + e.toString());
         }
@@ -160,6 +165,7 @@ public class AccountController extends Controller {
         System.out.println(qb.toString());
         try {
             sqLiteManager.executeStatement(qb);
+            activeStudent.setPassword(passwordInput);
         } catch(Exception e) {
             System.out.println("Error changing password " + e.toString());
         }
@@ -172,6 +178,7 @@ public class AccountController extends Controller {
         System.out.println(qb.toString());
         try {
             sqLiteManager.executeStatement(qb);
+            activeStudent.setMajor(majorInput);
         } catch(Exception e) {
             System.out.println("Error changing major " + e.toString());
         }
@@ -184,6 +191,7 @@ public class AccountController extends Controller {
         System.out.println(qb.toString());
         try {
             sqLiteManager.executeStatement(qb);
+            activeStudent.setMinor(minorInput);
         } catch(Exception e) {
             System.out.println("Error changing minor " + e.toString());
         }

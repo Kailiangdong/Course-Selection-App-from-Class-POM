@@ -22,7 +22,7 @@ public class Student {
         this.minor = minor;
     }
 
-    //<editor-fold desc="Getters">
+    //<editor-fold desc="Getters & Setters">
     public int getId() {
         return id;
     }
@@ -30,15 +30,27 @@ public class Student {
     public String getName() {
         return name;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getPassword() {return password; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getMajor() {
         return major;
     }
+    public void setMajor(String major) {
+        this.major = major;
+    }
 
     public String getMinor() {
         return minor;
+    }
+    public void setMinor(String minor) {
+        this.minor = minor;
     }
     //</editor-fold>
 

@@ -7,6 +7,7 @@ import view.View;
 import javax.swing.*;
 import javax.swing.event.DocumentListener;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class AccountView implements View {
     private JPanel mainPane;
@@ -87,15 +88,17 @@ public class AccountView implements View {
     }
 
     public void setMajorBoxChoices(String[] majors) {
-        for (String major : majors) {
-            majorBox.addItem(major);
-        }
+        majorBox.removeAllItems();
+        Arrays
+                .stream(majors)
+                .forEach(major -> majorBox.addItem(major));
     }
 
     public void setMinorBoxChoices(String[] minors) {
-        for (String minor : minors) {
-            minorBox.addItem(minor);
-        }
+        minorBox.removeAllItems();
+        Arrays
+                .stream(minors)
+                .forEach(minor -> minorBox.addItem(minor));
     }
     //</editor-fold>
 
@@ -166,10 +169,10 @@ public class AccountView implements View {
         passwordField = new JPasswordField();
         mainPane.add(passwordField, cc.xy(7, 5, CellConstraints.FILL, CellConstraints.DEFAULT));
         userNameButton = new JButton();
-        userNameButton.setText("Button");
+        userNameButton.setText("Change User Name");
         mainPane.add(userNameButton, cc.xy(9, 3));
         passwordButton = new JButton();
-        passwordButton.setText("Button");
+        passwordButton.setText("Change Password");
         mainPane.add(passwordButton, cc.xy(9, 9));
         final JLabel label5 = new JLabel();
         label5.setText("Major");
@@ -184,10 +187,10 @@ public class AccountView implements View {
         minorValue.setText("");
         mainPane.add(minorValue, cc.xy(5, 13));
         majorButton = new JButton();
-        majorButton.setText("Button");
+        majorButton.setText("Change Major");
         mainPane.add(majorButton, cc.xy(9, 11));
         minorButton = new JButton();
-        minorButton.setText("Button");
+        minorButton.setText("Change Minor");
         mainPane.add(minorButton, cc.xy(9, 13));
         majorBox = new JComboBox();
         mainPane.add(majorBox, cc.xy(7, 11));
@@ -204,10 +207,10 @@ public class AccountView implements View {
         passwordCheck.setText("");
         mainPane.add(passwordCheck, cc.xy(11, 9));
         majorCheck = new JLabel();
-        majorCheck.setText("asdfgg");
+        majorCheck.setText("");
         mainPane.add(majorCheck, cc.xy(11, 11));
         minorCheck = new JLabel();
-        minorCheck.setText("Label");
+        minorCheck.setText("");
         mainPane.add(minorCheck, cc.xy(11, 13));
     }
 
