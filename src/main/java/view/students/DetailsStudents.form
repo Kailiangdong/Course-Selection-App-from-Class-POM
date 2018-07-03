@@ -14,7 +14,7 @@
         <properties>
           <preferredSize width="500" height="300"/>
         </properties>
-        <border type="none" title="Additional"/>
+        <border type="none" title="Friend requests"/>
         <children/>
       </grid>
       <grid id="9da1a" binding="leftPane" layout-manager="BorderLayout" hgap="0" vgap="0">
