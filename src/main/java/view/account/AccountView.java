@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.event.DocumentListener;
 import java.awt.event.ActionListener;
 
-public class AccountsView implements View{
+public class AccountView implements View {
     private JPanel mainPane;
     private JTextField userNameField;
     private JPasswordField oldPasswordField;
@@ -64,16 +64,16 @@ public class AccountsView implements View{
         }
     }
     //</editor-fold>
-    public void addUserNameActionListener(ActionListener actionListener) {
-        userNameButton.addActionListener(actionListener);
-    }
-    public void addPasswordActionListener(ActionListener actionListener) {
-        passwordButton.addActionListener(actionListener);
-    }
+
+
+    //<editor-fold desc="Listeners">
+    public void addUserNameActionListener(ActionListener actionListener) { userNameButton.addActionListener(actionListener); }
+    public void addPasswordActionListener(ActionListener actionListener) { passwordButton.addActionListener(actionListener); }
     public void addMajorActionListener(ActionListener actionListener) {
         majorButton.addActionListener(actionListener);
     }
     public void addMinorActionListener(ActionListener actionListener) {
         minorButton.addActionListener(actionListener);
     }
+    //</editor-fold>
 }
