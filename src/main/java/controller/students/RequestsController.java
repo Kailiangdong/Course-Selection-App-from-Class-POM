@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class RequestsController extends Controller {
@@ -47,8 +48,9 @@ public class RequestsController extends Controller {
         this.loginController = loginController;
         this.tableController = tableController;
 
-        requests.add(new FriendRequest(sqLiteManager.getStudent(3953), loginController.getLoggedInStudent(), "12-06-2018", "12:30"));
-        view.setList(requests.toArray(new FriendRequest[]{}));
+        //requests.add(new FriendRequest(sqLiteManager.getStudent(3953), loginController.getLoggedInStudent(), "12-06-2018", "12:30"));
+        //view.setList(requests.toArray(new FriendRequest[]{}));
+        queryRequests();
 
         addListeners();
         update();
@@ -66,7 +68,7 @@ public class RequestsController extends Controller {
 
     private QueryBuilder listAllReceivedRequests(String studentID) {
         QueryBuilder query = new QueryBuilder(QueryType.SELECT);
-
+        query.addSelect("REQUEST_TO", "REQUESTFRIENDS");
         query.addSelect("REQUEST_FROM", "REQUESTFRIENDS");
         query.addSelect("TIME", "REQUESTFRIENDS");
         query.addSelect("DATE", "REQUESTFRIENDS");
@@ -131,10 +133,23 @@ public class RequestsController extends Controller {
         update();
     }
 
-    @Override
-    public void addListeners() {
-        view.setSelectionListener(new SelectListener());
-        view.setAddListener(new AddListner());
+    private void queryRequests() {
+        String[][] queryResult = new String[0][];
+        requests = new ArrayList<>();
+        try {
+            queryResult = sqLiteManager.executeQuery(listAllReceivedRequests("" + loginController.getLoggedInStudent().getId()));
+        } catch (SQLException e) {
+            System.out.println("Error executing show comment: " + e.toString());
+        }
+        for (int i = 0; i < queryResult.length; i++) {
+            Student requestTo = sqLiteManager.getStudent(Integer.parseInt(queryResult[i][0]));
+            Student requestFrom = sqLiteManager.getStudent(Integer.parseInt(queryResult[i][1]));
+            String time = queryResult[i][2];
+            String date = queryResult[i][3];
+
+            FriendRequest request = new FriendRequest(requestTo, requestFrom, date, time);
+            requests.add(request);
+        }
     }
 
     @Override
@@ -147,34 +162,44 @@ public class RequestsController extends Controller {
 
     }
 
-    class AddListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                /*if (tableController.getSelectedRight()) {
-                    return;
-                } else {
-
-                }*/
-            } catch (SQLException ex) {
-                System.out.println("Error executing like query " + ex.toString());
-            }
-            CommentController.this.update();
-        }
-
-    class SelectListener implements ListSelectionListener {
-        @Override
-        public void valueChanged(ListSelectionEvent e) {
-
-            ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-            int index = lsm.getMinSelectionIndex();
-            if (index < 0) {
-                return;
-            }
-
-            setSelectedRequest((FriendRequest) view.getObject(index));
-
-            RequestsController.this.update();
-        }
+    //<editor-fold desc="Listeners">
+    @Override
+    public void addListeners() {
+        view.setSelectionListener(new SelectListener());
+        //view.setAddListener(new AddListner());
     }
+
+
+
+/*class AddListener implements ActionListener {
+   @Override
+   public void actionPerformed(ActionEvent e) {
+       try {
+           /*if (tableController.getSelectedRight()) {
+               return;
+           } else {
+
+           }
+       } catch (SQLException ex) {
+           System.out.println("Error executing like query " + ex.toString());
+       }
+       CommentController.this.update();
+   }*/
+        class SelectListener implements ListSelectionListener {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+                ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+                int index = lsm.getMinSelectionIndex();
+                if (index < 0) {
+                    return;
+                }
+
+                setSelectedRequest((FriendRequest) view.getObject(index));
+
+                RequestsController.this.update();
+            }
+        }
+    //</editor-fold>
+
 }
