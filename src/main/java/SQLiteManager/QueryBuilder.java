@@ -217,6 +217,8 @@ public class QueryBuilder {
                 return getInsertStmt();
             case DELETE:
                 return getDeleteStmt();
+            case UPDATE:
+                return getUpdateStmt();
         }
         return "";
     }
