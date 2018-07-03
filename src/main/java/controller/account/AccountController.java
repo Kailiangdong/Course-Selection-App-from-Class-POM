@@ -142,16 +142,52 @@ public class AccountController extends Controller {
 
     }
     private void changeUserName(String userNameInput){
-
+        QueryBuilder qb = new QueryBuilder(QueryType.UPDATE);
+        qb.addFrom("STUDENTS", "");
+        qb.addSetTab("NAME=" + "'" + userNameInput + "'");
+        qb.addWhere("ID=" + createActiveStudent().getId());
+        System.out.println(qb.toString());
+        try {
+            sqLiteManager.executeStatement(qb);
+        } catch(Exception e) {
+            System.out.println("Error changing username " + e.toString());
+        }
     }
     private void changePassword(String passwordInput){
-
+        QueryBuilder qb = new QueryBuilder(QueryType.UPDATE);
+        qb.addFrom("STUDENTS", "");
+        qb.addSetTab("PASSWORD=" + "'" + passwordInput + "'");
+        qb.addWhere("ID=" + createActiveStudent().getId());
+        System.out.println(qb.toString());
+        try {
+            sqLiteManager.executeStatement(qb);
+        } catch(Exception e) {
+            System.out.println("Error changing password " + e.toString());
+        }
     }
     private void changeMajor(String majorInput){
-
+        QueryBuilder qb = new QueryBuilder(QueryType.UPDATE);
+        qb.addFrom("STUDENTS", "");
+        qb.addSetTab("MAJOR=" + "'" + majorInput + "'");
+        qb.addWhere("ID=" + createActiveStudent().getId());
+        System.out.println(qb.toString());
+        try {
+            sqLiteManager.executeStatement(qb);
+        } catch(Exception e) {
+            System.out.println("Error changing major " + e.toString());
+        }
     }
     private void changeMinor(String minorInput){
-
+        QueryBuilder qb = new QueryBuilder(QueryType.UPDATE);
+        qb.addFrom("STUDENTS", "");
+        qb.addSetTab("MINOR=" + "'" + minorInput + "'");
+        qb.addWhere("ID=" + createActiveStudent().getId());
+        System.out.println(qb.toString());
+        try {
+            sqLiteManager.executeStatement(qb);
+        } catch(Exception e) {
+            System.out.println("Error changing minor " + e.toString());
+        }
     }
     //</editor-fold>
 

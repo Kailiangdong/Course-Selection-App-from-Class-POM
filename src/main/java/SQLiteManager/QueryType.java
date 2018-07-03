@@ -2,6 +2,6 @@ package SQLiteManager;
 
 public enum QueryType {
 
-    SELECT, INSERT, DELETE
+    SELECT, INSERT, DELETE, UPDATE
 
 }
