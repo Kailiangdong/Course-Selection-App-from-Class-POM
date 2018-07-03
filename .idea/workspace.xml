@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83ad940b-622c-4e57-87a9-1d8cdd21061f" name="Default" comment="Add">
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache.db" beforeDir="false" afterPath="$PROJECT_DIR$/cache.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/account/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/account/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/AppFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AppFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/account/AccountView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/account/AccountView.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/university/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/university/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/account/AccountView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/account/AccountView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AccountController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AccountController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/account/AccountController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1077">
-              <caret line="42" column="48" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
+            <state relative-caret-position="460">
+              <caret line="193" column="45" selection-start-line="193" selection-start-column="45" selection-end-line="193" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -30,20 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/view/View.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="510">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
             </state>
           </provider>
         </entry>
@@ -57,22 +47,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/login/LoginController.java">
+      <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/university/Student.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1008">
-              <caret line="108" selection-start-line="108" selection-end-line="108" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1288#1447#0" />
-              </folding>
+            <state relative-caret-position="267">
+              <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppFrame.form" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AppFrame.form" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/view/AppFrame.form">
           <provider selected="true" editor-type-id="ui-designer" />
+        </entry>
+      </file>
+      <file leaf-file-name="AccountView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/view/account/AccountView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="307">
+              <caret line="102" column="20" lean-forward="true" selection-start-line="102" selection-start-column="20" selection-end-line="102" selection-end-column="20" />
+              <folding>
+                <element signature="initializer##0;class#AccountView#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -125,7 +123,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/controller/LecturesDetailsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/RowListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/LecturesTableView.form" />
         <option value="$PROJECT_DIR$/src/main/java/view/LecturesDetailsView.form" />
@@ -175,6 +172,7 @@
         <option value="$PROJECT_DIR$/src/main/java/view/AppFrame.form" />
         <option value="$PROJECT_DIR$/src/main/java/view/AppFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/account/AccountView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/university/Student.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/account/AccountController.java" />
       </list>
     </option>
@@ -213,6 +211,19 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="GIT" type="58d84e3e:PackageViewProjectNode" />
+              <item name="LectureApp" type="616d4139:PackageViewModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -244,63 +255,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="account" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="university" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="account" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GIT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GIT" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="AppFrame" type="e9f4de52:FormNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="GIT" type="58d84e3e:PackageViewProjectNode" />
-              <item name="LectureApp" type="616d4139:PackageViewModuleNode" />
             </path>
           </expand>
           <select />
@@ -590,9 +545,9 @@
       <window_info id="Image Layers" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067115" side_tool="true" weight="0.23789173" />
-      <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.14880952" />
+      <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.0952381" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4986577" weight="0.32765532" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" visible="true" weight="0.44488978" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.44488978" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" weight="0.25783476" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="2" />
@@ -603,18 +558,19 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3977956" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3977956" />
       <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info id="Designer" order="2" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.31659693" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24404761" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" weight="0.25783476" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4986577" visible="true" weight="0.32765532" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.44551724" />
       <window_info id="Image Layers" order="3" />
@@ -625,12 +581,10 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067115" side_tool="true" weight="0.23789173" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" weight="0.25783476" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.31659693" />
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.31879196" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24404761" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
@@ -638,12 +592,12 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.44551724" />
       <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24414062" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4986577" weight="0.32827586" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -653,7 +607,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" weight="0.25783476" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3986207" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4986577" weight="0.32827586" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50067115" side_tool="true" weight="0.23789173" />
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -705,7 +659,7 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
+      <option name="time" value="13" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -933,8 +887,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="510">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
         </state>
       </provider>
     </entry>
@@ -964,45 +918,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/account/AccountView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-309">
-          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/MenuController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1076">
           <caret line="129" column="35" lean-forward="true" selection-start-line="129" selection-start-column="35" selection-end-line="129" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/login/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1288#1447#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/university/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-159">
-          <caret line="16" column="83" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/account/AccountController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1077">
-          <caret line="42" column="48" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1015,6 +934,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/view/AppFrame.form">
       <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/account/AccountView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="102" column="20" lean-forward="true" selection-start-line="102" selection-start-column="20" selection-end-line="102" selection-end-column="20" />
+          <folding>
+            <element signature="initializer##0;class#AccountView#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/login/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1288#1318#0" />
+            <element signature="e#1288#1447#0" />
+            <element signature="e#6207#6237#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/university/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/account/AccountController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="193" column="45" selection-start-line="193" selection-start-column="45" selection-end-line="193" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

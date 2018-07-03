@@ -7,6 +7,7 @@ import view.View;
 import javax.swing.*;
 import javax.swing.event.DocumentListener;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class AccountView implements View {
     private JPanel mainPane;
@@ -87,15 +88,17 @@ public class AccountView implements View {
     }
 
     public void setMajorBoxChoices(String[] majors) {
-        for (String major : majors) {
-            majorBox.addItem(major);
-        }
+        majorBox.removeAllItems();
+        Arrays
+                .stream(majors)
+                .forEach(major -> majorBox.addItem(major));
     }
 
     public void setMinorBoxChoices(String[] minors) {
-        for (String minor : minors) {
-            minorBox.addItem(minor);
-        }
+        minorBox.removeAllItems();
+        Arrays
+                .stream(minors)
+                .forEach(minor -> minorBox.addItem(minor));
     }
     //</editor-fold>
 
