@@ -18,13 +18,16 @@ public class AccountController extends Controller {
 
     private AccountView accountView;
     private SQLiteManager sqLiteManager;
+    private LoginController loginController;
     private Student activeStudent;
     private String[] subjects;
     private List<Student> students;
 
-    public AccountController(SQLiteManager sqLiteManager) {
+    public AccountController(SQLiteManager sqLiteManager, LoginController loginController) {
         this.accountView = new AccountView();
-        this.sqLiteManager = new SQLiteManager();
+        this.sqLiteManager = sqLiteManager;
+        this.loginController = loginController;
+        this.loginController.attach(this);
         addListeners();
         update();
     }
@@ -93,13 +96,11 @@ public class AccountController extends Controller {
                     .collect(Collectors.toList());
         } catch (SQLException e) {
             System.out.println("Error querying student names: " + e.toString());
-            List<Student> output = new ArrayList<Student>();
-            return output;
+            return new ArrayList<Student>();
         }
     }
     private Student createActiveStudent() {
-
-
+        return loginController.getLoggedInStudent();
     }
     //</editor-fold>
 
@@ -107,7 +108,7 @@ public class AccountController extends Controller {
     private boolean checkUserName(String userNameInput){
         return userNameInput != null &&
                 !userNameInput.equals("") &&
-                students
+                !students
                         .stream()
                         .map(student -> student.getName())
                         .collect(Collectors.toList())
@@ -121,9 +122,9 @@ public class AccountController extends Controller {
                 !passwordInput.equals("") &&
                 passwordRepeatInput.equals(passwordInput) &&
                 activeStudent.getPassword().equals(oldPasswordInput) &&
-                students
+                !students
                         .stream()
-                        .map(student -> student.getName())
+                        .map(student -> student.getPassword())
                         .collect(Collectors.toList())
                         .contains(passwordInput);
 

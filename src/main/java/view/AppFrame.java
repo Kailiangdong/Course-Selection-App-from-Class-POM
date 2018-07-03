@@ -136,9 +136,12 @@ public class AppFrame extends JFrame implements View {
         studentsPane = new JPanel();
         studentsPane.setLayout(new BorderLayout(0, 0));
         studentsPane.setEnabled(true);
-        studentsPane.setVisible(true);
+        studentsPane.setVisible(false);
         tabPane.addTab("Students", studentsPane);
         tabPane.setEnabledAt(2, false);
+        accountPane = new JPanel();
+        accountPane.setLayout(new BorderLayout(0, 0));
+        tabPane.addTab("Account", accountPane);
     }
 
     /**

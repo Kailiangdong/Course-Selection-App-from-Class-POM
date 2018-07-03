@@ -145,7 +145,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Change User Name"/>
         </properties>
       </component>
       <component id="5357f" class="javax.swing.JButton" binding="passwordButton">
@@ -154,7 +154,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Change Password"/>
         </properties>
       </component>
       <component id="e01a7" class="javax.swing.JLabel">
@@ -199,7 +199,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Change Major"/>
         </properties>
       </component>
       <component id="90ec3" class="javax.swing.JButton" binding="minorButton">
@@ -208,7 +208,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Change Minor"/>
         </properties>
       </component>
       <component id="c9e49" class="javax.swing.JComboBox" binding="majorBox">
@@ -261,7 +261,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="asdfgg"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="4043a" class="javax.swing.JLabel" binding="minorCheck">
@@ -270,7 +270,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Label"/>
+          <text value=""/>
         </properties>
       </component>
     </children>
