@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.tum</groupId>
     <artifactId>LectureApp</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.3</version>
     <packaging>jar</packaging>
     <build>
         <plugins>
@@ -17,7 +17,7 @@
                         <phase>compile</phase>
                         <configuration>
                             <tasks>
-                                <copy todir="target/data">
+                                <copy todir="target/UniversityApp/data">
                                     <fileset dir="data"/>
                                 </copy>
                             </tasks>
@@ -83,6 +83,9 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <finalName>UniversityApp</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <outputDirectory>target/UniversityApp</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
