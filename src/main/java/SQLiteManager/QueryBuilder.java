@@ -13,6 +13,7 @@ public class QueryBuilder {
     private List<String> groupBy;
     private List<String> having;
     private List<String> orderBy;
+    private List<String> set;
 
     public QueryBuilder(QueryType type) {
         this.type = type;
@@ -23,6 +24,7 @@ public class QueryBuilder {
         groupBy = new ArrayList<>();
         having = new ArrayList<>();
         orderBy = new ArrayList<>();
+        set =  new ArrayList<>();
     }
 
     //<editor-fold desc="Helper Section">
@@ -186,6 +188,26 @@ public class QueryBuilder {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Update section">
+    public void addSetTab(String tabname) {
+        set.add(tabname);
+    }
+
+    private String getUpdateStmt() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("UPDATE " + from.get(0));
+        if(set != null && set.size() > 0) {
+            builder.append("\n SET");
+            listAddingToBuilder(builder, set.listIterator(), " ,", true);
+        }
+        if (where != null && where.size() > 0) {
+            builder.append("\n" + "WHERE");
+            listAddingToBuilder(builder, where.listIterator(), " AND", true);
+        }
+        return builder.toString();
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Main Section">
     public String toString() {
         switch (type) {
@@ -195,6 +217,8 @@ public class QueryBuilder {
                 return getInsertStmt();
             case DELETE:
                 return getDeleteStmt();
+            case UPDATE:
+                return getUpdateStmt();
         }
         return "";
     }
