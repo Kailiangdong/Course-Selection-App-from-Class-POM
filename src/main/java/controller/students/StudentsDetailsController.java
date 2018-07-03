@@ -35,7 +35,7 @@ public class StudentsDetailsController extends Controller {
         this.tableController = tableController;
 
         // Add Sub-Controllers
-        this.requestsController = new RequestsController(sqLiteManager, this, loginController);
+        this.requestsController = new RequestsController(sqLiteManager, this, loginController, tableController);
 
         // Add Sub-Views
         this.detailsView.setRightPane(requestsController.getView().getMainPane());
@@ -95,71 +95,6 @@ public class StudentsDetailsController extends Controller {
         return query;
     }
 
-    private QueryBuilder listAllReceivedRequests(String studentID) {
-        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
-
-        query.addSelect("REQUEST_FROM", "REQUESTFRIENDS");
-        query.addSelect("TIME", "REQUESTFRIENDS");
-        query.addSelect("DATE", "REQUESTFRIENDS");
-        query.addFrom("REQUESTFRIENDS");
-        query.addOrderBy("DATE", "REQUESTFRIENDS", "DESC");
-        query.addOrderBy("TIME", "REQUESTFRIENDS", "DESC");
-        query.addWhere("r.REQUEST_TO = " + studentID);
-
-        return query;
-    }
-    private String[][] queryReceivedRequests() {
-        String[][] queryResult = new String[0][];
-        try {
-            queryResult = sqLiteManager.executeQuery(listAllReceivedRequests(Integer.toString(loginController.getLoggedInStudent().getId())));
-        } catch (SQLException e) {
-            System.out.println("Error executing list received request: " + e.toString());
-        }
-        return queryResult;
-    }
-
-    private QueryBuilder makeRequestQuery(int studentID) {
-        ZonedDateTime timestamp = ZonedDateTime.now();
-        String date = DateTimeFormatter.ofPattern("dd-MM-yy").format(timestamp);
-        String time = DateTimeFormatter.ofPattern("hh:mm").format(timestamp);
-        time = "'" + time + "'";
-        date = "'" + date + "'";
-        QueryBuilder addBuilder = new QueryBuilder(QueryType.INSERT);
-        addBuilder.addInsertTab("REQUESTFRIENDS");
-        addBuilder.addInsertCols(new String[]{"REQUEST_TO","REQUEST_FROM","TIME", "DATE"});
-        addBuilder.addInsertVals(new String[]{Integer.toString(studentID),"" + loginController.getLoggedInStudent().getId(),time, date});
-        return addBuilder;
-    }
-
-    private void makeRequest() {
-        try {
-            sqLiteManager.executeQuery(makeRequestQuery(tableController.getSelectedStudent().getId()));
-
-        } catch (SQLException e) {
-            System.out.println("Error executing make request: " + e.toString());
-        }
-        update();
-    }
-
-    private QueryBuilder removeRequestQuery(int studentID) {
-        QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
-        deleteBuilder.addDeleteTab("REQUESTFRIENDS");
-        deleteBuilder.addDeleteWhere(new String[]{
-                "REQUEST_TO = " + loginController.getLoggedInStudent().getId(),
-                "REQUEST_FROM = " + studentID
-        });
-        return deleteBuilder;
-    }
-
-    private void removeRequest() {
-        try {
-            sqLiteManager.executeQuery(removeRequestQuery(tableController.getSelectedStudent().getId()));
-
-        } catch (SQLException e) {
-            System.out.println("Error executing remove request: " + e.toString());
-        }
-        update();
-    }
     private QueryBuilder queryAddFriend(int studentID) {
         QueryBuilder addBuilder = new QueryBuilder(QueryType.INSERT);
         addBuilder.addInsertTab("FRIENDSWITH");

@@ -48,28 +48,6 @@ public class StudentsTableController extends Controller {
         addListeners();
     }
 
-    /*private void friends() {
-        QueryBuilder builder = new QueryBuilder(QueryType.SELECT);
-        try {
-            String[][] redundantFriends = sqLiteManager.executeQuery(builder.queryFriends("" + loginController.getLoggedInStudent().getId()));
-            rightTableContent = new String[redundantFriends.length][redundantFriends[0].length];
-            for(int i = 0; i < redundantFriends.length; i++) {
-                if(redundantFriends[i][0].equals("" + loginController.getLoggedInStudent().getId())) {
-                    int friendID = Integer.parseInt(redundantFriends[i][1]);
-                    rightTableContent[i][0] = "" + sqLiteManager.getStudent(friendID).getId();
-                    rightTableContent[i][1] = "" + sqLiteManager.getStudent(friendID).getName();
-                } else {
-                    int friendID = Integer.parseInt(redundantFriends[i][0]);
-                    rightTableContent[i][0] = "" + sqLiteManager.getStudent(friendID).getId();
-                    rightTableContent[i][1] = "" + sqLiteManager.getStudent(friendID).getName();
-                }
-            }
-            System.out.println(Arrays.deepToString(rightTableContent));
-        } catch (SQLException e) {
-            System.out.println("Error loading friends");
-        }
-    }*/
-
     public QueryBuilder queryFriends(String studentID) {
         QueryBuilder queryBuilder = new QueryBuilder(QueryType.SELECT);
         queryBuilder.addSelect("ID", "s");
@@ -88,6 +66,10 @@ public class StudentsTableController extends Controller {
         queryBuilder.addFrom("STUDENTS");
         queryBuilder.addWhere("s.ID != " + studentID);
         return queryBuilder;
+    }
+
+    public Boolean getSelectedRight() {
+        return selectedRight;
     }
 
     @Override

@@ -50,7 +50,7 @@ public class FriendRequestsView implements View {
         this.rejectRequestButton.addActionListener(l);
     }
 
-    public void setCreationListener(ActionListener l) {
+    public void setAddListener(ActionListener l) {
         this.acceptRequestButton.addActionListener(l);
     }
 
