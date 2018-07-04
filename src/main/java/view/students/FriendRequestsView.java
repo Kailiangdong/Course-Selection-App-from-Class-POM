@@ -46,17 +46,19 @@ public class FriendRequestsView implements View {
     }
 
     //<editor-fold desc="Listener Section">
-    public void setDeletionListener(ActionListener l) {
-        this.rejectRequestButton.addActionListener(l);
+    public void setAcceptListener(ActionListener l) {
+        this.acceptRequestButton.addActionListener(l);
     }
 
-    public void setAddListener(ActionListener l) {
-        this.acceptRequestButton.addActionListener(l);
+
+    public void setDeletionListener(ActionListener l) {
+        this.rejectRequestButton.addActionListener(l);
     }
 
     public void setSelectionListener(ListSelectionListener l) {
         this.requestsList.getSelectionModel().addListSelectionListener(l);
     }
+    //</editor-fold desc="Listener Section">
 
     public void setList(FriendRequest[] reqestTable) {
         RequestListModel listModel = new RequestListModel();

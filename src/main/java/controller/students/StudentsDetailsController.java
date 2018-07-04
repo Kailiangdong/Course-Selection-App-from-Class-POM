@@ -42,11 +42,11 @@ public class StudentsDetailsController extends Controller {
 
         // Logic Observers
         tableController.attach(requestsController);
+        requestsController.attach(tableController);
         loginController.attach(requestsController);
 
         update();
         addListeners();
-        //detailsView.getAddRemoveFriendButton().setText("Add");
     }
 
     private void updateTextPane() {
@@ -96,22 +96,6 @@ public class StudentsDetailsController extends Controller {
         return query;
     }
 
-    private QueryBuilder queryAddFriend(int studentID) {
-        QueryBuilder addBuilder = new QueryBuilder(QueryType.INSERT);
-        addBuilder.addInsertTab("FRIENDSWITH");
-        addBuilder.addInsertCols(new String[]{"STUDENT_ID1", "STUDENT_ID2"});
-        addBuilder.addInsertVals(new String[]{"" + loginController.getLoggedInStudent().getId(), Integer.toString(studentID)});
-        return addBuilder;
-    }
-
-    public void addFriend() {
-        try {
-            sqLiteManager.executeQuery(queryAddFriend(tableController.getSelectedStudent().getId()));
-        } catch (SQLException e) {
-            System.out.println("Error executing add student: " + e.toString());
-        }
-    }
-
     private QueryBuilder queryDeleteFriend(int studentID) {
         QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
         deleteBuilder.addDeleteTab("FRIENDSWITH");
@@ -145,22 +129,6 @@ public class StudentsDetailsController extends Controller {
 
     @Override
     public void addListeners() {
-        detailsView.setRowListener(new ButtonListener());
-    }
-
-    class ButtonListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == detailsView.getAddRemoveFriendButton()) {
-                if (student != null) {
-                    if (tableController.isJoinedSelected()) {
-                        removeFriend();
-                    } else {
-                        addFriend();
-                    }
-                }
-            }
-            notifyAllObservers();
-        }
+        detailsView.setRowListener(requestsController.getAddListener());
     }
 }

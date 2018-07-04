@@ -1,12 +1,8 @@
 package controller.students;
 
 import controller.Controller;
-import controller.lectures.CommentController;
-import controller.lectures.DetailsController;
 import controller.login.LoginController;
 import university.FriendRequest;
-import university.Lecture;
-import university.LectureComment;
 import university.Student;
 import view.View;
 import SQLiteManager.*;
@@ -18,12 +14,9 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 
 public class RequestsController extends Controller {
 
@@ -55,11 +48,13 @@ public class RequestsController extends Controller {
     public FriendRequest getSelectedRequest() {
         return selectedRequest;
     }
+    //</editor-fold desc="Getters">
 
     //<editor-fold desc="Setters">
     public void setSelectedRequest(FriendRequest selectedRequest) {
         this.selectedRequest = selectedRequest;
     }
+    //</editor-fold desc="Setters">
 
     private QueryBuilder listAllReceivedRequests(String studentID) {
         QueryBuilder query = new QueryBuilder(QueryType.SELECT);
@@ -75,7 +70,7 @@ public class RequestsController extends Controller {
         return query;
     }
 
-    private QueryBuilder makeRequestQuery(int studentID) {
+    private QueryBuilder createFriendRequestQuery(int studentID) {
         ZonedDateTime timestamp = ZonedDateTime.now();
         String date = DateTimeFormatter.ofPattern("dd-MM-yy").format(timestamp);
         String time = DateTimeFormatter.ofPattern("hh:mm").format(timestamp);
@@ -88,9 +83,47 @@ public class RequestsController extends Controller {
         return addBuilder;
     }
 
+    private boolean getIfFriendRequestExists(int studentID) {
+        QueryBuilder query = new QueryBuilder(QueryType.SELECT);
+        query.addSelect("REQUEST_TO", "REQUESTS");
+        query.addFrom("REQUESTFRIENDS");
+        query.addWhere("R.REQUEST_TO = " + studentID);
+        query.addWhere("R.REQUEST_FROM = " + loginController.getLoggedInStudent().getId());
+        String[][] likeMatrix = null;
+        try {
+            likeMatrix = sqLiteManager.executeQuery(query);
+        } catch (SQLException e) {
+            System.out.println("Error querying existing friend request: " + e.toString());
+        }
+        if(likeMatrix == null || likeMatrix.length==0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private void addFriend(int studentID) {
+        QueryBuilder addBuilderLeft = new QueryBuilder(QueryType.INSERT);
+        addBuilderLeft.addInsertTab("FRIENDSWITH");
+        addBuilderLeft.addInsertCols(new String[]{"STUDENT_ID1", "STUDENT_ID2"});
+        addBuilderLeft.addInsertVals(new String[]{"" + loginController.getLoggedInStudent().getId(), Integer.toString(studentID)});
+
+        QueryBuilder addBuilderRight = new QueryBuilder(QueryType.INSERT);
+        addBuilderRight.addInsertTab("FRIENDSWITH");
+        addBuilderRight.addInsertCols(new String[]{"STUDENT_ID1", "STUDENT_ID2"});
+        addBuilderRight.addInsertVals(new String[]{Integer.toString(studentID), "" + loginController.getLoggedInStudent().getId()});
+        try {
+            sqLiteManager.executeStatement(addBuilderLeft);
+            sqLiteManager.executeStatement(addBuilderRight);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void makeRequest() {
         try {
-            sqLiteManager.executeQuery(makeRequestQuery(tableController.getSelectedStudent().getId()));
+            sqLiteManager.executeQuery(createFriendRequestQuery(tableController.getSelectedStudent().getId()));
 
         } catch (SQLException e) {
             System.out.println("Error executing make request: " + e.toString());
@@ -98,34 +131,14 @@ public class RequestsController extends Controller {
         update();
     }
 
-    private String[][] queryReceivedRequests() {
-        String[][] queryResult = new String[0][];
-        try {
-            queryResult = sqLiteManager.executeQuery(listAllReceivedRequests(Integer.toString(loginController.getLoggedInStudent().getId())));
-        } catch (SQLException e) {
-            System.out.println("Error executing list received request: " + e.toString());
-        }
-        return queryResult;
-    }
-
-    private QueryBuilder removeRequestQuery(int studentID) {
+    private QueryBuilder removeRequestQuery(int toStudentID, int fromStudentID) {
         QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
         deleteBuilder.addDeleteTab("REQUESTFRIENDS");
         deleteBuilder.addDeleteWhere(new String[]{
-                "REQUEST_TO = " + loginController.getLoggedInStudent().getId(),
-                "REQUEST_FROM = " + studentID
+                "REQUEST_TO = " + toStudentID,
+                "REQUEST_FROM = " + fromStudentID
         });
         return deleteBuilder;
-    }
-
-    private void removeRequest() {
-        try {
-            sqLiteManager.executeQuery(removeRequestQuery(tableController.getSelectedStudent().getId()));
-
-        } catch (SQLException e) {
-            System.out.println("Error executing remove request: " + e.toString());
-        }
-        update();
     }
 
     private void queryRequests() {
@@ -133,7 +146,6 @@ public class RequestsController extends Controller {
         requests = new ArrayList<>();
         try {
             queryResult = sqLiteManager.executeQuery(listAllReceivedRequests("" + loginController.getLoggedInStudent().getId()));
-            System.out.println("" + loginController.getLoggedInStudent().getName());
         } catch (SQLException e) {
             System.out.println("Error executing show comment: " + e.toString());
         }
@@ -153,6 +165,10 @@ public class RequestsController extends Controller {
         return view;
     }
 
+    public ActionListener getAddListener() {
+        return new AddListener();
+    }
+
     @Override
     public void update() {
         queryRequests();
@@ -163,40 +179,72 @@ public class RequestsController extends Controller {
     @Override
     public void addListeners() {
         view.setSelectionListener(new SelectListener());
-        //view.setAddListener(new AddListner());
+        view.setAcceptListener(new AcceptListener());
+        view.setDeletionListener(new RejectListener());
     }
 
-
-
-/*class AddListener implements ActionListener {
-   @Override
-   public void actionPerformed(ActionEvent e) {
-       try {
-           /*if (tableController.getSelectedRight()) {
-               return;
-           } else {
-
-           }
-       } catch (SQLException ex) {
-           System.out.println("Error executing like query " + ex.toString());
-       }
-       CommentController.this.update();
-   }*/
-        class SelectListener implements ListSelectionListener {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-
-                ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-                int index = lsm.getMinSelectionIndex();
-                if (index < 0) {
+    class AddListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                if (tableController.getSelectedRight()) {
                     return;
+                } else {
+                    if(getIfFriendRequestExists(tableController.getSelectedStudent().getId())) {
+                        sqLiteManager.executeStatement(removeRequestQuery(tableController.getSelectedStudent().getId(),
+                                loginController.getLoggedInStudent().getId()));
+                    }
+                    sqLiteManager.executeStatement(createFriendRequestQuery(tableController.getSelectedStudent().getId()));
                 }
-
-                setSelectedRequest((FriendRequest) view.getObject(index));
-
-                RequestsController.this.update();
+            } catch (SQLException ex) {
+                System.out.println("Error executing like query " + ex.toString());
             }
+            RequestsController.this.update();
+            RequestsController.this.notifyAllObservers();
         }
+    }
+
+    class AcceptListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                addFriend(selectedRequest.getStudent2().getId());
+                sqLiteManager.executeStatement(removeRequestQuery(selectedRequest.getStudent1().getId(), selectedRequest.getStudent2().getId()));
+            } catch (SQLException e1) {
+                System.out.println("Error adding friend: " + e.toString());
+            }
+            RequestsController.this.update();
+            RequestsController.this.notifyAllObservers();
+        }
+    }
+
+    class RejectListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                sqLiteManager.executeStatement(removeRequestQuery(selectedRequest.getStudent1().getId(), selectedRequest.getStudent2().getId()));
+            } catch (SQLException e1) {
+                System.out.println("Error removing friend request: " + e.toString());
+            }
+            RequestsController.this.update();
+            RequestsController.this.notifyAllObservers();
+        }
+    }
+    class SelectListener implements ListSelectionListener {
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+
+            ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+            int index = lsm.getMinSelectionIndex();
+            if (index < 0) {
+                return;
+            }
+
+            setSelectedRequest((FriendRequest) view.getObject(index));
+
+            RequestsController.this.update();
+        }
+    }
     //</editor-fold>
 
 }
