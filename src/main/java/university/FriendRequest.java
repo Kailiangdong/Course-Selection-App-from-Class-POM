@@ -5,33 +5,33 @@ import java.time.format.DateTimeFormatter;
 
 public class FriendRequest {
 
-    private Student student1;
-    private Student student2;
+    private Student requestTo;
+    private Student requestFrom;
     private String date;
     private String time;
 
-    public FriendRequest(Student student1, Student student2) {
-        this.student1 = student1;
-        this.student2 = student2;
+    public FriendRequest(Student requestTo, Student requestFrom) {
+        this.requestTo = requestTo;
+        this.requestFrom = requestFrom;
         ZonedDateTime timestamp = ZonedDateTime.now();
         this.date = DateTimeFormatter.ofPattern("dd-MM-yy").format(timestamp);
         this.time = DateTimeFormatter.ofPattern("hh:mm").format(timestamp);
     }
 
-    public FriendRequest(Student student1, Student student2, String date, String time) {
-        this.student1 = student1;
-        this.student2 = student2;
+    public FriendRequest(Student requestTo, Student requestFrom, String date, String time) {
+        this.requestTo = requestTo;
+        this.requestFrom = requestFrom;
         this.date = date;
         this.time = time;
     }
 
     //<editor-fold desc="Getters">
     public Student getStudent1() {
-        return student1;
+        return requestTo;
     }
 
     public Student getStudent2() {
-        return student2;
+        return requestFrom;
     }
 
     public String getDate() {
@@ -48,19 +48,11 @@ public class FriendRequest {
 
     @Override
     public String toString() {
-        String s = "" + student1.getName() +
-                "       " +
-                "" + date + "  -  " + time;
+        String s = "" + requestFrom.getName() +
+                "                            "
+                + date + "  -  " + time;
 
         return s;
     }
 
-    public String toString(FriendRequest[] array) {
-        String s = "";
-        for(int i = 0; i < array.length; i++) {
-            s += array[i].toString();
-            s += "\n";
-        }
-        return s;
-    }
 }
