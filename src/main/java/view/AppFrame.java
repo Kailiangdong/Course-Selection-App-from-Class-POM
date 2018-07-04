@@ -11,6 +11,7 @@ public class AppFrame extends JFrame implements View {
     private JPanel loginPane;
     private JPanel lecturesPane;
     private JPanel studentsPane;
+    private JPanel accountPane;
 
     public AppFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,6 +44,7 @@ public class AppFrame extends JFrame implements View {
         tabPane.setEnabledAt(0, false);
         tabPane.setEnabledAt(1, true);
         tabPane.setEnabledAt(2, true);
+        tabPane.setEnabledAt(3, true);
         tabPane.setSelectedIndex(1);
     }
 
@@ -50,6 +52,7 @@ public class AppFrame extends JFrame implements View {
         tabPane.setEnabledAt(0, true);
         tabPane.setEnabledAt(1, false);
         tabPane.setEnabledAt(2, false);
+        tabPane.setEnabledAt(3, false);
         tabPane.setSelectedIndex(0);
     }
 
@@ -83,6 +86,14 @@ public class AppFrame extends JFrame implements View {
 
     public void setStudentsPane(View peopleView) {
         setPane(this.studentsPane, peopleView.getMainPane());
+    }
+
+    public JPanel getAccountPane() {
+        return accountPane;
+    }
+
+    public void setAccountPane(View peopleView) {
+        setPane(this.accountPane, peopleView.getMainPane());
     }
 
     public JPanel getMainPane() {
@@ -125,9 +136,12 @@ public class AppFrame extends JFrame implements View {
         studentsPane = new JPanel();
         studentsPane.setLayout(new BorderLayout(0, 0));
         studentsPane.setEnabled(true);
-        studentsPane.setVisible(true);
+        studentsPane.setVisible(false);
         tabPane.addTab("Students", studentsPane);
         tabPane.setEnabledAt(2, false);
+        accountPane = new JPanel();
+        accountPane.setLayout(new BorderLayout(0, 0));
+        tabPane.addTab("Account", accountPane);
     }
 
     /**
