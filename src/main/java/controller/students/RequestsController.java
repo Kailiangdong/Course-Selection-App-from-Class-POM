@@ -34,9 +34,6 @@ public class RequestsController extends Controller {
     private FriendRequest selectedRequest;
     private StudentsTableController tableController;
 
-    private Student student;
-    private Lecture lecture;
-
     private ArrayList<FriendRequest> requests = new ArrayList<>();
 
 
@@ -48,10 +45,8 @@ public class RequestsController extends Controller {
         this.loginController = loginController;
         this.tableController = tableController;
 
+        attach(loginController);
         //requests.add(new FriendRequest(sqLiteManager.getStudent(3953), loginController.getLoggedInStudent(), "12-06-2018", "12:30"));
-        queryRequests();
-        view.setList(requests.toArray(new FriendRequest[]{}));
-
         addListeners();
         update();
     }
@@ -161,6 +156,7 @@ public class RequestsController extends Controller {
     @Override
     public void update() {
         queryRequests();
+        view.setList(requests.toArray(new FriendRequest[]{}));
     }
 
     //<editor-fold desc="Listeners">

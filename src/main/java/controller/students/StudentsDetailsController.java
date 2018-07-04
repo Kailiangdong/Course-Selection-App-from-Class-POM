@@ -42,6 +42,7 @@ public class StudentsDetailsController extends Controller {
 
         // Logic Observers
         tableController.attach(requestsController);
+        loginController.attach(requestsController);
 
         update();
         addListeners();
@@ -111,7 +112,7 @@ public class StudentsDetailsController extends Controller {
         }
     }
 
-    private QueryBuilder queryDeleteLecture(int studentID) {
+    private QueryBuilder queryDeleteFriend(int studentID) {
         QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
         deleteBuilder.addDeleteTab("FRIENDSWITH");
         deleteBuilder.addDeleteWhere(new String[]{
@@ -123,7 +124,7 @@ public class StudentsDetailsController extends Controller {
 
     public void removeFriend() {
         try {
-            sqLiteManager.executeQuery(queryDeleteLecture(tableController.getSelectedStudent().getId()));
+            sqLiteManager.executeQuery(queryDeleteFriend(tableController.getSelectedStudent().getId()));
         } catch (SQLException e) {
             System.out.println("Error executing remove student: " + e.toString());
         }
