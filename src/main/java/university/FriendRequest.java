@@ -48,7 +48,7 @@ public class FriendRequest {
 
     @Override
     public String toString() {
-        String s = "" + requestTo.getName() +
+        String s = "" + requestFrom.getName() +
                 "                            "
                 + date + "  -  " + time;
 

@@ -49,8 +49,8 @@ public class RequestsController extends Controller {
         this.tableController = tableController;
 
         //requests.add(new FriendRequest(sqLiteManager.getStudent(3953), loginController.getLoggedInStudent(), "12-06-2018", "12:30"));
-        //view.setList(requests.toArray(new FriendRequest[]{}));
         queryRequests();
+        view.setList(requests.toArray(new FriendRequest[]{}));
 
         addListeners();
         update();
@@ -138,6 +138,7 @@ public class RequestsController extends Controller {
         requests = new ArrayList<>();
         try {
             queryResult = sqLiteManager.executeQuery(listAllReceivedRequests("" + loginController.getLoggedInStudent().getId()));
+            System.out.println("" + loginController.getLoggedInStudent().getName());
         } catch (SQLException e) {
             System.out.println("Error executing show comment: " + e.toString());
         }
@@ -159,7 +160,7 @@ public class RequestsController extends Controller {
 
     @Override
     public void update() {
-
+        queryRequests();
     }
 
     //<editor-fold desc="Listeners">
