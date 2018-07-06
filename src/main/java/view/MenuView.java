@@ -21,6 +21,8 @@ public class MenuView implements View {
     private JMenuItem refreshItem;
     private JMenuItem logoutItem;
     private JMenuItem feedbackItem;
+    private JMenuItem pushItem;
+    private JMenuItem pullItem;
 
     public MenuView() {
         menuBar = new JMenuBar(); // top menu bar
@@ -46,18 +48,26 @@ public class MenuView implements View {
         quitItem.addActionListener(l);
     }
 
+    public void setPushButtonListener(ActionListener l) {
+        pushItem.addActionListener(l);
+    }
+
     private void buildMainMenu() {
         mainMenu = new JMenu("☰"); // program control
         quitItem = new JMenuItem("Quit");
         refreshItem = new JMenuItem("Refresh");
         logoutItem = new JMenuItem("Logout");
         feedbackItem = new JMenuItem("Feedback");
+        pushItem = new JMenuItem("Push");
+        pullItem = new JMenuItem("Pull");
 
         // Add items
         mainMenu.add(refreshItem);
         mainMenu.add(feedbackItem);
         mainMenu.add(logoutItem);
         mainMenu.add(quitItem);
+        mainMenu.add(pushItem);
+        mainMenu.add(pullItem);
 
         // Add menu
         menuBar.add(mainMenu);
