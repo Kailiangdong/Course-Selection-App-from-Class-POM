@@ -1,12 +1,20 @@
 package backend;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.net.URISyntaxException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.http.client.methods.*;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.*;
+import org.apache.http.impl.client.*;
+
+
 
 public class BackendAdapter {
 
@@ -284,6 +292,91 @@ public class BackendAdapter {
       }
     }
     return table;
+  }
+
+  public HTTPAnswer httpRequest(HTTPRequestType httpRequestType, String ipAddress, String payload){
+
+    try {
+
+      CloseableHttpClient httpClient;
+      CloseableHttpResponse httpResponse;
+
+      if(httpRequestType == HTTPRequestType.GET) {
+        HttpGet httpGet = new HttpGet(new URIBuilder()
+                .setScheme("http")
+                .setHost(ipAddress)
+                .setPort(1995)
+                .setPath("/")
+                .build());
+        httpClient = HttpClients.createDefault();
+        httpResponse = httpClient.execute(httpGet);
+      }
+      else {
+        HttpPost httpPost = new HttpPost(new URIBuilder()
+                .setScheme("http")
+                .setHost(ipAddress)
+                .setPort(1995)
+                .setPath("/")
+                .build());
+        httpPost.setEntity(new StringEntity(payload,
+                ContentType.create("text/plain","utf-8")));
+        httpClient = HttpClients.createDefault();
+        httpResponse = httpClient.execute(httpPost);
+
+      }
+
+      int httpResponseStatusCode = httpResponse
+              .getStatusLine()
+              .getStatusCode();
+      if(httpResponseStatusCode != 200) {
+
+        return new HTTPAnswer(false,
+                "HTTP Response Status Code: "+httpResponseStatusCode);
+
+      }
+
+      InputStream httpResponseBodyStream = httpResponse
+              .getEntity()
+              .getContent();
+      String httpResponseBody = IOUtils.toString(httpResponseBodyStream,
+              "utf-8");
+
+      httpResponseBodyStream.close();
+      httpResponse.close();
+      httpClient.close();
+
+      return new HTTPAnswer(true,
+              httpResponseBody);
+
+    }
+    catch (IOException | URISyntaxException e) {
+
+      return new HTTPAnswer(false,
+              e.toString());
+
+    }
+  }
+
+  class HTTPAnswer {
+
+    private boolean httpRequestSuccessful;
+    private String answer;
+
+    public HTTPAnswer(boolean httpRequestSuccessful, String answer) {
+      this.httpRequestSuccessful = httpRequestSuccessful;
+      this.answer = answer;
+    }
+
+    public boolean getHTTPRequestSuccessful() {
+      return httpRequestSuccessful;
+    }
+    public String getAnswer() {
+      return answer;
+    }
+
+  }
+  enum HTTPRequestType {
+    GET,POST
   }
 
 }
