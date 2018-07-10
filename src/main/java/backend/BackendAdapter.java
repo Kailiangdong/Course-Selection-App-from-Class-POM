@@ -15,17 +15,16 @@ import org.apache.http.entity.*;
 import org.apache.http.impl.client.*;
 
 
-
 public class BackendAdapter {
 
   public static final String STUDENTS_FILE = "data/students.csv";
   public static final String LECTURES_FILE = "data/lectures.csv";
   public static final String ATTENDS_FILE = "data/attends.csv";
   public static final String CHAIRS_FILE = "data/chairs.csv";
-  public static final String COMMENTS_FILE = "data\\comments.csv";
-  public static final String FRIENDS_WITH_FILE = "data\\friendswith.csv";
-  public static final String LIKES_FILE = "data\\likes.csv";
-  public static final String REQUEST_FRIENDS_FILE = "data\\requestfriends.csv";
+  public static final String COMMENTS_FILE = "data/comments.csv";
+  public static final String FRIENDS_WITH_FILE = "data/friendswith.csv";
+  public static final String LIKES_FILE = "data/likes.csv";
+  public static final String REQUEST_FRIENDS_FILE = "data/requestfriends.csv";
 
   /**
    * Fills the table 'STUDENTS' with the master data. Make sure to truncate table before calling
@@ -184,6 +183,7 @@ public class BackendAdapter {
       System.out.println("Error while inserting 'LIKES' data.");
     }
   }
+
   public static void fillRequestFriendsTable(PreparedStatement insertStmt) throws SQLException {
     try {
       ArrayList<String[]> table = readCSVFile(REQUEST_FRIENDS_FILE);
@@ -208,6 +208,7 @@ public class BackendAdapter {
       System.out.println("Error while inserting 'REQUESTFRIENDS' data.");
     }
   }
+
   /**
    * Fills the table 'CHAIRS' with the master data. Make sure to truncate table before calling this
    * method, otherwise the table may be corrupted afterwards.
