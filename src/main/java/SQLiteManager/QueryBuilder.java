@@ -1,6 +1,5 @@
 package SQLiteManager;
 
-import java.sql.SQLException;
 import java.util.*;
 
 public class QueryBuilder {
@@ -47,7 +46,13 @@ public class QueryBuilder {
     }
     //</editor-fold>
 
-    public static QueryBuilder getTableNames() {
+    public static QueryBuilder truncateTableQuery(String tabName) {
+        QueryBuilder queryBuilder = new QueryBuilder(QueryType.OTHER);
+        queryBuilder.select.add("TRUNCATE " + tabName);
+        return queryBuilder;
+    }
+
+    public static QueryBuilder tableNamesQuery() {
         QueryBuilder queryBuilder = new QueryBuilder(QueryType.SELECT);
         queryBuilder.select.add("name");
         queryBuilder.from.add("sqlite_master");
@@ -55,15 +60,15 @@ public class QueryBuilder {
         return queryBuilder;
     }
 
-    public static QueryBuilder getTableQuery(String tabName) {
+    public static QueryBuilder tableDataQuery(String tabName) {
         QueryBuilder queryBuilder = new QueryBuilder(QueryType.SELECT);
         queryBuilder.select.add("*");
         queryBuilder.from.add(tabName);
         return queryBuilder;
     }
 
-    public static QueryBuilder getTableColumnsQuery(String tabName) {
-        QueryBuilder queryBuilder = new QueryBuilder(QueryType.PRAGMA);
+    public static QueryBuilder columnNamesQuery(String tabName) {
+        QueryBuilder queryBuilder = new QueryBuilder(QueryType.OTHER);
         queryBuilder.select.add("PRAGMA table_info ('" + tabName + "')");
         return queryBuilder;
     }
@@ -267,7 +272,7 @@ public class QueryBuilder {
                 return getDeleteStmt();
             case UPDATE:
                 return getUpdateStmt();
-            case PRAGMA:
+            case OTHER:
                 return getPragamStmt();
         }
         return "";

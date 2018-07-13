@@ -18,9 +18,11 @@ public class SQLiteManager {
     private static final String DB_URL = "jdbc:sqlite:cache.db";
     private static final String DB_NAME = "cache.db";
 
-    /** Creates an SQLiteManager object
-     *  If the cache doesn't exist it creates a new one
-     *  If the cache is corrupted it wipes it
+    /**
+     * Creates an SQLiteManager object
+     * If the cache doesn't exist it creates a new one
+     * If the cache is corrupted it wipes it
+     *
      * @author Stefan Vladov
      */
     public SQLiteManager() {
@@ -41,12 +43,12 @@ public class SQLiteManager {
     //<editor-fold desc="Execute String Query Section">
     private String[][] executeQuery(String query) throws SQLException {
         ArrayList<String[]> resultList = new ArrayList<>();
-        try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
+        try (Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
             ResultSet resultSet = stmt.executeQuery(query);
             int columnCount = resultSet.getMetaData().getColumnCount();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 String[] row = new String[columnCount];
-                for(int i = 0; i < columnCount; i++) {
+                for (int i = 0; i < columnCount; i++) {
                     row[i] = resultSet.getString(i + 1);
                 }
                 resultList.add(row);
@@ -57,8 +59,8 @@ public class SQLiteManager {
         }
     }
 
-    private void executeStatement(String query) throws SQLException{
-        try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
+    private void executeStatement(String query) throws SQLException {
+        try (Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
             stmt.execute(query);
         }
     }
@@ -77,19 +79,21 @@ public class SQLiteManager {
         return executeQuery(query.toString());
     }
 
-    public void executeStatement(QueryBuilder query) throws SQLException{
+    public void executeStatement(QueryBuilder query) throws SQLException {
         executeStatement(query.toString());
     }
     //</editor-fold>
 
     //<editor-fold desc="Initialisation Section">
-    /** Initializes the SQLite database with:
-     *      Lectures table - contains all lectures
-     *      Students table - contains all students
-     *      Attends table - contains all (student, lecture) pairs where a the student attends the lecture
+
+    /**
+     * Initializes the SQLite database with:
+     * Lectures table - contains all lectures
+     * Students table - contains all students
+     * Attends table - contains all (student, lecture) pairs where a the student attends the lecture
      */
     private void initializeCache() {
-        try(Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
+        try (Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
             String sql = "CREATE TABLE LECTURES " +
                     "(ID INT PRIMARY KEY     NOT NULL," +
                     " TITLE          TEXT    NOT NULL, " +
@@ -164,15 +168,15 @@ public class SQLiteManager {
     }
 
     private void populateDatabase() {
-        try(Connection c = DriverManager.getConnection(DB_URL);
-            PreparedStatement stmtLectures = c.prepareStatement("insert into Lectures values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            PreparedStatement stmtStudents = c.prepareStatement("insert into Students values(?, ?, ?, ?, ?)");
-            PreparedStatement stmtAttends = c.prepareStatement("insert into Attends values(?, ?)");
-            PreparedStatement stmtChairs = c.prepareStatement("insert into Chairs values(?, ?, ?)");
-            PreparedStatement stmtComments = c.prepareStatement("insert into Comments values(?, ?, ?, ?, ?, ?)");
-            PreparedStatement stmtFriendsWith = c.prepareStatement("insert into FriendsWith values(?, ?)");
-            PreparedStatement stmtLikes = c.prepareStatement("insert into Likes values(?, ?)");
-            PreparedStatement stmtRequestFriends = c.prepareStatement("insert into RequestFriends values(?, ?, ?, ?)")) {
+        try (Connection c = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmtLectures = c.prepareStatement("insert into Lectures values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+             PreparedStatement stmtStudents = c.prepareStatement("insert into Students values(?, ?, ?, ?, ?)");
+             PreparedStatement stmtAttends = c.prepareStatement("insert into Attends values(?, ?)");
+             PreparedStatement stmtChairs = c.prepareStatement("insert into Chairs values(?, ?, ?)");
+             PreparedStatement stmtComments = c.prepareStatement("insert into Comments values(?, ?, ?, ?, ?, ?)");
+             PreparedStatement stmtFriendsWith = c.prepareStatement("insert into FriendsWith values(?, ?)");
+             PreparedStatement stmtLikes = c.prepareStatement("insert into Likes values(?, ?)");
+             PreparedStatement stmtRequestFriends = c.prepareStatement("insert into RequestFriends values(?, ?, ?, ?)")) {
             BackendAdapter.fillLecturesTable(stmtLectures);
             BackendAdapter.fillStudentsTable(stmtStudents);
             BackendAdapter.fillAttendsTable(stmtAttends);
@@ -186,9 +190,11 @@ public class SQLiteManager {
         }
     }
 
-    /** Checks whether the local database is corrupted by checking
-     *  whether all the tables exist
-     *  @return true or false
+    /**
+     * Checks whether the local database is corrupted by checking
+     * whether all the tables exist
+     *
+     * @return true or false
      */
     private boolean checkHealth() {
         try {
@@ -207,8 +213,9 @@ public class SQLiteManager {
         return true;
     }
 
-    /** Removes all data from the database.
-     *  Use with caution!
+    /**
+     * Removes all data from the database.
+     * Use with caution!
      */
     private void wipeDatabase() {
         System.out.println("Cleaning database");
@@ -216,60 +223,104 @@ public class SQLiteManager {
             executeStatement("SELECT * FROM STUDENTS");
             executeStatement("DROP TABLE STUDENTS");
             System.out.println("STUDENTS table is deleted");
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("STUDENTS table is missing");
         }
         try {
             executeStatement("SELECT * FROM LECTURES");
             executeStatement("DROP TABLE LECTURES");
             System.out.println("LECTURES table is deleted");
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("LECTURES table is missing");
         }
         try {
             executeStatement("SELECT * FROM ATTENDS");
             executeStatement("DROP TABLE ATTENDS");
             System.out.println("ATTENDS table is deleted");
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("ATTENDS table is missing");
         }
         try {
             executeStatement("SELECT * FROM CHAIRS");
             executeStatement("DROP TABLE CHAIRS");
             System.out.println("CHAIRS table is deleted");
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("CHAIRS table is missing");
         }
         try {
             executeStatement("SELECT * FROM COMMENTS");
             executeStatement("DROP TABLE COMMENTS");
             System.out.println("COMMENTS table is deleted");
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("COMMENTS table is missing");
         }
         try {
             executeStatement("SELECT * FROM FRIENDSWITH");
             executeStatement("DROP TABLE FRIENDSWITH");
             System.out.println("FRIENDSWITH table is deleted");
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("FRIENDSWITH table is missing");
         }
         try {
             executeStatement("SELECT * FROM LIKES");
             executeStatement("DROP TABLE LIKES");
             System.out.println("LIKES table is deleted");
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("LIKES table is missing");
         }
         try {
             executeStatement("SELECT * FROM REQUESTFRIENDS");
             executeStatement("DROP TABLE REQUESTFRIENDS");
             System.out.println("REQUESTFRIENDS table is deleted");
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("REQUESTFRIENDS table is missing");
         }
     }
-    //</editor-fold>
+
+    public void insertEntry(String table, String[] columns, String[] values) {
+        String[][] entries = new String[1][];
+        entries[0] = values;
+        insertEntries(table, columns, entries);
+    }
+
+    public void insertEntries(String table, String[] columns, String[][] entries) {
+        for(String[] entry : entries) {
+            if(columns.length != entry.length) {
+                throw new RuntimeException("Non-machting number of columns & values");
+            }
+        }
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("INSERT INTO " + table + " (");
+        for(int i = 0; i < columns.length; i++) {
+            sql.append(columns[i]);
+            if(i < columns.length - 1) {
+                sql.append(", ");
+            }
+        }
+        sql.append(") values (");
+        for(int i = 0; i < columns.length; i++) {
+            sql.append("?");
+            if(i < columns.length - 1) {
+                sql.append(", ");
+            }
+        }
+        sql.append(")");
+        try (Connection c = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = c.prepareStatement(sql.toString())) {
+            for (String[] entry : entries) {
+                stmt.clearParameters();
+                for (int colIdx = 0; colIdx < entry.length; colIdx++) {
+                    stmt.setString(colIdx + 1, entry[colIdx]);
+                }
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error inserting entries " + e.toString());
+        }
+    }
+
+    //</editor-fold
 
     public Student getStudent(String studentName) {
         QueryBuilder query = new QueryBuilder(QueryType.SELECT);
@@ -278,7 +329,7 @@ public class SQLiteManager {
         query.addWhere("S.NAME = '" + studentName + "'");
         try {
             String[][] results = executeQuery(query);
-            if(results.length > 1) {
+            if (results.length > 1) {
                 throw new RuntimeException("Multiple students with id " + studentName);
             }
             int studentId = Integer.parseInt(results[0][0]);
@@ -300,7 +351,7 @@ public class SQLiteManager {
         query.addWhere("S.ID = " + studentID);
         try {
             String[][] results = executeQuery(query);
-            if(results.length > 1) {
+            if (results.length > 1) {
                 throw new RuntimeException("Multiple students with id " + studentID);
             }
             String[] studentInfo = results[0];
@@ -353,7 +404,7 @@ public class SQLiteManager {
         query.addWhere("l.ID = " + lectureID);
         try {
             String[][] results = executeQuery(query);
-            if(results.length > 1) {
+            if (results.length > 1) {
                 throw new RuntimeException("Multiple lectures with id " + lectureID);
             }
             String[] lectureInfo = results[0];
@@ -369,12 +420,15 @@ public class SQLiteManager {
     }
 
     //<editor-fold desc="!!!Probably Deletable!!!">
-    /** Executes a query split into three parts on the local database:
-     * @param select - Select part of a query0
-     * @param from - From part of a query
-     * @param where - Where part of a query (null if not given)
+
+    /**
+     * Executes a query split into three parts on the local database:
+     *
+     * @param select  - Select part of a query0
+     * @param from    - From part of a query
+     * @param where   - Where part of a query (null if not given)
      * @param groupby - Group By part of a query (null if not given)
-     * @param having - Having part of a query (null if not given)
+     * @param having  - Having part of a query (null if not given)
      * @param orderby - Order by of a query (null if not given)
      * @return 2D Array containing all the information
      * @throws SQLException
@@ -382,21 +436,21 @@ public class SQLiteManager {
     private String[][] executeQuery(String[] select, String[] from, String[] where, String[] groupby, String[] having, String[] orderby) throws SQLException {
         StringBuilder builder = new StringBuilder();
         builder.append("SELECT");
-        for(int i = 0; i <= select.length - 1; i++) {
+        for (int i = 0; i <= select.length - 1; i++) {
             builder.append(" " + select[i]);
-            if(i < select.length - 1) {
+            if (i < select.length - 1) {
                 builder.append(",");
             }
         }
         builder.append("\n");
         builder.append("FROM");
-        for(int i = 0; i <= from.length - 1; i++) {
+        for (int i = 0; i <= from.length - 1; i++) {
             builder.append(" " + from[i]);
-            if(i < from.length - 1) {
+            if (i < from.length - 1) {
                 builder.append(",");
             }
         }
-        if(where != null && where.length > 0) {
+        if (where != null && where.length > 0) {
             builder.append("\n");
             builder.append("WHERE");
             for (int i = 0; i <= where.length - 1; i++) {
@@ -406,7 +460,7 @@ public class SQLiteManager {
                 }
             }
         }
-        if(groupby != null && groupby.length > 0) {
+        if (groupby != null && groupby.length > 0) {
             builder.append("\n");
             builder.append("GROUP BY");
             for (int i = 0; i <= groupby.length - 1; i++) {
@@ -416,7 +470,7 @@ public class SQLiteManager {
                 }
             }
         }
-        if(having != null && having.length > 0) {
+        if (having != null && having.length > 0) {
             builder.append("\n");
             builder.append("HAVING");
             for (int i = 0; i <= having.length - 1; i++) {
@@ -426,7 +480,7 @@ public class SQLiteManager {
                 }
             }
         }
-        if(orderby != null && orderby.length > 0) {
+        if (orderby != null && orderby.length > 0) {
             builder.append("\n");
             builder.append("ORDER BY");
             for (int i = 0; i <= orderby.length - 1; i++) {
@@ -440,24 +494,24 @@ public class SQLiteManager {
         return executeQuery(builder.toString());
     }
 
-    private String[][] queryJoinableLectures(String name) throws SQLException{
+    private String[][] queryJoinableLectures(String name) throws SQLException {
         return this.executeQuery(new String[]{"l.ID", "l.TITLE"},
                 new String[]{"LECTURES l", "STUDENTS s", "ATTENDS at", "CHAIRS c"},
                 new String[]{"s.Name=" + "\"" + name + "\"", "(s.major=c.subject or s.minor=c.subject)", "c.chair=l.chair", "s.id=at.student_id", "at.lecture_id=l.id"}
-                ,null, null, new String[] {"l.TITLE DESC"});
+                , null, null, new String[]{"l.TITLE DESC"});
     }
     //</editor-fold>
-    
+
 
     //<editor-fold desc="!!!Delete Main!!!">
     public static void main(String[] args) {
         SQLiteManager manager = new SQLiteManager();
         try {
             String[][] resultset = manager.queryJoinableLectures("Stefan");
-            for(String[] s: resultset) {
+            for (String[] s : resultset) {
                 System.out.println(Arrays.toString(s));
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Error " + e.toString());
         }
     }
