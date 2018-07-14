@@ -1,6 +1,5 @@
 package SQLiteManager;
 
-import java.sql.SQLException;
 import java.util.*;
 
 public class QueryBuilder {
@@ -24,11 +23,11 @@ public class QueryBuilder {
         groupBy = new ArrayList<>();
         having = new ArrayList<>();
         orderBy = new ArrayList<>();
-        set =  new ArrayList<>();
+        set = new ArrayList<>();
     }
 
     //<editor-fold desc="Helper Section">
-    private String returnFirstChar(String string){
+    private String returnFirstChar(String string) {
         return Character.toString(string.charAt(0)).toLowerCase();
     }
 
@@ -37,8 +36,7 @@ public class QueryBuilder {
         while (listIterator.hasNext()) {
             if (space) {
                 builder.append(" " + listIterator.next());
-            }
-            else {
+            } else {
                 builder.append(listIterator.next());
             }
             if (listIterator.hasNext()) {
@@ -48,8 +46,41 @@ public class QueryBuilder {
     }
     //</editor-fold>
 
+    public static QueryBuilder truncateTableQuery(String tabName) {
+        QueryBuilder queryBuilder = new QueryBuilder(QueryType.OTHER);
+        queryBuilder.select.add("TRUNCATE " + tabName);
+        return queryBuilder;
+    }
+
+    public static QueryBuilder tableNamesQuery() {
+        QueryBuilder queryBuilder = new QueryBuilder(QueryType.SELECT);
+        queryBuilder.select.add("name");
+        queryBuilder.from.add("sqlite_master");
+        queryBuilder.where.add("type='table'");
+        return queryBuilder;
+    }
+
+    public static QueryBuilder tableDataQuery(String tabName) {
+        QueryBuilder queryBuilder = new QueryBuilder(QueryType.SELECT);
+        queryBuilder.select.add("*");
+        queryBuilder.from.add(tabName);
+        return queryBuilder;
+    }
+
+    public static QueryBuilder columnNamesQuery(String tabName) {
+        QueryBuilder queryBuilder = new QueryBuilder(QueryType.OTHER);
+        queryBuilder.select.add("PRAGMA table_info ('" + tabName + "')");
+        return queryBuilder;
+    }
+
+    private String getPragamStmt() {
+        return select.get(0);
+    }
+
     //<editor-fold desc="Select Section">
-    public void addSelect(String colName, String tabName) { select.add(returnFirstChar(tabName) + "." + colName); }
+    public void addSelect(String colName, String tabName) {
+        select.add(returnFirstChar(tabName) + "." + colName);
+    }
 
     public void addSelect(String[] colNames, String[] tabNames) {
         if (colNames.length <= tabNames.length) {
@@ -59,7 +90,9 @@ public class QueryBuilder {
         }
     }
 
-    public void addFrom(String tabName) { from.add(tabName + " " + returnFirstChar(tabName)); }
+    public void addFrom(String tabName) {
+        from.add(tabName + " " + returnFirstChar(tabName));
+    }
 
     public void addFrom(String tabName, String tabVariable) {
         from.add(tabName + " " + tabVariable);
@@ -75,13 +108,17 @@ public class QueryBuilder {
         join.add(joinStmt);
     }
 
-    public void addJoin(String[] joinStmts) { Collections.addAll(join, joinStmts); }
+    public void addJoin(String[] joinStmts) {
+        Collections.addAll(join, joinStmts);
+    }
 
     public void addWhere(String condition) {
         where.add(condition);
     }
 
-    public void addWhere(String[] conditions) { Collections.addAll(where, conditions); }
+    public void addWhere(String[] conditions) {
+        Collections.addAll(where, conditions);
+    }
 
     public void addGroupBy(String colName, String tabName) {
         groupBy.add(returnFirstChar(tabName) + "." + colName);
@@ -99,7 +136,9 @@ public class QueryBuilder {
         having.add(condition);
     }
 
-    public void addHaving(String[] conditions) { Collections.addAll(having, conditions); }
+    public void addHaving(String[] conditions) {
+        Collections.addAll(having, conditions);
+    }
 
     public void addOrderBy(String colName, String tabName, String direction) {
         orderBy.add(returnFirstChar(tabName) + "." + colName + " " + ((direction != null) ? direction : "asc"));
@@ -139,21 +178,31 @@ public class QueryBuilder {
             builder.append("\n" + "ORDER BY");
             listAddingToBuilder(builder, orderBy.listIterator(), ",", true);
         }
-        System.out.println(builder.toString()+"\n");
+        System.out.println(builder.toString() + "\n");
         return builder.toString();
     }
     //</editor-fold>
 
     //<editor-fold desc="Insert Section">
-    public void addInsertTab(String tabName) { from.add(tabName); }
+    public void addInsertTab(String tabName) {
+        from.add(tabName);
+    }
 
-    public void addInsertCols(String colName) { select.add(colName); }
+    public void addInsertCols(String colName) {
+        select.add(colName);
+    }
 
-    public void addInsertCols(String[] colNames) { Collections.addAll(select, colNames); }
+    public void addInsertCols(String[] colNames) {
+        Collections.addAll(select, colNames);
+    }
 
-    public void addInsertVals(String value) { where.add(value); }
+    public void addInsertVals(String value) {
+        where.add(value);
+    }
 
-    public void addInsertVals(String[] values) { Collections.addAll(where, values); }
+    public void addInsertVals(String[] values) {
+        Collections.addAll(where, values);
+    }
 
     private String getInsertStmt() {
         StringBuilder builder = new StringBuilder();
@@ -162,19 +211,23 @@ public class QueryBuilder {
         builder.append(")\n" + "VALUES (");
         listAddingToBuilder(builder, where.listIterator(), ", ", false);
         builder.append(")");
-        System.out.println(builder.toString()+"\n");
+        System.out.println(builder.toString() + "\n");
         return builder.toString();
     }
     //</editor-fold>
 
     //<editor-fold desc="Delete Section">
-    public void addDeleteTab(String tabName) { from.add(tabName); }
+    public void addDeleteTab(String tabName) {
+        from.add(tabName);
+    }
 
     public void addDeleteWhere(String condition) {
         where.add(condition);
     }
 
-    public void addDeleteWhere(String[] conditions) { Collections.addAll(where,conditions);}
+    public void addDeleteWhere(String[] conditions) {
+        Collections.addAll(where, conditions);
+    }
 
     private String getDeleteStmt() {
         StringBuilder builder = new StringBuilder();
@@ -183,7 +236,7 @@ public class QueryBuilder {
             builder.append("\n" + "WHERE");
             listAddingToBuilder(builder, where.listIterator(), " AND", true);
         }
-        System.out.println(builder.toString()+"\n");
+        System.out.println(builder.toString() + "\n");
         return builder.toString();
     }
     //</editor-fold>
@@ -196,7 +249,7 @@ public class QueryBuilder {
     private String getUpdateStmt() {
         StringBuilder builder = new StringBuilder();
         builder.append("UPDATE " + from.get(0));
-        if(set != null && set.size() > 0) {
+        if (set != null && set.size() > 0) {
             builder.append("\n SET");
             listAddingToBuilder(builder, set.listIterator(), " ,", true);
         }
@@ -219,6 +272,8 @@ public class QueryBuilder {
                 return getDeleteStmt();
             case UPDATE:
                 return getUpdateStmt();
+            case OTHER:
+                return getPragamStmt();
         }
         return "";
     }

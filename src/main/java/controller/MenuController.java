@@ -115,6 +115,24 @@ public class MenuController extends Controller {
         view.setRefreshButtonListener(new RefreshButtonListener());
         view.setLogoutButtonListener(new LogoutButtonListener());
         view.setFeedbackButtonListener(new FeedbackButtonListener());
+        view.setPushButtonListener(new PushButtonListener());
+        view.setPushButtonListener(new PullButtonListener());
+    }
+
+    // Empty Listener for Push
+    class PushButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+    // Empty Listener for Pull
+    class PullButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
     }
 
     class LogoutButtonListener implements ActionListener {
