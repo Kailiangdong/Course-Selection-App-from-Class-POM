@@ -32,7 +32,7 @@ public class SyncController {
 
     private void validateInput() {
         String input = inputDialog.getInput();
-        if (input.matches("\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b")) {
+        if (input.matches("\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b|localhost")) {
             inputDialog.enableOKButton();
         } else {
             inputDialog.disableOKButton();
