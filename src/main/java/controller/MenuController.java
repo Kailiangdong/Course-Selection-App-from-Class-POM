@@ -123,7 +123,7 @@ public class MenuController extends Controller {
     class PushButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            SyncController syncController = new SyncController(sqLiteManager, SyncController.Type.PUSH);
+            SyncController syncController = new SyncController(sqLiteManager, loginController, SyncController.Type.PUSH);
             syncController.setupConnection();
         }
     }
@@ -132,7 +132,7 @@ public class MenuController extends Controller {
     class PullButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            SyncController syncController = new SyncController(sqLiteManager, SyncController.Type.PULL);
+            SyncController syncController = new SyncController(sqLiteManager, loginController, SyncController.Type.PULL);
             syncController.setupConnection();
         }
     }

@@ -4,9 +4,9 @@ import SQLiteManager.SQLiteManager;
 import backend.DBConverter;
 import backend.HTTPAnswer;
 import backend.HTTPClient;
+import controller.login.LoginController;
 import org.json.JSONObject;
 import view.InputDialog;
-import org.json.*;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -17,14 +17,16 @@ import java.awt.event.ActionListener;
 public class SyncController {
 
     private SQLiteManager sqLiteManager;
+    private LoginController loginController;
     private InputDialog inputDialog;
 
     private Type type;
 
     enum Type {PUSH, PULL}
 
-    public SyncController(SQLiteManager sqLiteManager, Type type) {
+    public SyncController(SQLiteManager sqLiteManager, LoginController loginController, Type type) {
         this.sqLiteManager = sqLiteManager;
+        this.loginController = loginController;
         this.type = type;
     }
 
@@ -94,7 +96,8 @@ public class SyncController {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (syncDatabase()) {
-                JOptionPane.showMessageDialog(null, "Successfully completed.", "Sync: " + type.toString(), JOptionPane.INFORMATION_MESSAGE);
+                loginController.logout();
+                JOptionPane.showMessageDialog(null, "Successfully completed. Please login again.", "Sync: " + type.toString(), JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "Errors occurred. Please try again.", "Sync: " + type.toString(), JOptionPane.INFORMATION_MESSAGE);
             }
