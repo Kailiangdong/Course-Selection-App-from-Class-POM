@@ -96,7 +96,9 @@ public class SyncController {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (syncDatabase()) {
-                loginController.logout();
+                if(type == Type.PULL) {
+                    loginController.logout();
+                }
                 JOptionPane.showMessageDialog(null, "Successfully completed. Please login again.", "Sync: " + type.toString(), JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "Errors occurred. Please try again.", "Sync: " + type.toString(), JOptionPane.INFORMATION_MESSAGE);
