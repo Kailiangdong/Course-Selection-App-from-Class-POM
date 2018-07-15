@@ -5,10 +5,11 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 
 import javax.swing.*;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
 
-public class FeedbackDialog extends JDialog implements View {
+public class InputDialog extends JDialog implements View {
 
     private JPanel contentPane;
     private JButton buttonOK;
@@ -16,7 +17,9 @@ public class FeedbackDialog extends JDialog implements View {
     private JLabel feedbackLabel;
     private JTextField textField;
 
-    public FeedbackDialog() {
+    public InputDialog(String headingLabel, String confirmLabel) {
+        feedbackLabel.setText(headingLabel);
+        buttonOK.setText(confirmLabel);
         setContentPane(contentPane);
         setModal(true);
         setResizable(false);
@@ -28,12 +31,24 @@ public class FeedbackDialog extends JDialog implements View {
         return textField.getText();
     }
 
+    public void addUserDocumentListener(DocumentListener documentListener) {
+        textField.getDocument().addDocumentListener(documentListener);
+    }
+
     public void addListenerOnOK(ActionListener actionListener) {
         this.buttonOK.addActionListener(actionListener);
     }
 
     public void addListenerOnCancel(ActionListener actionListener) {
         this.buttonCancel.addActionListener(actionListener);
+    }
+
+    public void disableOKButton() {
+        buttonOK.setEnabled(false);
+    }
+
+    public void enableOKButton() {
+        buttonOK.setEnabled(true);
     }
 
     public void open() {

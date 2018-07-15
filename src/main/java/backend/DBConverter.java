@@ -48,7 +48,7 @@ public class DBConverter {
         }
     }
 
-    private JSONObject serializeDatabase() {
+    public JSONObject serializeDatabase() {
         JSONArray tableArray = new JSONArray();
         for(String tableName : tableList) {
             JSONObject tableObject = serializeTable(tableName);
@@ -60,10 +60,10 @@ public class DBConverter {
         return databaseObject;
     }
 
-    private void deserializeDatabase(JSONObject databaseObject) {
+    public boolean deserializeDatabase(JSONObject databaseObject) {
         if(!validateSchema(databaseObject)) {
             System.out.println("Database schema does not match");
-            return;
+            return false;
         }
 
         JSONArray tableArray = databaseObject.getJSONArray(TABLE_LIST_KEY);
@@ -83,6 +83,7 @@ public class DBConverter {
                 e.printStackTrace();
             }
         }
+        return true;
     }
 
     private JSONObject serializeTable(String tableName) {

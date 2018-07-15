@@ -48,6 +48,10 @@ public class MenuView implements View {
         quitItem.addActionListener(l);
     }
 
+    public void setPullButtonListener(ActionListener l) {
+        pullItem.addActionListener(l);
+    }
+
     public void setPushButtonListener(ActionListener l) {
         pushItem.addActionListener(l);
     }

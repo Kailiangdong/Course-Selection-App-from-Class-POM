@@ -155,9 +155,9 @@ public class LoginView implements View {
 
     private void updateWarnings() {
         if (!(studentIdState && passwordState && userNameState && subjectState)) {
-            confirmButton.setVisible(false);
+            confirmButton.setEnabled(false);
         } else {
-            confirmButton.setVisible(true);
+            confirmButton.setEnabled(true);
         }
         if (studentIdState) {
             warningLabelID.setVisible(false);
