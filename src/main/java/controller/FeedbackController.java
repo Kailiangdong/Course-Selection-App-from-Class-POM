@@ -1,7 +1,7 @@
 package controller;
 
 import net.hockeyapp.javafx.simple.FeedbackManager;
-import view.FeedbackDialog;
+import view.InputDialog;
 import view.View;
 
 import java.awt.event.ActionEvent;
@@ -11,11 +11,11 @@ public class FeedbackController extends Controller {
 
     private final String HOCKEYAPP_ID = "e9aa1178670a465d9e0d879310f3ca91";
 
-    private FeedbackDialog dialog;
+    private InputDialog dialog;
     private FeedbackManager feedbackManager;
 
     public FeedbackController() {
-        dialog = new FeedbackDialog();
+        dialog = new InputDialog("Feedback", "Send");
         feedbackManager = new FeedbackManager(HOCKEYAPP_ID);
         addListeners();
         dialog.open();

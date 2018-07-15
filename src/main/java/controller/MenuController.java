@@ -1,14 +1,13 @@
 package controller;
 
 import controller.login.LoginController;
-import university.Student;
+import view.InputDialog;
 import view.MenuView;
 import view.View;
 import SQLiteManager.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.activation.ActivationInstantiator;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +19,7 @@ public class MenuController extends Controller {
     private MenuView view;
     private SQLiteManager sqLiteManager;
     private LoginController loginController;
+    private InputDialog inputDialog;
 
     private boolean appActive = true;
 
@@ -116,14 +116,15 @@ public class MenuController extends Controller {
         view.setLogoutButtonListener(new LogoutButtonListener());
         view.setFeedbackButtonListener(new FeedbackButtonListener());
         view.setPushButtonListener(new PushButtonListener());
-        view.setPushButtonListener(new PullButtonListener());
+        view.setPullButtonListener(new PullButtonListener());
     }
 
     // Empty Listener for Push
     class PushButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            SyncController syncController = new SyncController(sqLiteManager, SyncController.Type.PUSH);
+            syncController.setupConnection();
         }
     }
 
@@ -131,7 +132,8 @@ public class MenuController extends Controller {
     class PullButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            SyncController syncController = new SyncController(sqLiteManager, SyncController.Type.PULL);
+            syncController.setupConnection();
         }
     }
 
