@@ -166,6 +166,8 @@ public class RequestsController extends Controller {
         deleteBuilder.addDeleteWhere(new String[]{
                 "STUDENT_ID1 = " + loginController.getLoggedInStudent().getId(),
                 "STUDENT_ID2 = " + studentID
+                + " OR STUDENT_ID1 = " + studentID,
+                "STUDENT_ID2 = " + loginController.getLoggedInStudent().getId()
         });
         return deleteBuilder;
     }
@@ -173,6 +175,7 @@ public class RequestsController extends Controller {
     public void removeFriend() {
         try {
             sqLiteManager.executeQuery(queryDeleteFriend(tableController.getSelectedStudent().getId()));
+            //sqLiteManager.executeQuery(queryDeleteFriend(loginController.getLoggedInStudent().getId()));
         } catch (SQLException e) {
             System.out.println("Error executing remove student: " + e.toString());
         }
