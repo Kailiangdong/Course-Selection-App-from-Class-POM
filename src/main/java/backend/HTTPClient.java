@@ -38,7 +38,7 @@ public class HTTPClient {
                 HttpGet httpGet = new HttpGet(new URIBuilder()
                         .setScheme("http")
                         .setHost(ipAddress)
-                        .setPort(1995)
+                        .setPort(1996)
                         .setPath("/")
                         .build());
                 httpClient = HttpClients.createDefault();
@@ -47,7 +47,7 @@ public class HTTPClient {
                 HttpPost httpPost = new HttpPost(new URIBuilder()
                         .setScheme("http")
                         .setHost(ipAddress)
-                        .setPort(1995)
+                        .setPort(1996)
                         .setPath("/")
                         .build());
                 httpPost.setEntity(new StringEntity(payload,
