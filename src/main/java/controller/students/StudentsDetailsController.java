@@ -96,23 +96,7 @@ public class StudentsDetailsController extends Controller {
         return query;
     }
 
-    private QueryBuilder queryDeleteFriend(int studentID) {
-        QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
-        deleteBuilder.addDeleteTab("FRIENDSWITH");
-        deleteBuilder.addDeleteWhere(new String[]{
-                "STUDENT_ID1 = " + loginController.getLoggedInStudent().getId(),
-                "STUDENT_ID2 = " + studentID
-        });
-        return deleteBuilder;
-    }
 
-    public void removeFriend() {
-        try {
-            sqLiteManager.executeQuery(queryDeleteFriend(tableController.getSelectedStudent().getId()));
-        } catch (SQLException e) {
-            System.out.println("Error executing remove student: " + e.toString());
-        }
-    }
     //</editor-fold>
 
     @Override
@@ -129,6 +113,6 @@ public class StudentsDetailsController extends Controller {
 
     @Override
     public void addListeners() {
-        detailsView.setRowListener(requestsController.getAddListener());
+        detailsView.setRowListener(requestsController.getAddRemoveListener());
     }
 }

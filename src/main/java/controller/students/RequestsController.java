@@ -160,13 +160,34 @@ public class RequestsController extends Controller {
         }
     }
 
+    private QueryBuilder queryDeleteFriend(int studentID) {
+        QueryBuilder deleteBuilder = new QueryBuilder(QueryType.DELETE);
+        deleteBuilder.addDeleteTab("FRIENDSWITH");
+        deleteBuilder.addDeleteWhere(new String[]{
+                "STUDENT_ID1 = " + loginController.getLoggedInStudent().getId(),
+                "STUDENT_ID2 = " + studentID
+                + " OR STUDENT_ID1 = " + studentID,
+                "STUDENT_ID2 = " + loginController.getLoggedInStudent().getId()
+        });
+        return deleteBuilder;
+    }
+
+    public void removeFriend() {
+        try {
+            sqLiteManager.executeQuery(queryDeleteFriend(tableController.getSelectedStudent().getId()));
+            //sqLiteManager.executeQuery(queryDeleteFriend(loginController.getLoggedInStudent().getId()));
+        } catch (SQLException e) {
+            System.out.println("Error executing remove student: " + e.toString());
+        }
+    }
+
     @Override
     public View getView() {
         return view;
     }
 
-    public ActionListener getAddListener() {
-        return new AddListener();
+    public ActionListener getAddRemoveListener() {
+        return new AddRemoveListener();
     }
 
     @Override
@@ -183,12 +204,13 @@ public class RequestsController extends Controller {
         view.setDeletionListener(new RejectListener());
     }
 
-    class AddListener implements ActionListener {
+
+    class AddRemoveListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
                 if (tableController.getSelectedRight()) {
-                    return;
+                    removeFriend();
                 } else {
                     if(getIfFriendRequestExists(tableController.getSelectedStudent().getId())) {
                         sqLiteManager.executeStatement(removeRequestQuery(tableController.getSelectedStudent().getId(),
